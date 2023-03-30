@@ -40,23 +40,6 @@ namespace fullstackCsharp.Controllers
             return RedirectToAction("Login");
         }
         //đăng nhập
-       /*  public IActionResult Login()
-          {
-              return View();
-          }
-          [HttpPost]
-          public IActionResult Login(string user , string password)
-          {
-              //check code
-              if ( (user == "admin" || user == "user") && password =="12345") {
-
-                  Response.Cookies.Append("username", user);
-                  Response.Cookies.Append("privilate", user);
-                  return RedirectToAction("Index");
-              }
-              return View();
-          }
-        */
         //check csdl
         private LoginDAO loginDAO = new LoginDAO();
         public ActionResult login()

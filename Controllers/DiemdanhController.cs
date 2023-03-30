@@ -2,7 +2,7 @@
 
 namespace fullstackCsharp.Controllers
 {
-    public class HomeController1 : Controller
+    public class DiemdanhController : Controller
     {
         public IActionResult Index()
         {

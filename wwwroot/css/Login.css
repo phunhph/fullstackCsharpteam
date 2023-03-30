@@ -1,0 +1,40 @@
+﻿body {
+    /*background-image: url(https://i1-dulich.vnecdn.net/2021/07/16/8-1626444967.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=GfgGn4dNuKZexy1BGkAUNA);*/
+    background-size: 100% auto;
+    position: relative;
+    background-color: #fda8cc;
+}
+form {
+    width: 20%;
+    height: 300px;
+    background: #fff;
+    position: absolute;
+    top: 220px;
+    left: 38%;
+    background-color: rgba(255, 255, 255, 0);
+}
+input {
+    outline: none;
+    border-radius: 30px;
+    line-height: 25px;
+    margin-top: 20px;
+    border: 2px solid #E757BE;
+    margin-left: 25px;
+    width: 80%;
+    box-shadow: 0 4px 5px gray;
+}
+    input[type=submit] {
+        background-color: #E757BE;
+        border: 2px solid #E757BE;
+        width:83%;
+    }
+form > h1 {
+    text-align: center;
+    color: #A14353;
+    font-size: xx-large;
+    text-shadow: 0 4px 5px gray;
+}
+input[type=submit]:hover {
+    box-shadow:inset 0 0px 20px gray; 
+    color: white;
+}
