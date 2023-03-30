@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Uwel4/Ly5Ioui1ePFHUEQKfApX3y3YavvOjRdwmWHRzoAiFotv6C6mj30pBbMKvd/DeNnW7z1Jf/cuD8MfmkAg==",
+  "dgSpecHash": "VORANMoUW+nyKvdspsmaQBW3HVje63TIU1kpJurNE9prqijPo0b8+fOkjohFloI3EcPF9fRhSlC5kP6BjsZxjw==",
   "success": true,
-  "projectFilePath": "C:\\test\\net\\fullstackCsharp\\fullstackCsharp.csproj",
+  "projectFilePath": "C:\\Users\\Huu Phu\\OneDrive - Đại học FPT- FPT University\\Documents\\FPT_polytechlic\\fullstackCsharpteam\\fullstackCsharp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Huu Phu\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Huu Phu\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
