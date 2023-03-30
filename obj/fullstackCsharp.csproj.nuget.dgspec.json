@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\test\\net\\fullstackCsharp\\fullstackCsharp.csproj": {}
+    "C:\\Users\\xuanq\\source\\repos\\library\\phunhph\\fullstackCsharpteam\\fullstackCsharp.csproj": {}
   },
   "projects": {
-    "C:\\test\\net\\fullstackCsharp\\fullstackCsharp.csproj": {
+    "C:\\Users\\xuanq\\source\\repos\\library\\phunhph\\fullstackCsharpteam\\fullstackCsharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\test\\net\\fullstackCsharp\\fullstackCsharp.csproj",
+        "projectUniqueName": "C:\\Users\\xuanq\\source\\repos\\library\\phunhph\\fullstackCsharpteam\\fullstackCsharp.csproj",
         "projectName": "fullstackCsharp",
-        "projectPath": "C:\\test\\net\\fullstackCsharp\\fullstackCsharp.csproj",
-        "packagesPath": "C:\\Users\\Huu Phu\\.nuget\\packages\\",
-        "outputPath": "C:\\test\\net\\fullstackCsharp\\obj\\",
+        "projectPath": "C:\\Users\\xuanq\\source\\repos\\library\\phunhph\\fullstackCsharpteam\\fullstackCsharp.csproj",
+        "packagesPath": "C:\\Users\\xuanq\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\xuanq\\source\\repos\\library\\phunhph\\fullstackCsharpteam\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Huu Phu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\xuanq\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -76,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
