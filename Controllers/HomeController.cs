@@ -27,30 +27,30 @@ namespace fullstackCsharp.Controllers
             }
              else if (rank == "0")
             {
-                // return user view
+                // return login view
                 Console.WriteLine("tài khoản đã bị vô hiệu hoá");
                 return RedirectToAction("Login");
             }
             else if (rank == "1")
             {
-                // return user view
+                // return staff view
                 Console.WriteLine("tài khoản của nhân viên");
                 return View();
             }
             else if (rank == "2")
             {
-                // return user view
+                // return admin view
                 Console.WriteLine("tài khoản của admin");
                 return View();
             }
             return RedirectToAction("Login");
-        }        //đăng nhập
+        }
+        //đăng xuất
         public IActionResult Logout()
         {
             Response.Cookies.Delete("username");
             Response.Cookies.Delete("privilate");
             Response.Cookies.Delete("rank");
-
             return RedirectToAction("Login");
         }
         //đăng nhập
