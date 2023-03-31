@@ -20,14 +20,27 @@ namespace fullstackCsharp.Controllers
         {
             var username = HttpContext.Request.Cookies["username"];
             var privilate = HttpContext.Request.Cookies["privilate"];
-            if(username == null)
+            var rank = HttpContext.Request.Cookies["rank"];
+            if (rank == null)
             {
                 return RedirectToAction("Login");
             }
-             else if (privilate != null)
+             else if (rank == "0")
             {
                 // return user view
-                Console.WriteLine("Loged in user is nomal user!");
+                Console.WriteLine("tài khoản đã bị vô hiệu hoá");
+                return RedirectToAction("Login");
+            }
+            else if (rank == "1")
+            {
+                // return user view
+                Console.WriteLine("tài khoản của nhân viên");
+                return View();
+            }
+            else if (rank == "2")
+            {
+                // return user view
+                Console.WriteLine("tài khoản của admin");
                 return View();
             }
             return RedirectToAction("Login");
@@ -36,6 +49,7 @@ namespace fullstackCsharp.Controllers
         {
             Response.Cookies.Delete("username");
             Response.Cookies.Delete("privilate");
+            Response.Cookies.Delete("rank");
 
             return RedirectToAction("Login");
         }
@@ -57,6 +71,7 @@ namespace fullstackCsharp.Controllers
                 {
                     Response.Cookies.Append("username", Login.user);
                     Response.Cookies.Append("privilate", Login.user);
+                    Response.Cookies.Append("rank", Login.rank.ToString());
                     return RedirectToAction("Index");
                 }
                 else

@@ -5,25 +5,32 @@ using fullstackCsharp.Models;
 
 public class LoginDAO
 {
-    static string connString = "Server=tcp:employee-management-qhp.database.windows.net,1433;Initial Catalog=employee-management;Persist Security Info=False;User ID=sqladmin;Password=Employee-management;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-    /* static string connString = "Server=tcp:employee-management.database.windows.net,1433;Initial Catalog=employee-management;Persist Security Info=False;User ID=quyethieuphu;Password=Employee-management;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";*/
+    static string connString = "Data Source=MSI\\MSSQLSERVER01;Initial Catalog=QuanLy;Integrated Security=True;TrustServerCertificate=True";
+    /* static string connString = "Server=tcp:employee-management-qhp.database.windows.net,1433;Initial Catalog=employee-management;Persist Security Info=False;User ID=sqladmin;Password=Employee-management;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";*/
     public bool ValidateUser(Login Login)
     {
         bool result = false;
         using (SqlConnection connection = new SqlConnection(connString))
         {
-            // truy vấn acc
-            string query = "SELECT  COUNT(*) FROM NhanVien WHERE username=@username AND passwords=@password";
+            // Truy vấn tài khoản
+            string query = "SELECT username, passwords, rank FROM NhanVien WHERE username=@username AND passwords=@password";
             SqlCommand command = new SqlCommand(query, connection);
-            // truyền  tham số vào truy vấn và tự động xác định kiểu dữ liệu
+            // Truyền tham số vào truy vấn và tự động xác định kiểu dữ liệu
             command.Parameters.AddWithValue("@username", Login.user);
             command.Parameters.AddWithValue("@password", Login.password);
             connection.Open();
-            // lưu số lượng acc truy vấn ra được đúng đk
-            int count = (int)command.ExecuteScalar();
-            if (count > 0)
+            // Thực hiện truy vấn và đọc dữ liệu trả về
+            using (SqlDataReader reader = command.ExecuteReader())
             {
-                result = true;
+                //đọc dữ liệu
+                if (reader.Read())
+                {
+                    // gán dữ liệu vào thuộc tính bên modles
+                    Login.user = reader["username"].ToString();
+                    Login.password = reader["passwords"].ToString();
+                    Login.rank = Convert.ToInt32(reader["rank"]);
+                    result = true;
+                }
             }
         }
         return result;
