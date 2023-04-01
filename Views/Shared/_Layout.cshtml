@@ -38,8 +38,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Diemdanh" asp-action="Index">Điểm danh</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Đang xuat</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Đăng xuất</a>
                         </li>
+                        <div>
+                            <span>
+                                chào: @ViewContext.HttpContext.Request.Cookies["name"]
+                            </span>
+                        </div>
                     </ul>
                 </div>
             </div>

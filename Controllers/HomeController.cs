@@ -18,8 +18,6 @@ namespace fullstackCsharp.Controllers
         }
         public IActionResult Index(LoginDAO loginDAO)
         {
-            var username = HttpContext.Request.Cookies["username"];
-            var privilate = HttpContext.Request.Cookies["privilate"];
             var rank = HttpContext.Request.Cookies["rank"];
             if (rank == null)
             {
@@ -49,7 +47,7 @@ namespace fullstackCsharp.Controllers
         public IActionResult Logout()
         {
             Response.Cookies.Delete("username");
-            Response.Cookies.Delete("privilate");
+            Response.Cookies.Delete("name");
             Response.Cookies.Delete("rank");
             return RedirectToAction("Login");
         }
@@ -70,13 +68,14 @@ namespace fullstackCsharp.Controllers
                 if (isValidUser)
                 {
                     Response.Cookies.Append("username", Login.user);
-                    Response.Cookies.Append("privilate", Login.user);
+                    Response.Cookies.Append("name", Login.name);
                     Response.Cookies.Append("rank", Login.rank.ToString());
+                    Response.Cookies.Delete("error");
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password");
+                    TempData["error"] = "đăng nhập thất bại";
                 }
             }
             return View(Login);
