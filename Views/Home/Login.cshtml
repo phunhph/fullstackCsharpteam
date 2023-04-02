@@ -11,7 +11,6 @@
 <head>
     <meta name="viewport" content="width=device-width" />
 	<title>Login</title>
-	<link href="~/../../../../../onedrive - đại học fpt- fpt university/documents/fpt_polytechlic/fullstackcsharpteam/wwwroot/css/login.css" rel="stylesheet" />
     <link href="~/css/login.css" rel="stylesheet" />
 </head>
 <body>
@@ -32,8 +31,9 @@
                     </div>
                     <div class="forget">
                         <p class="error">
-                            @TempData["error"] <a href="#">quên mật khẩu</a>
+                        @TempData["error"]
                         </p>
+                        <a href="#" class="error">quên mật khẩu</a>
                     </div>
                     <button>Login</button>
                 </form>
