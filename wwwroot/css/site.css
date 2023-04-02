@@ -21,3 +21,78 @@ body {
     margin-bottom: 60px;
     background-color: #EF9696;
 }
+/*container*/
+
+.container{
+    width:100% !important;
+    position:relative;
+    margin:0;
+}
+/*head*/
+.allnav{
+    margin-bottom:0px;
+}
+/*animation nav*/
+.nav-item a {
+    position: relative;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}
+    .nav-item a::after {
+        content: '';
+        position: absolute;
+        left: 9px;
+        bottom:-1px;
+        width: 80%;
+        height: 2px;
+        background-color: #000;
+        border-radius: 5px;
+        transform-origin: right;
+        transform: scaleX(0);
+        transition: transform .5s;
+    }
+    .nav-item a:hover::after {
+        transform-origin:left;
+        transform: scaleX(1);
+        
+    }
+/*degi profile staff*/
+.divnav {
+    position: relative;
+    margin:0;
+}
+
+    .divnav > div {
+        position:absolute;
+        right:5px;
+    }
+/*div profile content and logout*/
+.main-profile{
+    display:none;
+}
+.show{
+    display:block !important;
+}
+.Profile{
+    width:300px;
+    height:200px;
+    border: 2px solid black;
+    display:grid;
+    grid-template-columns:100%;
+    background-color:#fff;
+    position:absolute;
+    top:0px;
+    right:0px;
+}
+.Profile a{
+    text-decoration:none;
+    color:#000;
+}
+.Logout button{
+    border:none;
+}
+/*hover hello*/
+.hello:hover {
+    cursor: pointer;
+}

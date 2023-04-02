@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 allnav">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">fullstackCsharp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -18,31 +18,25 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1 divnav">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Staff" asp-action="Index">Danh sách nhân viên </a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Staff" asp-action="Index">Nhân viên </a>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Phòng ban</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Lương</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Diemdanh" asp-action="Index">Điểm danh</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Staff" asp-action="Index">Lương</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Đăng xuất</a>
                         </li>
                         <div>
-                            <span>
-                                chào: @ViewContext.HttpContext.Request.Cookies["name"]
+                            <span class="hello" id="profile">
+                                Xin chào: @ViewContext.HttpContext.Request.Cookies["name"] <ion-icon name="person-circle-outline"></ion-icon>
                             </span>
                         </div>
                     </ul>
@@ -51,6 +45,23 @@
         </nav>
     </header>
     <div class="container">
+       <div class="main-profile">
+            <div class="Profile">
+                <div class="NameStaff">
+                    <h3>@ViewContext.HttpContext.Request.Cookies["name"]</h3>
+                </div>
+                <div class="profile-content">
+                    <button>
+                            <a class="" asp-area="" asp-controller="Home" asp-action="Index">Hồ sơ cá nhân</a>
+                    </button>
+                </div>
+                <div class="Logout">
+                    <button>
+                        <a class="" asp-area="" asp-controller="Home" asp-action="Logout">Đăng xuất</a>
+                    </button>
+                </div>
+            </div>
+       </div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -64,6 +75,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

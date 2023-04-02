@@ -2,3 +2,6 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+document.getElementById("profile").onclick = function () {
+    document.querySelector(".main-profile").classList.add("show");
+}

@@ -11,17 +11,38 @@
 <head>
     <meta name="viewport" content="width=device-width" />
 	<title>Login</title>
+	<link href="~/../../../../../onedrive - đại học fpt- fpt university/documents/fpt_polytechlic/fullstackcsharpteam/wwwroot/css/login.css" rel="stylesheet" />
     <link href="~/css/login.css" rel="stylesheet" />
 </head>
 <body>
-    <form role="form" method="post" asp-controller="home">
-        <h1>Please Sign in</h1>
-        <input type="text" id="user" name="user" placeholder="username" /><br />
-        <input type="password" id="pass" name="password" placeholder="password" /><br />
-        <p>
-            @TempData["error"]
-        </p>
-        <input type="submit" value="Login" /><br />
-    </form>
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form role="form" method="post" asp-controller="home">
+                    <h2>Login</h2>
+                    <div class="inputbox">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <input type="text" id="user" name="user" required />
+                        <label for="">username</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" id="pass" name="password" required />
+                        <label for="">password</label>
+                    </div>
+                    <div class="forget">
+                        <p class="error">
+                            @TempData["error"] <a href="#">quên mật khẩu</a>
+                        </p>
+                    </div>
+                    <button>Login</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

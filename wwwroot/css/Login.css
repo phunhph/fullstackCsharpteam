@@ -1,50 +1,107 @@
-﻿body {
-    /*background-image: url(https://i1-dulich.vnecdn.net/2021/07/16/8-1626444967.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=GfgGn4dNuKZexy1BGkAUNA);*/
-    background-size: 100% auto;
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+/* login */
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-image: url(https://cdn.baogiaothong.vn/upload/2-2022/images/2022-05-25/2-1653445668-926-width740height481.jpg);
+    background-size: cover;
+    background-position: center;
+}
+/* form and text head */
+.form-box {
     position: relative;
-    background-color: #fda8cc;
+    width: 400px;
+    height: 450px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-form {
-    width: 20%;
-    height: 300px;
-    background: #fff;
-    position: absolute;
-    top: 220px;
-    left: 38%;
-    background-color: rgba(255, 255, 255, 0);
-}
-
-input {
-    outline: none;
-    border-radius: 30px;
-    line-height: 25px;
-    margin-top: 20px;
-    border: 2px solid #E757BE;
-    margin-left: 25px;
-    width: 80%;
-    box-shadow: 0 4px 5px gray;
-}
-
-form > p {
-    margin-left: 40px;
-    color: red;
-}
-
-input[type=submit] {
-    background-color: #E757BE;
-    border: 2px solid #E757BE;
-    width: 83%;
-}
-
-form > h1 {
+h2 {
+    font-size: 2em;
+    color: #fff;
     text-align: center;
-    color: #A14353;
-    font-size: xx-large;
-    text-shadow: 0 4px 5px gray;
+}
+/*  user and pass */
+.inputbox {
+    position: relative;
+    margin: 30px 0;
+    width: 310px;
+    border-bottom: 2px solid #fff;
 }
 
-input[type=submit]:hover {
-    box-shadow: inset 0 0px 20px gray;
-    color: white;
+    .inputbox label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        color: #fff;
+        font-size: 1em;
+        pointer-events: none;
+        transition: 0.5s;
+    }
+/* animation input hover */
+input:focus ~ label,
+input:valid ~ label {
+    top: -5px;
 }
+
+/* css input */
+.inputbox input {
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 0 35px 0 5px;
+    color: #fff;
+}
+
+.inputbox ion-icon {
+    position: absolute;
+    right: 8px;
+    color: #fff;
+    font-size: 1.2em;
+    top: 20px;
+}
+/* error and rollback password */
+.forget {
+    margin: -15px 0 15px;
+    font-size: 1em;
+    color: #fff;
+    display: flex;
+    justify-content: baseline;
+}
+
+    .forget p a {
+        text-decoration: none;
+    }
+
+        .forget p a:hover {
+            text-decoration: underline;
+            color: black;
+        }
+/* login  */
+button {
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background-color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+/* animation show login */
