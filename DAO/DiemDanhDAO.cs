@@ -7,31 +7,30 @@ namespace fullstackCsharp.DAO
     public class DiemDanhDAO
     {
         static string connString = "Data Source=MSI\\MSSQLSERVER01;Initial Catalog=QuanLy;Integrated Security=True;TrustServerCertificate=True";
-        public bool Commitout(Diemdanh Call, string id_nv)
+        public bool Commitout(Diemdanh Call, string id_nv,string time_out,string id)
         {
             bool resultout = false;
             using (SqlConnection connection = new SqlConnection(connString))
             {
                 // Truy vấn tài khoản
-                string query = "SELECT HoTen,r.ID_NV,time_in,time_out FROM NhanVien as nv join roll_call as r on nv.ID_NV =r.ID_NV where r.ID_NV=@id_nv ";
+                string query = "update roll_call set time_out=@time_out where ID_NV=@id_nv and ID=@id ";
                 SqlCommand command = new SqlCommand(query, connection);
                 // Truyền tham số vào truy vấn và tự động xác định kiểu dữ liệu
                 command.Parameters.AddWithValue("@id_nv",id_nv);
-                Console.WriteLine(id_nv);
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@time_out", time_out);
                 connection.Open();
-                // Thực hiện truy vấn và đọc dữ liệu trả về
-                using (SqlDataReader reader = command.ExecuteReader())
+                int result = command.ExecuteNonQuery();
+                connection.Close();
+
+                // Trả về kết quả
+                if (result > 0)
                 {
-                    //đọc dữ liệu
-                    if (reader.Read())
-                    {
-                        // gán dữ liệu vào thuộc tính bên modles
-                        Call.name = reader["HoTen"].ToString();
-                        Call.timein = reader["time_in"].ToString();
-                        Call.timeout = reader["time_out"].ToString();
-                        Call.id_nv = reader["ID_NV"].ToString();
-                        resultout = true;
-                    }
+                   resultout = true;
+                }
+                else
+                {
+                    resultout = false;
                 }
             }
             return resultout;
@@ -56,15 +55,16 @@ namespace fullstackCsharp.DAO
                 // Trả về kết quả
                 if (result > 0)
                 {
-                    return resultin=true;
+                     resultin=true;
                 }
                 else
                 {
-                    return resultin=false;
+                     resultin=false;
                 }
             }
+            return resultin;
         }
-
-
     }
 }
+// lổi khi vào trang điểm danh thì đồng thời thực hiện cả 2 lệnh insert into và update 
+// khắc phục nó bằng việc thực hiện event button điểm danh
