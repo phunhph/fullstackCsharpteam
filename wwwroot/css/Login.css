@@ -56,6 +56,7 @@ input:focus ~ label,
 input:valid ~ label {
     top: -5px;
 }
+/*bgc name input login*/
 /* css input */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -63,6 +64,7 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
 }
+/*mầu lgoin*/
 input:-webkit-autofill {
     -webkit-text-fill-color: #fff !important;
 }
@@ -95,6 +97,7 @@ input:-webkit-autofill {
 
     .forget>a {
         text-decoration: none;
+        color:#fff;
     }
 
         .forget>a:hover {

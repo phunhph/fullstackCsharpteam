@@ -32,6 +32,7 @@ namespace fullstackCsharp.Controllers
             else if (rank == "1")
             {
                 // return staff view
+                
                 Console.WriteLine("tài khoản của nhân viên");
                 return View();
             }
@@ -49,6 +50,7 @@ namespace fullstackCsharp.Controllers
             Response.Cookies.Delete("username");
             Response.Cookies.Delete("name");
             Response.Cookies.Delete("rank");
+            Response.Cookies.Delete("id_nv");
             return RedirectToAction("Login");
         }
         //đăng nhập
@@ -69,6 +71,7 @@ namespace fullstackCsharp.Controllers
                 {
                     Response.Cookies.Append("username", Login.user);
                     Response.Cookies.Append("name", Login.name);
+                    Response.Cookies.Append("id_nv", Login.id_nv);
                     Response.Cookies.Append("rank", Login.rank.ToString());
                     Response.Cookies.Delete("error");
                     return RedirectToAction("Index");

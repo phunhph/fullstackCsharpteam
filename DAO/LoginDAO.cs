@@ -13,7 +13,7 @@ public class LoginDAO
         using (SqlConnection connection = new SqlConnection(connString))
         {
             // Truy vấn tài khoản
-            string query = "SELECT username, passwords, rank, HoTen FROM NhanVien WHERE username=@username AND passwords=@password";
+            string query = "SELECT username, passwords, rank, HoTen,ID_NV FROM NhanVien WHERE username=@username AND passwords=@password";
             SqlCommand command = new SqlCommand(query, connection);
             // Truyền tham số vào truy vấn và tự động xác định kiểu dữ liệu
             command.Parameters.AddWithValue("@username", Login.user);
@@ -29,6 +29,7 @@ public class LoginDAO
                     Login.user = reader["username"].ToString();
                     Login.password = reader["passwords"].ToString();
                     Login.name = reader["HoTen"].ToString();
+                    Login.id_nv = reader["ID_NV"].ToString();
                     Login.rank = Convert.ToInt32(reader["rank"]);
                     result = true;
                 }
