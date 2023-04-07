@@ -1,5 +1,60 @@
 ﻿@model fullstackCsharp.Models.Staff
 
-<div>
-  
-</div>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Staff</title>
+    <link href="~/css/staff.css" rel="stylesheet" />
+</head>
+<body>
+    
+        
+
+            <div>
+
+                
+                    <table class="tnv" >
+                        <tr>
+                            
+                            <th > Mã nhân viên</th>
+                            <th> Tên nhân viên</th>
+                            <th> Giới tính</th>
+                        </tr>
+                        @{
+                            List<Staff> stafflist = ViewData["staffList"] as List<Staff>;
+
+
+
+                            @foreach (Staff staff in stafflist)
+                            {
+                                <tr border="2">
+                                  
+                                    <td> @staff.V1</td>
+                                    <td> @staff.V2</td>
+                                    <td> @staff.V3</td>
+                                </tr>
+
+                            }
+
+
+                        }
+                    </table>
+                
+
+
+
+
+            </div>
+       
+    <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
+
+
+
+

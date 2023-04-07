@@ -12,21 +12,9 @@ namespace fullstackCsharp.Controllers
         public ActionResult Index()
         {
             StaffDAO staffDAO = new StaffDAO();
-            staffDAO.Select("002");
-            var privilate = HttpContext.Request.Cookies["privilate"];
-            if (privilate != null)
-            {
-                // return admin view
-                Console.WriteLine("Loged in user is admin!");
-                return View();
-            }
-            else if (privilate == "user")
-            {
-                // return user view
-                Console.WriteLine("Loged in user is nomal user!");
-                return View();
-            }
-            return RedirectToAction("Login");
+            List<Staff> staffList = staffDAO.SelectAll();
+            ViewData["staffList"] = staffList;
+            return View();
         }
 
         // GET: StaffController/Details/5
@@ -35,7 +23,7 @@ namespace fullstackCsharp.Controllers
             // gia su admin moi vao duoc trang nay
             // DDee anh mo lai sau =))
             StaffDAO staffDAO = new StaffDAO();
-            staffDAO.Select("002");
+           
             var tryGetCookie = HttpContext.Request.Cookies["myCookies"];
             if (tryGetCookie != null)
             {

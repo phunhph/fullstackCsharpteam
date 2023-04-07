@@ -1,10 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Controllers",
-    "\\DAO",
-    "\\Models"
+    "\\Models",
+    "\\Views",
+    "\\Views\\Staff",
+    "\\wwwroot",
+    "\\wwwroot\\css"
   ],
-  "SelectedNode": "\\Models\\Login.cs",
+  "SelectedNode": "\\Views\\Staff\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

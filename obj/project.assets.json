@@ -9930,19 +9930,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Huu Phu\\.nuget\\packages\\": {}
+    "C:\\Users\\HP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Huu Phu\\OneDrive - Đại học FPT- FPT University\\Documents\\FPT_polytechlic\\fullstackCsharpteam\\fullstackCsharp.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\fullstackCsharp.csproj",
       "projectName": "fullstackCsharp",
-      "projectPath": "C:\\Users\\Huu Phu\\OneDrive - Đại học FPT- FPT University\\Documents\\FPT_polytechlic\\fullstackCsharpteam\\fullstackCsharp.csproj",
-      "packagesPath": "C:\\Users\\Huu Phu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Huu Phu\\OneDrive - Đại học FPT- FPT University\\Documents\\FPT_polytechlic\\fullstackCsharpteam\\obj\\",
+      "projectPath": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\fullstackCsharp.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Huu Phu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10004,7 +10004,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

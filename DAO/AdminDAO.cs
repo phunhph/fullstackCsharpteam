@@ -5,7 +5,6 @@ using fullstackCsharp.Models;
 
 public class AdminDAO
 {
-    static string connString = "Data Source=MSI\\MSSQLSERVER01;Initial Catalog=QuanLy;Integrated Security=True;TrustServerCertificate=True";
     public List<Admin> Select(string manv)
     {
         List<Admin> employeeList = new List<Admin>();
