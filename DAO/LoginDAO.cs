@@ -6,9 +6,11 @@ using NuGet.Protocol.Plugins;
 
 public class LoginDAO
 {
-    
+    static string connString = "hlo";
+
     public bool ValidateUser(Login Login)
     {
+        
         bool result = false;
         using (SqlConnection connection = new SqlConnection(connString))
         {

@@ -5,6 +5,7 @@ using fullstackCsharp.Models;
 
 public class AdminDAO
 {
+    static string connString = "hlo";
     public List<Admin> Select(string manv)
     {
         List<Admin> employeeList = new List<Admin>();
