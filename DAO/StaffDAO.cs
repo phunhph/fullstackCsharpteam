@@ -10,7 +10,7 @@ namespace fullstackCsharp.DAO;
 
 public class StaffDAO
 {
-    static string connString = "hlo";
+     static string connString = "helo";
 
     public List<Staff> Select(string manv)
     {
