@@ -11,7 +11,7 @@ public class StaffDAO
     public List<Staff> Select(string manv)
     {
         List<Staff> staffList = new List<Staff>();
-        using (SqlConnection dbConnection = new SqlConnection(connString))
+        using (SqlConnection dbConnection = new SqlConnection(ConfigSettings.connString))
         {
             dbConnection.Open();
             DbTransaction transaction = dbConnection.BeginTransaction();
