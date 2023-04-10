@@ -3,14 +3,15 @@ using System.Data.Common;
 using System.Data;
 using fullstackCsharp.Models;
 
+
+namespace fullstackCsharp.DAO;
 public class LoginDAO
 {
-    static string connString = "Data Source=MSI\\MSSQLSERVER01;Initial Catalog=QuanLy;Integrated Security=True;TrustServerCertificate=True";
-   
+
     public bool ValidateUser(Login Login)
     {
         bool result = false;
-        using (SqlConnection connection = new SqlConnection(connString))
+        using (SqlConnection connection = new SqlConnection(ConfigSettings.connString))
         {
             // Truy vấn tài khoản
             string query = "SELECT username, passwords, rank, HoTen,ID_NV FROM NhanVien WHERE username=@username AND passwords=@password";
@@ -38,3 +39,4 @@ public class LoginDAO
         return result;
     }
 }
+
