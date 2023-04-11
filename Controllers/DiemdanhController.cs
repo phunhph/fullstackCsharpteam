@@ -33,11 +33,14 @@ namespace fullstackCsharp.Controllers
         [HttpPost]
 		public ActionResult Checkin(Diemdanh diemdanh)
 		{
-				bool CheckIn = DiemDanhDAO.CommitIn(diemdanh) ;
+            var id_nv = HttpContext.Request.Cookies["id_nv"];
+            diemdanh.id_nv = id_nv;
+            diemdanh.name = HttpContext.Request.Cookies["name"];
+            Response.Cookies.Append("id", diemdanh.id);
+            bool CheckIn = DiemDanhDAO.CommitIn(diemdanh) ;
 				if (CheckIn)
-				{
-                Response.Cookies.Append("id", diemdanh.id);
-                Response.Cookies.Append("id_nv", diemdanh.id_nv);
+				{     
+                
                 Console.WriteLine("Xác nhận time in");       
                 }
 				else
@@ -50,6 +53,10 @@ namespace fullstackCsharp.Controllers
         [HttpPost]
         public ActionResult Checkout(Diemdanh diemdanh)
         {
+            var id_nv = HttpContext.Request.Cookies["id_nv"];
+            diemdanh.id_nv = id_nv;
+            diemdanh.name = HttpContext.Request.Cookies["name"];
+            diemdanh.id= HttpContext.Request.Cookies["id"];
             bool CheckOut = DiemDanhDAO.CommitOut(diemdanh);
             if (CheckOut)
             {

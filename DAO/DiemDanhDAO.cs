@@ -69,7 +69,6 @@ namespace fullstackCsharp.DAO
         }
         // thong tin diem danh 
 
-
           public List<Diemdanh> Select(string manv)
           {
               List<Diemdanh> diemdanhList = new List<Diemdanh>();
