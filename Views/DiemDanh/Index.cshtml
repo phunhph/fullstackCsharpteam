@@ -3,23 +3,40 @@
 *@
 @{
 }
-<!DOCTYPE html>
-<html>
-    <head></head>
-    <body>
-        <button id="in">Time in</button>
-       <button id="on">Time out</button>
-        <table border="1px">
-        <tbody>
-                <tr>
-                    <th>Mã nhân viên</th>
-                    <th>Tên nhân viên</th>
-                    <th>Ngày làm</th>
-                    <th>time in</th>
-                    <th>time out</th>
-                </tr>
-            </tbody>
+@model Diemdanh
+<html lang="en">
+<body>
+    <form role="form" method="post">
+        <button asp-controller="Diemdanh" asp-action="Checkin" id="in">Check in</button>
+        <button asp-controller="Diemdanh" asp-action="Checkout" id="out">Check up</button>
+        <table  style="width:100%">
+            <tr>
+                <th>ID</th>
+                <th>ID_NV</th>
+                <th>NAME</th>
+                <th>TIME_IN</th>
+                <th>TIME_OUT</th>
+            </tr>
+            @{
+                List<Diemdanh> diemdanhlist = ViewData["diemdanhList"] as List<Diemdanh>;
+                @foreach (Diemdanh staff in diemdanhlist)
+                {
+                    <tr>
+                        <td> @staff.id</td>
+                        <td> @staff.id_nv</td>
+                        <td> @staff.name</td>
+                        <td> @staff.timein</td>
+                        <td> @staff.timeout</td>
+                    </tr>
+
+                }
+
+            }
+            
+            <tbody id="tbody"></tbody>
         </table>
+    </form>
 	<script src="~/js/dim.js"></script>
-    </body>
+</body>
 </html>
+    

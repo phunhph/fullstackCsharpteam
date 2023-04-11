@@ -60,7 +60,6 @@ namespace fullstackCsharp.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult login(Login Login)
         {
