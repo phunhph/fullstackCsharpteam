@@ -15,18 +15,26 @@ namespace fullstackCsharp.Controllers
             List<Diemdanh> diemdanhList = diemdanhDAO.Select(id_nv);
             ViewData["diemdanhList"] = diemdanhList;
             var rank = HttpContext.Request.Cookies["rank"];
-            if (rank == "1")
+            if (rank == "2")
             {
                 // return admin view
                 Console.WriteLine("Loged in user is admin!");
-                return View();
+                return RedirectToAction("Admin");
+               // return View();
             }
-            else if (rank == "2")
+            else if (rank == "1")
             {
                 // return user view
                 Console.WriteLine("Loged in user is nomal user!");
                 return View();
             }
+            return View();
+        }
+        public ActionResult Admin()
+        {
+            DiemDanhDAO diemdanhDAO = new DiemDanhDAO();
+            List<Diemdanh> diemdanhList = diemdanhDAO.Select();
+            ViewData["diemdanhList"] = diemdanhList;
             return View();
         }
         // checkin

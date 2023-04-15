@@ -1,0 +1,75 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<head>
+	<link href="~/css/form.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="form">
+            <div class="text">
+                <h1>Đăng ký nghỉ</h1>
+            </div>
+            <form role="form" method="post">
+                <label for="id_nv">Mã Nhân viên</label><br />
+                <input type="text"
+                       id="id_nv"
+                       name="id_nv"
+                       placeholder="Nhập mã nhân viên" />
+                <br />
+                <label for="Start">Nghỉ từ</label><br />
+                <input type="time" name="start" id="Start" /> <br />
+                <label for="End">Đến</label><br />
+                <input type="time" name="end" id="End" /><br />
+                <button asp-controller="Form" asp-action="FormPush">Đăng ký</button>
+            </form>
+        </div>
+    </div>
+    <div class="ListForm">
+        <table style="width: 100%">
+            <tr>
+                <th>ID</th>
+                <th>ID_NV</th>
+                <th>Bắt đầu</th>
+                <th>Kết thúc</th>
+                <th>Trạng thái</th>
+                <th>Huỷ form</th>
+            </tr>
+            @{
+                List<Form> formlist = ViewData["formList"] as List<Form>;
+                @foreach (Form form in formlist)
+                {
+                    <tr>
+                        <td> @form.id</td>
+                        <td> @form.id_nv</td>
+                        <td> @form.start</td>
+                        <td> @form.end</td>
+                        <td> @form.TrangThai</td>
+                        <td>
+                            <form role="form" method="post" id="@form.Soform">
+                                <button asp-controller="Form" asp-action="DeleteForm" onclick="delelte(@form.Soform)">Cancel</button>
+                           </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <script>
+        var time=new Date()
+        var a= document.createElement("input")
+        a.value=time.toLocaleDateString();
+        a.style.display="none"
+        a.name="id"
+        document.getElementsByTagName("form")[0].append(a);
+        function delelte(m) {
+            var b = document.createElement("input")
+            b.value = m;
+            b.name = "Soform";
+            b.style.display="none"
+            document.getElementById(m).append(b);
+        }
+    </script>
+</body>

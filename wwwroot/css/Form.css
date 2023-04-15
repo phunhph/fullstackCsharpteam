@@ -1,0 +1,10 @@
+﻿.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ListForm {
+    margin-top: 5%;
+    border-top: 1px solid gray;
+}

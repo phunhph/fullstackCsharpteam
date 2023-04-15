@@ -1,0 +1,60 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<head>
+    <link href="~/css/form.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="ListForm">
+        <table style="width: 100%">
+            <tr>
+                <th>ID</th>
+                <th>ID_NV</th>
+                <th>Bắt đầu</th>
+                <th>Kết thúc</th>
+                <th>Trạng thái</th>
+                <th>Huỷ form</th>
+            </tr>
+            @{
+                List<Form> formlist = ViewData["formList"] as List<Form>;
+                @foreach (Form form in formlist)
+                {
+                    <tr>
+                        <td> @form.id</td>
+                        <td> @form.id_nv</td>
+                        <td> @form.start</td>
+                        <td> @form.end</td>
+                        <td> @form.TrangThai</td>
+                        <td>
+                            <form role="form" method="post" id="@form.Soform">
+                                <button asp-controller="Form" asp-action="Confirm" onclick="delelte(@form.Soform)" class="duyet">Duyệt</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <script>
+        //var list = document.querySelectorAll(".duyet");
+        //list.forEach(element => {
+        //    element.addEventListener("click", function () {
+        //        var b = document.createElement("input")
+        //        b.value = event.target.id;
+        //        b.name = "Soform";
+        //        b.style.display="none";
+        //        document.getElementsByTagName("form")[0].append(b);
+        //        console.log("check check" + b.value)
+        //    });
+        //});
+        function delelte(m) {
+            var b = document.createElement("input")
+            b.value = m;
+            b.name = "Soform";
+            b.style.display = "none"
+            document.getElementById(m).append(b);
+        }
+    </script>
+</body>

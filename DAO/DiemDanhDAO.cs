@@ -121,5 +121,56 @@ namespace fullstackCsharp.DAO
               return diemdanhList;
         
           }
+        // select all
+        public List<Diemdanh> Select()
+        {
+            List<Diemdanh> diemdanhList = new List<Diemdanh>();
+            using (SqlConnection dbConnection = new SqlConnection(connString))
+            {
+                dbConnection.Open();
+                DbTransaction transaction = dbConnection.BeginTransaction();
+                try
+                {
+                   
+                    int timeout = 30;
+                    string commandText = "SELECT * FROM roll_call ";
+                    SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
+                    command.CommandTimeout = timeout;
+                    // set param
+                    // nếu là select
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Diemdanh staff = new Diemdanh();
+                            staff.id = reader["ID"].ToString();
+                            staff.id_nv = reader["ID_NV"].ToString();
+                            staff.name = reader["HoTen"].ToString();
+                            staff.timein = reader["time_in"].ToString();
+                            staff.timeout = reader["time_out"].ToString();
+                            diemdanhList.Add(staff);
+                            // return danh sách nhân viên ở đây
+                            Console.WriteLine(String.Format("{0}", reader[0]));
+                        }
+                    }
+                    // nếu là insert, update, delete
+                    // command.ExecuteNonQuery(); 
+
+                    // vì là select nên không thay đổi gì db, sau khi select xong thì rollback cho chắc
+                    transaction.Rollback();
+                    // nếu là insert, update, delete thì dùng: transaction.Commit();
+
+                }
+                catch
+                {
+                    // Nếu có lỗi xảy ra thì rollback để tránh làm mất dữ liệu DB
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+
+            return diemdanhList;
+
+        }
     }
 }

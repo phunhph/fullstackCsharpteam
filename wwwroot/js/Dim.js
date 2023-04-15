@@ -18,7 +18,6 @@ textID.style.display = "none";
 DateIn.style.display = "none";
 DateOut.style.display = "none";
 // suất
-console.log(DateIn)
 document.getElementsByTagName("form")[0].append(textID);
 document.getElementsByTagName("form")[0].append(DateIn);
 document.getElementsByTagName("form")[0].append(DateOut);
