@@ -2,6 +2,7 @@
 using fullstackCsharp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Common;
 using System.Collections.Generic;
 
 namespace fullstackCsharp.Controllers
@@ -12,10 +13,17 @@ namespace fullstackCsharp.Controllers
         public ActionResult Index()
         {
             StaffDAO staffDAO = new StaffDAO();
-            List<Staff> staffList = staffDAO.SelectAll();
+            List<Staff> staffList =   staffDAO.SelectAll();//new List<Staff>();
             ViewData["staffList"] = staffList;
             return View();
         }
+        //public ActionResult Add()
+        //{
+        //    StaffDAO staffDAO = new StaffDAO();
+        //    List<Staff> staffList = staffDAO.SelectAll();
+        //    ViewData["staffList"] = staffList;
+        //    return View();
+        //}
 
         // GET: StaffController/Details/5
         public ActionResult Details(int id)
@@ -37,6 +45,8 @@ namespace fullstackCsharp.Controllers
         // GET: StaffController/Create
         public ActionResult Create()
         {
+
+           
             return View();
         }
 
@@ -45,6 +55,10 @@ namespace fullstackCsharp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
+            StaffDAO staffDAO = new StaffDAO();
+            Staff newStaff = new Staff("N01", "hieu", "nam", "hoa tien", "hieu@.gamil", "123");
+            List<Staff> staff = staffDAO.Create(newStaff);
+
             try
             {
                 return RedirectToAction(nameof(Index));

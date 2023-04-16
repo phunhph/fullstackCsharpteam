@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qFFADOTbADDOjec7KnkWF3QQ3lTrjDtHO1uLlOQlYYs=",
+  "Hash": "nrkBJtVwWsE3B1yMmL5hqYTlNlwXWEFdEQnai9acXOw=",
   "Source": "fullstackCsharp",
   "BasePath": "_content/fullstackCsharp",
   "Mode": "Default",
@@ -151,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\js\\Staff.js",
+      "SourceId": "fullstackCsharp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\",
+      "BasePath": "_content/fullstackCsharp",
+      "RelativePath": "js/Staff.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Staff.js"
     },
     {
       "Identity": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

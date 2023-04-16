@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\js\\Dim.js"
     },
     {
+      "Id": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\js\\Staff.js",
+      "PackagePath": "staticwebassets\\js\\Staff.js"
+    },
+    {
       "Id": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

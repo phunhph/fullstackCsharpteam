@@ -6,7 +6,7 @@ using NuGet.Protocol.Plugins;
 
 public class LoginDAO
 {
-    static string connString = "helo";
+    static string connString = "Data Source=DESKTOP-HOA8KMR;Initial Catalog=QuanLy1;Integrated Security=True;TrustServerCertificate=true";
 
     public bool ValidateUser(Login Login)
     {

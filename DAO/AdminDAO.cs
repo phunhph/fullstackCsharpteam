@@ -5,7 +5,7 @@ using fullstackCsharp.Models;
 
 public class AdminDAO
 {
-    static string connString = "helo";
+    static string connString = "Data Source=DESKTOP-HOA8KMR;Initial Catalog=QuanLy1;Integrated Security=True;TrustServerCertificate=true";
     public List<Admin> Select(string manv)
     {
         List<Admin> employeeList = new List<Admin>();
@@ -28,7 +28,7 @@ public class AdminDAO
                 {
                     while (reader.Read())
                     {
-                        employeeList.Add(new Admin(reader[0], reader[1], reader[2]));
+                        employeeList.Add(new Admin((string)reader[0], (string)reader[1], (string)   reader[2]));
                         // return danh sách nhân viên ở đây
                         Console.WriteLine(String.Format("{0}", reader[0]));
                     }

@@ -21,6 +21,9 @@
                 <th> Mã nhân viên</th>
                 <th> Tên nhân viên</th>
                 <th> Giới tính</th>
+                <th> add</th>
+                <th> user</th>
+                <th> pass</th>
             </tr>
             @{
                 List<Staff> stafflist = ViewData["staffList"] as List<Staff>;
@@ -31,9 +34,12 @@
                 {
                     <tr border="2">
 
-                        <td> @staff.V1</td>
-                        <td> @staff.V2</td>
-                        <td> @staff.V3</td>
+                        <td> @staff.Manv</td>
+                        <td> @staff.Tennv</td>
+                        <td> @staff.Sex</td>
+                        <td> @staff.Address</td>
+                        <td> @staff.User</td>
+                        <td> @staff.Password</td>
                     </tr>
 
                 }
@@ -43,6 +49,8 @@
         </table>
         <p>
             <button class="setting"> cài đặt </button>
+            <a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Create">thêm</a>
+            <a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Delete">xóa</a>
         </p>
 
 

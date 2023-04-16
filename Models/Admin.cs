@@ -2,14 +2,15 @@
 {
     public class Admin
     {
-        public Admin(object v1, object v2, object v3)
+        public Admin(string Manv, string Tennv, string sex)
         {
-            V1 = v1;
-            V2 = v2;
-            V3 = v3;
+            Manv = Manv;
+            Tennv = Tennv;
+            sex = sex;
+
         }
-        public object V1 { get; }
-        public object V2 { get; }
-        public object V3 { get; }
+        public string Manv { get; }
+        public string Tennv { get; }
+        public string sex { get; }
     }
 }
