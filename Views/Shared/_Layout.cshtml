@@ -35,38 +35,34 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Form" asp-action="Index">Dịch vụ</a>
                         </li>
                         <div>
-                            <span class="hello" id="profile">
+                        <li class=" dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                                 Xin chào: @ViewContext.HttpContext.Request.Cookies["name"] <ion-icon name="person-circle-outline"></ion-icon>
-                            </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="NameStaff">
+                                        <h3>@ViewContext.HttpContext.Request.Cookies["name"]</h3>
+                                    </div>
+                                    <div class="profile-content">
+                                        <a class=" dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Hồ sơ cá nhân</a>  
+                                    </div>
+                                    <div class="Logout">
+                                        <a class=" dropdown-item"  asp-area="" asp-controller="Home" asp-action="Logout">Đăng xuất</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
                         </div>
                     </ul>
                 </div>
             </div>
         </nav>
+ 
     </header>
-    <div class="container">
-       <div class="main-profile">
-            <div class="Profile">
-                <div class="NameStaff">
-                    <h3>@ViewContext.HttpContext.Request.Cookies["name"]</h3>
-                </div>
-                <div class="profile-content">
-                    <button>
-                            <a class="" asp-area="" asp-controller="Home" asp-action="Index">Hồ sơ cá nhân</a>
-                    </button>
-                </div>
-                <div class="Logout">
-                    <button>
-                        <a class="" asp-area="" asp-controller="Home" asp-action="Logout">Đăng xuất</a>
-                    </button>
-                </div>
-            </div>
-       </div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - fullstackCsharp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

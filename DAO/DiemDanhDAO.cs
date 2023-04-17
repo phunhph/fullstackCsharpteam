@@ -22,20 +22,27 @@ namespace fullstackCsharp.DAO
 				command.Parameters.AddWithValue("@id_nv", diemdanh.id_nv);
                 command.Parameters.AddWithValue("@name", diemdanh.name);
                 command.Parameters.AddWithValue("@time_in", diemdanh.timein );
-				// Thực hiện truy vấn
-				connection.Open();
-				int result = command.ExecuteNonQuery();
-				connection.Close();
+                // Thực hiện truy vấn
+                try
+                {
+                    connection.Open();
+                    int result = command.ExecuteNonQuery();
+                    connection.Close();
 
-				// Trả về kết quả
-				if (result > 0)
-				{
-					resultin = true;
-				}
-				else
-				{
-					resultin = false;
-				}
+                    // Trả về kết quả
+                    if (result > 0)
+                    {
+                        resultin = true;
+                    }
+                    else
+                    {
+                        resultin = false;
+                    }
+                }
+                catch (SqlException ex) {
+                    resultin = false;
+                }
+
 			}
 			return resultin;
 		}
@@ -99,7 +106,7 @@ namespace fullstackCsharp.DAO
                               staff.timeout = reader["time_out"].ToString();
                               diemdanhList.Add(staff);
                               // return danh sách nhân viên ở đây
-                              Console.WriteLine(String.Format("{0}", reader[0]));
+                              
                           }
                       }
                       // nếu là insert, update, delete
@@ -133,7 +140,7 @@ namespace fullstackCsharp.DAO
                 {
                    
                     int timeout = 30;
-                    string commandText = "SELECT * FROM roll_call ";
+                    string commandText = "SELECT * FROM roll_call where time_out is null ";
                     SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
                     command.CommandTimeout = timeout;
                     // set param
@@ -150,7 +157,7 @@ namespace fullstackCsharp.DAO
                             staff.timeout = reader["time_out"].ToString();
                             diemdanhList.Add(staff);
                             // return danh sách nhân viên ở đây
-                            Console.WriteLine(String.Format("{0}", reader[0]));
+                            
                         }
                     }
                     // nếu là insert, update, delete
@@ -171,6 +178,35 @@ namespace fullstackCsharp.DAO
 
             return diemdanhList;
 
+        }
+        // fixCheck
+        public bool FixCheck(Diemdanh diemdanh)
+        {
+            bool resultin = false;
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                // Tạo đối tượng thực thi truy vấn
+                string query = "UPDATE roll_call  SET time_out = @time_out WHERE ID=@id AND ID_NV=@id_nv";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", diemdanh.id);
+                command.Parameters.AddWithValue("@id_nv", diemdanh.id_nv);
+                command.Parameters.AddWithValue("@time_out", diemdanh.timeout);
+                // Thực hiện truy vấn
+                connection.Open();
+                int result = command.ExecuteNonQuery();
+                connection.Close();
+
+                // Trả về kết quả
+                if (result > 0)
+                {
+                    resultin = true;
+                }
+                else
+                {
+                    resultin = false;
+                }
+            }
+            return resultin;
         }
     }
 }

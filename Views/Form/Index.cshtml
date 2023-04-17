@@ -20,9 +20,10 @@
                        placeholder="Nhập mã nhân viên" />
                 <br />
                 <label for="Start">Nghỉ từ</label><br />
-                <input type="time" name="start" id="Start" /> <br />
+                <input type="datetime-local" name="start" id="Start" /> <br />
                 <label for="End">Đến</label><br />
-                <input type="time" name="end" id="End" /><br />
+                <input type="datetime-local" name="end" id="End" onblur="checkTime()" /><br />
+                <p id="err" style="display: none"></p>
                 <button asp-controller="Form" asp-action="FormPush">Đăng ký</button>
             </form>
         </div>
@@ -71,5 +72,20 @@
             b.style.display="none"
             document.getElementById(m).append(b);
         }
+        function checkTime() {
+            let start = new Date(document.getElementById("Start").value);
+            let end = new Date(document.getElementById("End").value);
+
+            if (start > end) {
+                document.getElementById("err").innerText =
+                    "Vui lòng kiểm tra lại thời gian";
+                document.getElementById("err").style.display = "block";
+            } else{
+                document.getElementById("err").innerText =
+                    "";
+                document.getElementById("err").style.display = "none";
+            }
+        }
+
     </script>
 </body>

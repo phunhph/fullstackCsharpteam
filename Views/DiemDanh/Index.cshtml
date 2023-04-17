@@ -9,6 +9,10 @@
     <form role="form" method="post">
         <button asp-controller="Diemdanh" asp-action="Checkin" id="in">Check in</button>
         <button asp-controller="Diemdanh" asp-action="Checkout" id="out">Check up</button>
+        <p>
+            @ViewData["confirm"]
+            @ViewData["error"]
+        </p>
         <table  style="width:100%">
             <tr>
                 <th>ID</th>

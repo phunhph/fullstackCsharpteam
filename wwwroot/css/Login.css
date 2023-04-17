@@ -13,6 +13,25 @@ section {
     background-size: cover;
     background-position: center;
 }
+.login {
+    transition: transform 0.5s ease;
+}
+
+.active .login {
+    transition: none;
+    transform: translateX(-400px);
+}
+/* register */
+.register {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+
+.active .register {
+    transition: transform 0.5s ease;
+    transform: translateX(0);
+}
 /* form and text head */
 .form-box {
     position: relative;
@@ -26,6 +45,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 h2 {
@@ -95,16 +115,34 @@ input:-webkit-autofill {
     justify-content: space-between;
 }
 
-    .forget>a {
-        text-decoration: none;
-        color:#fff;
+.error-regiter {
+    margin: -15px 0 15px;
+    font-size: 1em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.login-link {
+    text-decoration: none;
+    color: #fff;
+}
+
+    .login-link:hover {
+        text-decoration: underline;
+        color: black;
     }
 
-        .forget>a:hover {
-            text-decoration: underline;
-            color: black;
-        }
-/* login  */
+.register-link {
+    text-decoration: none;
+    color: #fff;
+}
+
+    .register-link:hover {
+        text-decoration: underline;
+        color: black;
+    }
+ /* login  */
 button {
     width: 100%;
     height: 40px;

@@ -96,3 +96,11 @@ body {
 .hello:hover {
     cursor: pointer;
 }
+/*name profile*/
+.NameStaff {
+    text-align:center;
+}
+/*CSS home index*/
+.display-4{
+    color: yellowgreen;
+}

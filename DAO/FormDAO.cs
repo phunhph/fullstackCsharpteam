@@ -180,7 +180,6 @@ namespace fullstackCsharp.DAO
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Soform", form.Soform);
                 command.Parameters.AddWithValue("@TrangThai", "Đã duyệt");
-                Console.WriteLine(form.Soform);
                 // Thực hiện truy vấn
                 connection.Open();
                 int result = command.ExecuteNonQuery();

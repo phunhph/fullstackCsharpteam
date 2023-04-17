@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "R+EaIbdX0SBH5pA8qR6u/7e0oX8/5kWbnHXUax/ScIQ=",
+  "Hash": "OlVQmfZKgIVAEvAVtKkPym7ekcdWe1HgwzNxxow9or4=",
   "Source": "fullstackCsharp",
   "BasePath": "_content/fullstackCsharp",
   "Mode": "Default",
@@ -134,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Dim.js"
+    },
+    {
+      "Identity": "C:\\Users\\Huu Phu\\OneDrive - Đại học FPT- FPT University\\Documents\\FPT_polytechlic\\fullstackCsharpteam\\wwwroot\\js\\Login.js",
+      "SourceId": "fullstackCsharp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Huu Phu\\OneDrive - Đại học FPT- FPT University\\Documents\\FPT_polytechlic\\fullstackCsharpteam\\wwwroot\\",
+      "BasePath": "_content/fullstackCsharp",
+      "RelativePath": "js/Login.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Login.js"
     },
     {
       "Identity": "C:\\Users\\Huu Phu\\OneDrive - Đại học FPT- FPT University\\Documents\\FPT_polytechlic\\fullstackCsharpteam\\wwwroot\\js\\site.js",

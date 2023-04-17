@@ -19,21 +19,20 @@
              @foreach (Diemdanh staff in diemdanhlist)
              {
                 <tr>
-                    <td> @staff.id</td>
-                    <td> @staff.id_nv</td>
-                    <td> @staff.name</td>
-                    <td> @staff.timein</td>
-                    <td> @staff.timeout</td>
-                    <td>
-                       <form role="form" method="post">
-                         <button asp-controller="" asp-action="" id="@staff.id" class="duỵet">sửa</button>
-                        </form>
-                     </td>
+                <form role="form" method="post">
+                    <td><input type="text" name="id" value="@staff.id" required /></td>
+                    <td><input type="text" name="id_nv" value="@staff.id_nv" required /></td>
+                    <td><input type="text" name="name" value="@staff.name" required /></td>
+                    <td><input type="time" name="timein" value="@staff.timein" required /></td>
+                    <td>  
+                        <input type="time"  name="timeout" required />
+                        <button asp-controller="Diemdanh" asp-action="FixCheck">sửa</button>
+                    </td>
+                    </form>
                 </tr>
              }
       }
      <tbody id="tbody"></tbody>
-   </table>
-    <script src="~/js/dim.js"></script>
+   </table> 
 </body>
 </html>

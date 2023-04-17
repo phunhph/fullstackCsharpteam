@@ -17,13 +17,11 @@ namespace fullstackCsharp.Controllers
             if (rank == "2")
             {
                 // return admin view
-                Console.WriteLine("Loged in user is admin!");
                 return RedirectToAction("Admin");
             }
             else if (rank == "1")
             {
                 // return user view
-                Console.WriteLine("Loged in user is nomal user!");
                 return View();
             }
             return View();
@@ -54,7 +52,6 @@ namespace fullstackCsharp.Controllers
         [HttpPost]
         public ActionResult DeleteForm(Form form)
         {
-            Console.WriteLine("check"+form.Soform);
             bool pushForm = FormDAO.DeleteForm(form);
             if (pushForm)
             {

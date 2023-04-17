@@ -16,7 +16,7 @@
 <body>
     <section>
         <div class="form-box">
-            <div class="form-value">
+            <div class="form-value login">
                 <form role="form" method="post" asp-controller="home">
                     <h2>Login</h2>
                     <div class="inputbox">
@@ -25,7 +25,7 @@
                         <label for="">username</label>
                     </div>
                     <div class="inputbox">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <ion-icon name="lock-closed-outline" id="clock"></ion-icon>
                         <input type="password" id="pass" name="password" required />
                         <label for="">password</label>
                     </div>
@@ -33,16 +33,34 @@
                         <p class="error">
                         @TempData["error"]
                         </p>
-                        <a href="#" class="error">quên mật khẩu</a>
+                        <a href="#" class="login-link">quên mật khẩu</a>
                     </div>
                     <button>Login</button>
                 </form>
             </div>
+            <div class="form-value register">
+                <form action="">
+                    <h2>Quên mật khẩu</h2>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" required />
+                        <label for="">email</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <input type="text" required />
+                        <label for="">username</label>
+                    </div>
+                    <p class="error-regiter">
+                        <a href="#" class="register-link">Quay lại form login</a>
+                    </p>
+                    <button>Quên mật khẩu</button>
+                </form>
+            </div>
         </div>
     </section>
-    <script type="module"
-            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule
-            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="~/js/login.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

@@ -15,7 +15,7 @@
                 <th>Bắt đầu</th>
                 <th>Kết thúc</th>
                 <th>Trạng thái</th>
-                <th>Huỷ form</th>
+                <th>Duyệt form</th>
             </tr>
             @{
                 List<Form> formlist = ViewData["formList"] as List<Form>;
@@ -38,17 +38,6 @@
         </table>
     </div>
     <script>
-        //var list = document.querySelectorAll(".duyet");
-        //list.forEach(element => {
-        //    element.addEventListener("click", function () {
-        //        var b = document.createElement("input")
-        //        b.value = event.target.id;
-        //        b.name = "Soform";
-        //        b.style.display="none";
-        //        document.getElementsByTagName("form")[0].append(b);
-        //        console.log("check check" + b.value)
-        //    });
-        //});
         function delelte(m) {
             var b = document.createElement("input")
             b.value = m;
