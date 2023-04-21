@@ -53,11 +53,11 @@ namespace fullstackCsharp.Controllers
         // POST: StaffController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Staff staff)
         {
             StaffDAO staffDAO = new StaffDAO();
-            Staff newStaff = new Staff("N01", "hieu", "nam", "hoa tien", "hieu@.gamil", "123");
-            List<Staff> staff = staffDAO.Create(newStaff);
+           // Staff newStaff = new Staff("N54", "hieu","0123456", "nam", "hoa tien", "hieu1@.gamil", "123",2,"active","pb2","1.5");
+        //    List<Staff> staff = staffDAO.Create(newStaff);
 
             try
             {
@@ -91,24 +91,36 @@ namespace fullstackCsharp.Controllers
         }
 
         // GET: StaffController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete()
         {
+            //StaffDAO staffDAO = new StaffDAO();
+            //List<Staff> staffList = staffDAO.SelectAll();//new List<Staff>();
+            //ViewData["staffList"] = staffList;
             return View();
         }
 
-        // POST: StaffController/Delete/5
+       // POST: StaffController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(String id_nv, IFormCollection collection)
         {
+            List<string> ids = new List<string>(id_nv.Split(","));
+
+            StaffDAO staffDAO = new StaffDAO();
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                staffDAO.Delete("N4");
+
             }
             catch
             {
+                ViewData["error"] = "Delete Lỗi rồi";
                 return View();
             }
+
+            //List<Staff> staff = staffDAO.SelectAll();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

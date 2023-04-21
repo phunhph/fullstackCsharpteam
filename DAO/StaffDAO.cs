@@ -70,7 +70,7 @@ public class StaffDAO
             try
             {
                 int timeout = 30;
-                string commandText = "SELECT * FROM NhanVien";
+                string commandText = "SELECT * FROM NhanVien where status='active' ";
                 SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
                 command.CommandTimeout = timeout;
                 // load
@@ -83,15 +83,20 @@ public class StaffDAO
                         string ID_NV = (string)reader[0];
                         string HoTen = (string)reader[1];
                         string Gioitinh = (string)reader[2];
-                        //int SDT = (int)reader[3];
+                        string SDT = (string)reader[3];
                         string Diachi = (string)reader[4];
                         string username = (string)reader[5];
                         string passwords = (string)reader[6];
+                        int rank = (int)reader[7];
+                        string status = (string)reader[8];
+                        string id_pb = (string)reader[9];
+                        string id_rank = (string)reader[10];
+                       
 
-                        Staff newStaff = new Staff(ID_NV, HoTen, Gioitinh, Diachi, username, passwords);
+                        Staff newStaff = new Staff( ID_NV, HoTen, SDT,Gioitinh, Diachi, username, passwords, rank, status, id_pb, id_rank);
                         staffList.Add(newStaff);
                         // return danh sách nhân viên ở đây
-                        Console.WriteLine(String.Format("{0}", reader[0]));
+                        //Console.WriteLine(String.Format("{0}", reader[0]));
                     }
                 }
                 // nếu là insert, update, delete
@@ -113,7 +118,39 @@ public class StaffDAO
         return staffList;
     }
 
+    public bool Delete(String ID_NV)
+    {
+        using (SqlConnection dbConnection = new SqlConnection(connString))
+        {
+            dbConnection.Open();
+            DbTransaction transaction = dbConnection.BeginTransaction();
+            try
+            {
+                int timeout = 30;
+                string commandText = "UPDATE [dbo].[NhanVien]" +
+                    " SET [status] = 'deleted'" +
+                    " WHERE ID_NV = @ID_NV ";
+                
 
+                Console.WriteLine(commandText);
+                SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
+                command.CommandTimeout = timeout;
+                command.Parameters.AddWithValue("@ID_NV", ID_NV);
+                command.ExecuteNonQuery();
+                // vì là select nên không thay đổi gì db, sau khi select xong thì rollback cho chắc
+                //transaction.Rollback();
+                // nếu là insert, update, delete thì dùng: transaction.Commit(); transaction.Rollback();
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                // Nếu có lỗi xảy ra thì rollback để tránh làm mất dữ liệu DB
+                transaction.Rollback();
+                throw;
+            }
+        }
+        return true;
+    }
     public List<Staff> Create(Staff newStaff)
     {
         List<Staff> staffList = new List<Staff>();
@@ -133,66 +170,7 @@ public class StaffDAO
                 command.Parameters.AddWithValue("@ID_NV", newStaff.Manv);
                 command.Parameters.AddWithValue("@HoTen", newStaff.Tennv);
                 command.Parameters.AddWithValue("@Gioitinh", newStaff.Sex);
-                command.Parameters.AddWithValue("@SDT", 012345);
-                command.Parameters.AddWithValue("@Diachi", newStaff.Address);
-                command.Parameters.AddWithValue("@username", newStaff.User);
-                command.Parameters.AddWithValue("@passwords", newStaff.Password);
-                command.Parameters.AddWithValue("@rank", 2);
-                command.Parameters.AddWithValue("@ID_PB", "PB1");
-                command.Parameters.AddWithValue("@ID_Rank", "R1");
-               
-             
-
-             
-
-                int insertResult = command.ExecuteNonQuery();
-                if (insertResult == 0)
-                {
-
-                    Console.WriteLine("fail!");
-
-                }
-                else
-                {
-
-                    Console.WriteLine("successfull!");
-                }
-
-
-                // vì là select nên không thay đổi gì db, sau khi select xong thì rollback cho chắc
-                //transaction.Rollback();
-                // nếu là insert, update, delete thì dùng: transaction.Commit();
-                transaction.Commit();
-            }
-            catch (Exception ex)
-            {
-                // Nếu có lỗi xảy ra thì rollback để tránh làm mất dữ liệu DB
-                transaction.Rollback();
-                throw;
-            }
-        }
-        return staffList;
-    }
-    public List<Staff> Creates(Staff newStaff)
-    {
-        List<Staff> staffList = new List<Staff>();
-        using (SqlConnection dbConnection = new SqlConnection(connString))
-        {
-            dbConnection.Open();
-            DbTransaction transaction = dbConnection.BeginTransaction();
-            try
-            {
-
-                int timeout = 30;
-                string commandText = "INSERT INTO [dbo].[NhanVien] ([ID_NV],[HoTen],[Gioitinh],[SDT],[Diachi],[username],[passwords],[rank],[ID_PB],[ID_Rank]) VALUES (@ID_NV,@HoTen,@Gioitinh,@SDT,@Diachi,@username,@passwords,@rank,@ID_PB,@ID_Rank)";
-
-                SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
-                command.CommandTimeout = timeout;
-
-                command.Parameters.AddWithValue("@ID_NV", newStaff.Manv);
-                command.Parameters.AddWithValue("@HoTen", newStaff.Tennv);
-                command.Parameters.AddWithValue("@Gioitinh", newStaff.Sex);
-                command.Parameters.AddWithValue("@SDT", 012345);
+                command.Parameters.AddWithValue("@SDT", 0658345);
                 command.Parameters.AddWithValue("@Diachi", newStaff.Address);
                 command.Parameters.AddWithValue("@username", newStaff.User);
                 command.Parameters.AddWithValue("@passwords", newStaff.Password);
@@ -232,5 +210,6 @@ public class StaffDAO
         }
         return staffList;
     }
+
 }
 

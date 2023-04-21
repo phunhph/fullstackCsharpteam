@@ -33,7 +33,7 @@
                 @foreach (Staff staff in stafflist)
                 {
                     <tr border="2">
-
+                        <td><input type="checkbox" name="delete" value= "@staff.Manv" /></td>
                         <td> @staff.Manv</td>
                         <td> @staff.Tennv</td>
                         <td> @staff.Sex</td>
@@ -50,8 +50,14 @@
         <p>
             <button class="setting"> cài đặt </button>
             <a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Create">thêm</a>
-            <a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Delete">xóa</a>
+            <button class="btn btn-dark" onclick="conf()">Delete</button>
+            @*<a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Delete">xóa</a>*@
         </p>
+
+        <form id="Delete" asp-action="Delete">
+         
+            <a asp-action="Index">Back to List</a>
+        </form>
 
 
     </div>
@@ -60,7 +66,34 @@
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script>src="Staff.js"</script>
+   @* <script>src = "~/js/Staff.js" </script>*@
+    <script language="javascript">
+
+        function conf() {
+            //var id = document.getElementById("id").value;
+            var checkbox = document.getElementsByName('delete');
+            var result = "";
+
+            // Lặp qua từng checkbox để lấy giá trị
+            for (var i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].checked === true) {
+                    result += checkbox[i].value + ',';
+                }
+            }
+            
+            // In ra kết quả
+            alert("giá trị là: " + result);
+           
+         
+            let willDelete = confirm("Bạn có chắc chắn muốn xóa nhân viên" + result + "không?");
+            if (willDelete) {
+                $("#Delete").submit();
+
+            }
+
+         
+        }
+    </script>
 </body>
 
 </html>
