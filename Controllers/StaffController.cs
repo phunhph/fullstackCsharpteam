@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Common;
 using System.Collections.Generic;
+using System.Security;
 
 namespace fullstackCsharp.Controllers
 {
@@ -13,7 +14,7 @@ namespace fullstackCsharp.Controllers
         public ActionResult Index()
         {
             StaffDAO staffDAO = new StaffDAO();
-            List<Staff> staffList =   staffDAO.SelectAll();//new List<Staff>();
+            List<Staff> staffList = staffDAO.SelectAll();//new List<Staff>();
             ViewData["staffList"] = staffList;
             return View();
         }
@@ -31,7 +32,7 @@ namespace fullstackCsharp.Controllers
             // gia su admin moi vao duoc trang nay
             // DDee anh mo lai sau =))
             StaffDAO staffDAO = new StaffDAO();
-           
+
             var tryGetCookie = HttpContext.Request.Cookies["myCookies"];
             if (tryGetCookie != null)
             {
@@ -46,18 +47,69 @@ namespace fullstackCsharp.Controllers
         public ActionResult Create()
         {
 
-           
+
             return View();
         }
 
         // POST: StaffController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Staff staff)
+        public ActionResult Create(IFormCollection collection)
         {
             StaffDAO staffDAO = new StaffDAO();
-           // Staff newStaff = new Staff("N54", "hieu","0123456", "nam", "hoa tien", "hieu1@.gamil", "123",2,"active","pb2","1.5");
-        //    List<Staff> staff = staffDAO.Create(newStaff);
+
+
+            Microsoft.Extensions.Primitives.StringValues manv;
+            collection.TryGetValue("manv", out manv);
+            Microsoft.Extensions.Primitives.StringValues namenv;
+            collection.TryGetValue("namenv", out namenv);
+            Microsoft.Extensions.Primitives.StringValues gender;
+            collection.TryGetValue("gender", out gender);
+            Microsoft.Extensions.Primitives.StringValues phone;
+            collection.TryGetValue("phone", out phone);
+            Microsoft.Extensions.Primitives.StringValues address;
+            collection.TryGetValue("address", out address);
+            Microsoft.Extensions.Primitives.StringValues user;
+            collection.TryGetValue("user", out user);
+            Microsoft.Extensions.Primitives.StringValues password;
+            collection.TryGetValue("password", out password);
+            Microsoft.Extensions.Primitives.StringValues status;
+            collection.TryGetValue("status", out status);
+
+            Microsoft.Extensions.Primitives.StringValues rankString;
+            collection.TryGetValue("rankString", out rankString);
+
+
+            Microsoft.Extensions.Primitives.StringValues id_pb;
+            collection.TryGetValue("id_pb", out id_pb);
+            Microsoft.Extensions.Primitives.StringValues id_rank;
+            collection.TryGetValue("id_rank", out id_rank);
+
+
+            int rank;
+
+            bool successfullyParsed = int.TryParse(rankString, out rank);
+            if (successfullyParsed)
+            {
+                // sử dụng giá trị
+                Console.WriteLine(rank);
+            }
+            else
+            {
+                // báo lỗi ra giao diện
+               // Console.WriteLine("lỗi");
+                ViewData["error"] = "Delete Lỗi rồi";
+            }
+
+
+
+
+
+
+
+
+            Staff newStaff = new Staff(manv, namenv, phone, gender, address, user, password, rank, status, id_pb, id_rank);
+            List<Staff> staff = staffDAO.Create(newStaff);
 
             try
             {
@@ -99,7 +151,7 @@ namespace fullstackCsharp.Controllers
             return View();
         }
 
-       // POST: StaffController/Delete/5
+        // POST: StaffController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(String id_nv, IFormCollection collection)

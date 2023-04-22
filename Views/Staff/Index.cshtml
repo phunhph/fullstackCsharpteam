@@ -18,12 +18,12 @@
         <table class="tnv">
             <tr>
 
-                <th> Mã nhân viên</th>
-                <th> Tên nhân viên</th>
-                <th> Giới tính</th>
-                <th> add</th>
-                <th> user</th>
-                <th> pass</th>
+                <th> Employee code </th>
+                <th> Name employee</th>
+                <th> Gender</th>
+                <th> Address </th>
+                <th> User </th>
+                <th> Password </th>
             </tr>
             @{
                 List<Staff> stafflist = ViewData["staffList"] as List<Staff>;
@@ -35,8 +35,8 @@
                     <tr border="2">
                         <td><input type="checkbox" name="delete" value= "@staff.Manv" /></td>
                         <td> @staff.Manv</td>
-                        <td> @staff.Tennv</td>
-                        <td> @staff.Sex</td>
+                        <td> @staff.Namenv</td>
+                        <td> @staff.Gender</td>
                         <td> @staff.Address</td>
                         <td> @staff.User</td>
                         <td> @staff.Password</td>
@@ -48,8 +48,8 @@
             }
         </table>
         <p>
-            <button class="setting"> cài đặt </button>
-            <a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Create">thêm</a>
+            <button class="setting"> Setting </button>
+            <a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Create">Create</a>
             <button class="btn btn-dark" onclick="conf()">Delete</button>
             @*<a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Delete">xóa</a>*@
         </p>
