@@ -45,7 +45,7 @@ namespace fullstackCsharp.Models
         public string Address { get => address; set => address = value; }
         public string User { get => user; set => user = value; }
         public string Password { get => password; set => password = value; }
-        public int Rank { get => Rank; set => Rank = value; }
+        public int Rank { get => rank; set => rank = value; }
         public string Status { get => status; set => status = value; }
         public string Id_pb { get => id_pb; set => id_pb = value; }
         public string Id_rank { get => id_rank; set => id_rank = value; }

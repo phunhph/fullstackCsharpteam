@@ -17,13 +17,14 @@
 
         <table class="tnv">
             <tr>
-
+                <th> delete </th>
                 <th> Employee code </th>
                 <th> Name employee</th>
                 <th> Gender</th>
                 <th> Address </th>
                 <th> User </th>
                 <th> Password </th>
+                <th> edit </th>
             </tr>
             @{
                 List<Staff> stafflist = ViewData["staffList"] as List<Staff>;
@@ -33,13 +34,14 @@
                 @foreach (Staff staff in stafflist)
                 {
                     <tr border="2">
-                        <td><input type="checkbox" name="delete" value= "@staff.Manv" /></td>
+                        <td><input type="checkbox" name="delete" value="@staff.Manv" />checkbox</td>
                         <td> @staff.Manv</td>
                         <td> @staff.Namenv</td>
                         <td> @staff.Gender</td>
                         <td> @staff.Address</td>
                         <td> @staff.User</td>
                         <td> @staff.Password</td>
+                        <td><input type="radio" name="edit" value="@staff.Manv" />edit</td>
                     </tr>
 
                 }
@@ -48,50 +50,80 @@
             }
         </table>
         <p>
-            <button class="setting"> Setting </button>
+           
             <a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Create">Create</a>
             <button class="btn btn-dark" onclick="conf()">Delete</button>
+           
+                
+            <!-- <a class="btn btn-dark" asp-area="" asp-controller=" staff" asp-action="Edit" <button class="btn btn-dark" onclick="conf1()" >Edit</button>></a> -->
             @*<a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Delete">xóa</a>*@
         </p>
 
-        <form id="Delete" asp-action="Delete">
-         
+        <form id="Delete"  asp-action="Delete">
+            <input type="hidden" name="deletelist" id="deletelist" />
             <a asp-action="Index">Back to List</a>
         </form>
 
-
+        
+        <form id="Edit"  asp-action="Edit">
+            
+            <input type="hidden" name="edit1" id="edit1" />
+            <a  class="btn btn-dark" onclick="conf1()"  >Edit</a>
+           
+            <a asp-action="Index">Back to List</a>
+        </form>
+       
     </div>
 
     <script type="module"
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-   @* <script>src = "~/js/Staff.js" </script>*@
-    <script language="javascript">
+    <script>src = "~/js/Staff.js"</script>
+    <script>
 
         function conf() {
             //var id = document.getElementById("id").value;
             var checkbox = document.getElementsByName('delete');
-            var result = "";
+            var result = [];
 
             // Lặp qua từng checkbox để lấy giá trị
             for (var i = 0; i < checkbox.length; i++) {
                 if (checkbox[i].checked === true) {
-                    result += checkbox[i].value + ',';
+                    result.push(checkbox[i].value);
                 }
             }
-            
             // In ra kết quả
-            alert("giá trị là: " + result);
-           
-         
+            document.getElementById("deletelist").value = result.join(",");
+            // alert("giá trị là: " + result);
             let willDelete = confirm("Bạn có chắc chắn muốn xóa nhân viên" + result + "không?");
             if (willDelete) {
+
                 $("#Delete").submit();
-
             }
-
-         
+        }
+        function conf1() {
+        
+                 var checkbox1 = document.getElementsByName("edit");
+                 var results = "";
+            for (var i = 0; i < checkbox1.length; i++) {
+                if (checkbox1[i].checked === true) {
+                  // alert(checkbox1[i].value);
+                    results +=  checkbox1[i].value;
+                }
+            }
+            document.getElementById("edit1").value = results;
+            alert("giá trị là: " + results );
+            let willEdit = confirm("Bạn có chắc chắn muốn edit nhân viên" + results + "không?");
+            if (willEdit) {
+                var url = '@Html.Raw(Url.Action("Edit", new { Id = "_Id" }))'; 
+                console.log(url);
+                url = url.replace("_Id", results)
+                console.log(url);
+                window.location.href = url;
+               // $("#Edit").submit();
+            }
+           // document.getElementById("edit1").value = result.join(",");
         }
     </script>
 </body>
