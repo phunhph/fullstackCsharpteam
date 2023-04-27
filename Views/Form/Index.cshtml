@@ -7,8 +7,8 @@
 	<link href="~/css/form.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container">
-        <div class="form">
+    <div class="row">
+        <div class="col-sm-4">
             <div class="text">
                 <h1>Đăng ký nghỉ</h1>
             </div>
@@ -24,39 +24,61 @@
                 <label for="End">Đến</label><br />
                 <input type="datetime-local" name="end" id="End" onblur="checkTime()" /><br />
                 <p id="err" style="display: none"></p>
-                <button asp-controller="Form" asp-action="FormPush">Đăng ký</button>
+                <button asp-controller="Form" asp-action="FormPush" class="commit">Đăng ký</button>
             </form>
         </div>
-    </div>
-    <div class="ListForm">
-        <table style="width: 100%">
-            <tr>
-                <th>ID</th>
-                <th>ID_NV</th>
-                <th>Bắt đầu</th>
-                <th>Kết thúc</th>
-                <th>Trạng thái</th>
-                <th>Huỷ form</th>
-            </tr>
-            @{
-                List<Form> formlist = ViewData["formList"] as List<Form>;
-                @foreach (Form form in formlist)
-                {
-                    <tr>
-                        <td> @form.id</td>
-                        <td> @form.id_nv</td>
-                        <td> @form.start</td>
-                        <td> @form.end</td>
-                        <td> @form.TrangThai</td>
-                        <td>
-                            <form role="form" method="post" id="@form.Soform">
-                                <button asp-controller="Form" asp-action="DeleteForm" onclick="delelte(@form.Soform)">Cancel</button>
-                           </form>
-                        </td>
-                    </tr>
+        <div class="col-sm-4 showform">
+            <table style="width: 90%">
+                <h1>Đơn đã gửi</h1>
+                <tr>
+                    <th>ID_NV</th>
+                    <th>Bắt đầu</th>
+                    <th>Kết thúc</th>
+                    <th>Trạng thái</th>
+                    <th>Huỷ form</th>
+                </tr>
+                @{
+                    List<Form> formlist = ViewData["formList"] as List<Form>;
+                    @foreach (Form form in formlist)
+                    {
+                        <tr>
+                            <td> @form.id_nv</td>
+                            <td> @form.start</td>
+                            <td> @form.end</td>
+                            <td> @form.TrangThai</td>
+                            <td>
+                                <form role="form" method="post" id="@form.Soform">
+                                    <button asp-controller="Form" asp-action="DeleteForm" onclick="delelte(@form.Soform)">Cancel</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </table>
+            </table>
+        </div>
+        <div class="col-sm-4 showform">
+            <table style="width: 90%">
+                <h1>Đơn đã duyệt</h1>
+                <tr>
+                    <th>ID_NV</th>
+                    <th>Bắt đầu</th>
+                    <th>Kết thúc</th>
+                    <th>Trạng thái</th>
+                </tr>
+                @{
+                    List<Form> formlistCf = ViewData["formListCf"] as List<Form>;
+                    @foreach (Form form in formlistCf)
+                    {
+                        <tr>
+                            <td> @form.id_nv</td>
+                            <td> @form.start</td>
+                            <td> @form.end</td>
+                            <td> @form.TrangThai</td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
     </div>
     <script>
         var time=new Date()

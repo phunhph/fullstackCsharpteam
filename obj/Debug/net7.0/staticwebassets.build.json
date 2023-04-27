@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OlVQmfZKgIVAEvAVtKkPym7ekcdWe1HgwzNxxow9or4=",
+  "Hash": "UsquHnHwdfq23h+mRNDu5jiuFz4kRdyEtptdeNWzjac=",
   "Source": "fullstackCsharp",
   "BasePath": "_content/fullstackCsharp",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Huu Phu\\OneDrive - Đại học FPT- FPT University\\Documents\\FPT_polytechlic\\fullstackCsharpteam\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\fullstackCsharp.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Huu Phu\\OneDrive - Đại học FPT- FPT University\\Documents\\FPT_polytechlic\\fullstackCsharpteam\\wwwroot\\css\\Dim.css",
+      "SourceId": "fullstackCsharp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Huu Phu\\OneDrive - Đại học FPT- FPT University\\Documents\\FPT_polytechlic\\fullstackCsharpteam\\wwwroot\\",
+      "BasePath": "_content/fullstackCsharp",
+      "RelativePath": "css/Dim.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Dim.css"
     },
     {
       "Identity": "C:\\Users\\Huu Phu\\OneDrive - Đại học FPT- FPT University\\Documents\\FPT_polytechlic\\fullstackCsharpteam\\wwwroot\\css\\Form.css",

@@ -49,11 +49,12 @@ namespace fullstackCsharp.DAO
                 try
                 {
                     int timeout = 30;
-                    string commandText = "SELECT * FROM form WHERE ID_NV=@id_nv";
+                    string commandText = "SELECT * FROM form WHERE TrangThai=@TrangThai and ID_NV=@id_nv";
                     SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
                     command.CommandTimeout = timeout;
                     // set param
                     command.Parameters.AddWithValue("@id_nv", manv);
+                    command.Parameters.AddWithValue("@TrangThai", "Đã gửi");
                     // load
 
                     // nếu là select
@@ -69,8 +70,6 @@ namespace fullstackCsharp.DAO
                             from.end = reader["TineEnd"].ToString();
                             from.TrangThai = reader["TrangThai"].ToString();
                             formList.Add(from);
-                            // return danh sách nhân viên ở đây
-                            Console.WriteLine(String.Format("{0}", reader[0]));
                         }
                     }
                     // nếu là insert, update, delete
@@ -146,8 +145,6 @@ namespace fullstackCsharp.DAO
                             from.end = reader["TineEnd"].ToString();
                             from.TrangThai = reader["TrangThai"].ToString();
                             formList.Add(from);
-                            // return danh sách nhân viên ở đây
-                            Console.WriteLine(String.Format("{0}", reader[0]));
                         }
                     }
                     // nếu là insert, update, delete
@@ -169,6 +166,7 @@ namespace fullstackCsharp.DAO
             return formList;
 
         }
+
         // confirm
         public bool Confirm(Form form)
         {
@@ -196,6 +194,56 @@ namespace fullstackCsharp.DAO
                 }
             }
             return formCheck;
+        }
+
+        public List<Form> Selectcf(string manv)
+        {
+            List<Form> formList = new List<Form>();
+            using (SqlConnection dbConnection = new SqlConnection(connString))
+            {
+                dbConnection.Open();
+                DbTransaction transaction = dbConnection.BeginTransaction();
+                try
+                {
+                    int timeout = 30;
+                    string commandText = "SELECT * FROM form where TrangThai=@TrangThai and ID_NV=@id_nv";
+                    SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
+                    command.CommandTimeout = timeout;
+                    command.Parameters.AddWithValue("@TrangThai", "Đã duyệt");
+                    command.Parameters.AddWithValue("@id_nv", manv);
+                    // nếu là select
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Form from = new Form();
+                            from.Soform = Convert.ToInt32(reader["Soform"]);
+                            from.id = reader["ID"].ToString();
+                            from.id_nv = reader["ID_NV"].ToString();
+                            from.start = reader["TimeStart"].ToString();
+                            from.end = reader["TineEnd"].ToString();
+                            from.TrangThai = reader["TrangThai"].ToString();
+                            formList.Add(from);
+                        }
+                    }
+                    // nếu là insert, update, delete
+                    // command.ExecuteNonQuery(); 
+
+                    // vì là select nên không thay đổi gì db, sau khi select xong thì rollback cho chắc
+                    transaction.Rollback();
+                    // nếu là insert, update, delete thì dùng: transaction.Commit();
+
+                }
+                catch
+                {
+                    // Nếu có lỗi xảy ra thì rollback để tránh làm mất dữ liệu DB
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+
+            return formList;
+
         }
     }
 }

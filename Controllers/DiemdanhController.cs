@@ -52,7 +52,7 @@ namespace fullstackCsharp.Controllers
             bool CheckIn = DiemDanhDAO.CommitIn(diemdanh) ;
 				if (CheckIn)
 				{
-                    ViewData["confirm"] = "Check in thành công";        
+                    return RedirectToAction("Index");
                 }
 				else
 				{
@@ -72,17 +72,17 @@ namespace fullstackCsharp.Controllers
             // lấy dữ liệu để update
             diemdanh.id_nv = id_nv;
             diemdanh.name = HttpContext.Request.Cookies["name"];
-            diemdanh.id= HttpContext.Request.Cookies["id"];
             bool CheckOut = DiemDanhDAO.CommitOut(diemdanh);
             if (CheckOut)
             {
-                ViewData["confirm"] = "Check out thành công"; 
+                ViewData["confirm"] = "Check out thành công";
+                return RedirectToAction("Index");
             }
             else
             {
                 ViewData["error"] = "Check out thất bại";
             }
-            return View("Index");
+            return RedirectToAction("Index");
 
         }
         // fixcheckout

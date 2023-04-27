@@ -39,22 +39,22 @@
                 </form>
             </div>
             <div class="form-value register">
-                <form action="">
+                <form role="form" method="post" asp-controller="home" asp-action="SendEmail">
                     <h2>Quên mật khẩu</h2>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" required />
+                        <input type="email" name="To" required />
                         <label for="">email</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="person-outline"></ion-icon>
-                        <input type="text" required />
+                        <input type="text" name="Body" required />
                         <label for="">username</label>
                     </div>
                     <p class="error-regiter">
                         <a href="#" class="register-link">Quay lại form login</a>
                     </p>
-                    <button>Quên mật khẩu</button>
+                    <button >Quên mật khẩu</button>
                 </form>
             </div>
         </div>

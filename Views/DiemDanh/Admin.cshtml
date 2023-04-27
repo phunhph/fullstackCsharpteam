@@ -5,8 +5,32 @@
 }
 @model Diemdanh
 <html lang="en">
+    <head>
+        <style>
+            input{
+            background: transparent;
+            border:none;
+            }
+
+            input:focus{
+                border: none;
+            }
+
+            .fix{
+                margin-left:5%;
+                width:40%;
+                border:none;
+                outline:none;
+                border-radius:30px;
+            }
+            .fix:hover{
+                background-color:darkorange;
+            }
+
+        </style>
+    </head>
 <body>
-   <table style="width:100%">
+   <table style="width:90%">
      <tr>
          <th>ID</th>
          <th>ID_NV</th>
@@ -26,7 +50,7 @@
                     <td><input type="time" name="timein" value="@staff.timein" required /></td>
                     <td>  
                         <input type="time"  name="timeout" required />
-                        <button asp-controller="Diemdanh" asp-action="FixCheck">sửa</button>
+                        <button asp-controller="Diemdanh" asp-action="FixCheck" class="fix">sửa</button>
                     </td>
                     </form>
                 </tr>

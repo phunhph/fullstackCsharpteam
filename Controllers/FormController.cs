@@ -13,6 +13,8 @@ namespace fullstackCsharp.Controllers
             FormDAO formDAO = new FormDAO();
             List<Form> formList = formDAO.Select(id_nv);
             ViewData["formList"] = formList;
+            List<Form> formListCf = formDAO.Selectcf(id_nv);
+            ViewData["formListCf"] = formListCf;
             var rank = HttpContext.Request.Cookies["rank"];
             if (rank == "2")
             {

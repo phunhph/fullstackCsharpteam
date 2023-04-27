@@ -1,44 +1,90 @@
-﻿@*
+﻿@using Newtonsoft.Json;
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 @model Diemdanh
-<html lang="en">
-<body>
-    <form role="form" method="post">
-        <button asp-controller="Diemdanh" asp-action="Checkin" id="in">Check in</button>
-        <button asp-controller="Diemdanh" asp-action="Checkout" id="out">Check up</button>
-        <p>
-            @ViewData["confirm"]
-            @ViewData["error"]
-        </p>
-        <table  style="width:100%">
-            <tr>
-                <th>ID</th>
-                <th>ID_NV</th>
-                <th>NAME</th>
-                <th>TIME_IN</th>
-                <th>TIME_OUT</th>
-            </tr>
-            @{
-                List<Diemdanh> diemdanhlist = ViewData["diemdanhList"] as List<Diemdanh>;
-                @foreach (Diemdanh staff in diemdanhlist)
-                {
-                    <tr>
-                        <td> @staff.id</td>
-                        <td> @staff.id_nv</td>
-                        <td> @staff.name</td>
-                        <td> @staff.timein</td>
-                        <td> @staff.timeout</td>
-                    </tr>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@400;500;600,700,800"
+      rel="stylesheet" />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+<link href="~/css/dim.css" rel="stylesheet" />
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-6 div">
+        <form role="form" method="post">
+            <button asp-controller="Diemdanh" asp-action="Checkin" id="in">Check in</button>
+            <button asp-controller="Diemdanh" asp-action="Checkout" id="out">Check out</button>
+            <p>
+                @ViewData["confirm"]
+                @ViewData["error"]
+            </p>
+            <table style="width:100%">
+                <tr>
+                    <th>ID</th>
+                    <th>ID_NV</th>
+                    <th>NAME</th>
+                    <th>TIME_IN</th>
+                    <th>TIME_OUT</th>
+                </tr>
+                @{
+                    List<Diemdanh> diemdanhlist = ViewData["diemdanhList"] as List<Diemdanh>;
+                    @foreach (Diemdanh staff in diemdanhlist)
+                    {
+                        <tr>
+                            <td> @staff.id</td>
+                            <td> @staff.id_nv</td>
+                            <td> @staff.name</td>
+                            <td> @staff.timein</td>
+                            <td> @staff.timeout</td>
+                        </tr>
 
+                    }
                 }
-            } 
-            <tbody id="tbody"></tbody>
-        </table>
-    </form>
-	<script src="~/js/dim.js"></script>
-</body>
-</html>
+                <tbody id="tbody"></tbody>
+            </table>
+        </form>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-6 div">
+        <div class="container-shadow flex">
+            <div class="calendar">
+                <div class="month flex">
+                    <div class="prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="content">
+                        <!-- moth -->
+                        <h1></h1>
+                        <!-- full day -->
+                        <p></p>
+                    </div>
+                    <div class="next">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <!-- week -->
+                <div class="weekdays flex">
+                    <div>Hai</div>
+                    <div>Ba</div>
+                    <div>Tư</div>
+                    <div>Năm</div>
+                    <div>Sáu</div>
+                    <div>Bảy</div>
+                    <div>Chủ nhật</div>
+                </div>
+                <!-- show full days -->
+                <div class="days flex"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var list = @Html.Raw(JsonConvert.SerializeObject(ViewData["diemdanhList"]));
+</script>
+<script src="~/js/dim.js"></script>
     
