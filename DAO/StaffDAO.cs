@@ -183,8 +183,39 @@ public class StaffDAO
         return staffList;
     }
     //==================================================================================Deleted===================================================
+    public bool Delete(String id)
+    {
+        using (SqlConnection dbConnection = new SqlConnection(connString))
+        {
+            dbConnection.Open();
+            DbTransaction transaction = dbConnection.BeginTransaction();
+            try
+            {
+                int timeout = 30;
+                string commandText = "UPDATE [dbo].[NhanVien]" +
+                    " SET [status] = 'deleted'" +
+                    " WHERE ID_NV = @ID_NV ";
 
 
+                Console.WriteLine(commandText);
+                SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
+                command.CommandTimeout = timeout;
+                command.Parameters.AddWithValue("@ID_NV", id);
+                command.ExecuteNonQuery();
+                // vì là select nên không thay đổi gì db, sau khi select xong thì rollback cho chắc
+                //transaction.Rollback();
+                // nếu là insert, update, delete thì dùng: transaction.Commit(); transaction.Rollback();
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                // Nếu có lỗi xảy ra thì rollback để tránh làm mất dữ liệu DB
+                transaction.Rollback();
+                throw;
+            }
+        }
+        return true;
+    }
 
     //================================================================================== Edit ===================================================
     //public List<Staff> Creates(Staff newStaff)

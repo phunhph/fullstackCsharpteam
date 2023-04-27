@@ -120,8 +120,16 @@ namespace fullstackCsharp.Controllers
         // POST: StaffController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(String id, IFormCollection collection)
+
         {
+
+            List<string> ids = new List<string>(id.Split(","));
+            StaffDAO staffDAO = new StaffDAO();
+            foreach (var id1 in ids)
+            {
+                staffDAO.Delete(id1);
+            }
             try
             {
                 return RedirectToAction(nameof(Index));

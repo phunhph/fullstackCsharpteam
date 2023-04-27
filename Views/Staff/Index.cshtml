@@ -33,7 +33,7 @@
                 @foreach (Staff staff in stafflist)
                 {
                     <tr border="2">
-
+                        <td> <input type="checkbox" name="deleted" id="delete" value="@staff.Id_nv"/></td>
                         <td> @staff.Id_nv</td>
                         <td> @staff.Namenv</td>
                         <td> @staff.Gender</td>
@@ -50,8 +50,14 @@
         <p>
             
             <a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Create">thêm</a>
-            
+            <button class="btn btn-dark"  onclick="conf()"> deleted</button>
         </p>
+
+
+        <form id="Deleted" asp-action="Delete">
+            <input type="hidden" />
+            <a asp-action="Index">Back to List</a>
+        </form>
 
 
     </div>
@@ -61,6 +67,27 @@
     <script nomodule
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script>src="Staff.js"</script>
+    <script>
+        function conf(){
+            var checkbox = document.getElementsByName('deleted');
+            var result = [];
+            for(var i=0; i < checkbox.length; i++)
+            {
+                if (checkbox[i].checked === true){
+                    result += checkbox[i].value ;
+                }
+                
+            }
+            alert("gias trij" + result);
+            
+            let willdeleted = confirm("cos muoons xao ko");
+            if(willdeleted){
+                $("Deleted").submit();
+            }
+        }
+
+
+    </script>
 </body>
 
 </html>
