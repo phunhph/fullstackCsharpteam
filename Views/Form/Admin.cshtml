@@ -16,6 +16,7 @@
                 <th>Kết thúc</th>
                 <th>Trạng thái</th>
                 <th>Duyệt form</th>
+                <th>Huỷ form</th>
             </tr>
             @{
                 List<Form> formlist = ViewData["formList"] as List<Form>;
@@ -27,11 +28,10 @@
                         <td> @form.start</td>
                         <td> @form.end</td>
                         <td> @form.TrangThai</td>
-                        <td>
-                            <form role="form" method="post" id="@form.Soform">
-                                <button asp-controller="Form" asp-action="Confirm" onclick="delelte(@form.Soform)" class="duyet">Duyệt</button>
-                            </form>
-                        </td>
+                        <form role="form" method="post" id="@form.Soform">
+                            <td><button asp-controller="Form" asp-action="Confirm" onclick="delelte(@form.Soform)" class="duyet">Duyệt</button></td>
+                            <td><button asp-controller="Form" asp-action="DeleteForm" onclick="delelte(@form.Soform)">Huỷ</button></td>
+                        </form>
                     </tr>
                 }
             }
@@ -45,5 +45,7 @@
             b.style.display = "none"
             document.getElementById(m).append(b);
         }
+        
+        
     </script>
 </body>

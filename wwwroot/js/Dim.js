@@ -114,37 +114,36 @@ function checkDay() {
    
     // lấy thứ trong tuần của ngày đầu tiên trong tháng hiện tại
     const firstDayIndex = date.getDay();
-
+    // lấy ngày cuối cùng của tháng hiện tại
     const lastDay = new Date(
         date.getFullYear(),
         date.getMonth() + 1,
         0
     ).getDate();
-    // show ngày tháng trước
+    // show ngày tháng trước đã điểm danh
     for (let x = firstDayIndex; x > 0; x--) {
         roll.forEach(element => {
             if (element.getMonth() < date.getMonth() && element.getDate() == document.getElementById(x + "a").innerText)  {
                 document.getElementById(x + "a").style.backgroundColor = "red";
-                
+                document.getElementById(x + "a").style.border = "1px solid gray";
             }
         });
     }
     
-    // ngày trong tháng
+    // ngày trong tháng đã điểm danh
     for (let i = 1; i <= lastDay; i++) {
         roll.forEach(element => {
-            // ngày trong tháng
+            // today
             if (
                 i === new Date().getDate() &&
                 date.getMonth() === element.getMonth()
             ) {
                 document.getElementById(element.getDate()).style.backgroundColor = "red";
-            } else if (
+            } else if (//yesterday
                 i < new Date().getDate() &&
                 date.getMonth() === element.getMonth() &&
                 i === element.getDay()
-            ) {
-               
+            ) { 
                 document.getElementById(element.getDate()).style.backgroundColor = "red";
                 document.getElementById(element.getDate()).style.border = "1px solid gray";
             } 

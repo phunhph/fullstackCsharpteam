@@ -20,10 +20,14 @@
                        placeholder="Nhập mã nhân viên" />
                 <br />
                 <label for="Start">Nghỉ từ</label><br />
-                <input type="datetime-local" name="start" id="Start" /> <br />
+                <input type="datetime-local" name="start" id="Start" onblur="checkTime()" /> <br />
+                <p id="errs" style="display: none"></p>
                 <label for="End">Đến</label><br />
                 <input type="datetime-local" name="end" id="End" onblur="checkTime()" /><br />
-                <p id="err" style="display: none"></p>
+                <p id="err" style="display: none"></p> 
+                <label for="tong">Thông số nghỉ / ngày</label><br />
+                <input type="text" name="tong" id="tong" onblur="checkTime()" /><br />
+                @TempData["errorForm"] <br />
                 <button asp-controller="Form" asp-action="FormPush" class="commit">Đăng ký</button>
             </form>
         </div>
@@ -63,6 +67,7 @@
                     <th>ID_NV</th>
                     <th>Bắt đầu</th>
                     <th>Kết thúc</th>
+                    <th>thông số nghỉ</th>
                     <th>Trạng thái</th>
                 </tr>
                 @{
@@ -73,6 +78,7 @@
                             <td> @form.id_nv</td>
                             <td> @form.start</td>
                             <td> @form.end</td>
+                            <td>@form.tong</td>
                             <td> @form.TrangThai</td>
                         </tr>
                     }
@@ -95,19 +101,52 @@
             document.getElementById(m).append(b);
         }
         function checkTime() {
+            let date = new Date();
             let start = new Date(document.getElementById("Start").value);
             let end = new Date(document.getElementById("End").value);
-
-            if (start > end) {
-                document.getElementById("err").innerText =
-                    "Vui lòng kiểm tra lại thời gian";
-                document.getElementById("err").style.display = "block";
-            } else{
-                document.getElementById("err").innerText =
+            if (start.getDate() < date.getDate() && start.getMonth() === date.getMonth()) {
+                document.getElementById("errs").innerText =
+                    "Vui lòng kiểm tra lại thời gian bắt đầu";
+                document.getElementById("errs").style.display = "block";
+            } else { 
+                document.getElementById("errs").innerText =
                     "";
-                document.getElementById("err").style.display = "none";
+                document.getElementById("errs").style.display = "none";
+                if (start > end) {
+                    document.getElementById("err").innerText =
+                        "Vui lòng kiểm tra lại thời gian kết thúc";
+                    document.getElementById("err").style.display = "block";
+                } else{
+                    document.getElementById("err").innerText =
+                        "";
+                    document.getElementById("err").style.display = "none";
+                    tong();
+                }
             }
         }
-
+        function tong() { 
+            let start = new Date(document.getElementById("Start").value);
+            let end = new Date(document.getElementById("End").value);
+            console.log("strar: " + start.getMinutes());
+            console.log("end: " + end.getMinutes())
+            console.log("value: " + (end.getMinutes() - start.getMinutes()));
+            let tongDay = end.getDate() - start.getDate();
+            let tongMinu = (end.getMinutes() - start.getMinutes()) / (8 * 60);
+            let tongHours;
+            if (end.getMinutes() === start.getMinutes()) { 
+                tongHours = (end.getHours() - start.getHours())/8;
+            } else if (start.getMinutes()!=0) {
+                tongHours = (end.getHours() - start.getHours() - ((end.getMinutes() + (60 - start.getMinutes())) / 60))/8;
+            } else if (start.getMinutes()==0){
+                tongHours = (end.getHours() - start.getHours() - ((end.getMinutes() +  start.getMinutes()) / 60))/8;
+            }
+            if (tongDay >0) { 
+                document.getElementById("tong").value = tongDay;
+            } else if(tongHours>0){
+                document.getElementById("tong").value = tongHours;
+            } else {
+                document.getElementById("tong").value = tongMinu;
+            }
+        }
     </script>
 </body>

@@ -93,10 +93,9 @@ namespace fullstackCsharp.Controllers
                 mail.To.Add(email.To);
                 mail.Subject = email.Subject;
                 mail.Body = email.Body;
-
                 SmtpServer.Port = 587;
                 SmtpServer.UseDefaultCredentials = false;
-                SmtpServer.Credentials = new NetworkCredential("phuzb2@gmail.com", "001204036687Aa");
+                SmtpServer.Credentials = new NetworkCredential("phuzb2@gmail.com", "");
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);

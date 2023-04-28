@@ -1,5 +1,6 @@
 ﻿using fullstackCsharp.Models;
 using Microsoft.Data.SqlClient;
+using NuGet.Protocol.Plugins;
 using System.Data.Common;
 
 namespace fullstackCsharp.DAO
@@ -14,12 +15,13 @@ namespace fullstackCsharp.DAO
             using (SqlConnection connection = new SqlConnection(connString))
             {
                 // Tạo đối tượng thực thi truy vấn
-                string query = "INSERT INTO form (ID,ID_NV,TimeStart,TineEnd,TrangThai) VALUES (@id,@id_nv,@start,@end,@trangthai)";
+                string query = "INSERT INTO form (ID,ID_NV,TimeStart,TineEnd,thongso,TrangThai) VALUES (@id,@id_nv,@start,@end,@thongso,@trangthai)";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", form.id);
                 command.Parameters.AddWithValue("@id_nv",form.id_nv);
                 command.Parameters.AddWithValue("@start",form.start);
                 command.Parameters.AddWithValue("@end",form.end);
+                command.Parameters.AddWithValue("@thongso", form.tong);
                 command.Parameters.AddWithValue("@trangthai", form.TrangThai);
                 // Thực hiện truy vấn
                 connection.Open();
@@ -38,7 +40,7 @@ namespace fullstackCsharp.DAO
             }
             return formCheck;
         }
-        //suất form
+        //suất form staff
         public List<Form> Select(string manv)
         {
             List<Form> formList = new List<Form>();
@@ -91,7 +93,51 @@ namespace fullstackCsharp.DAO
             return formList;
 
         }
-        // xoá form
+
+        // check staff
+
+        public bool checkStaff(string manv,Form form)
+        {
+            bool Check = false;
+            using (SqlConnection dbConnection = new SqlConnection(connString))
+            {
+                dbConnection.Open();
+                DbTransaction transaction = dbConnection.BeginTransaction();
+                try
+                {
+                    int timeout = 30;
+                    string commandText = "SELECT sum(thongso) FROM form where ID_NV=@id_nv and ID=@id group by ID_NV";
+                    SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
+                    command.CommandTimeout = timeout;
+                    command.Parameters.AddWithValue("@id_nv", manv);
+                    command.Parameters.AddWithValue("@id", form.id);
+                    // Thực hiện truy vấn
+                    object result = command.ExecuteScalar();
+                    float sumThongSo = Convert.ToSingle(result); // ép kiểu từ object sang float
+
+                    Check = sumThongSo <= 1;
+                   
+                    // nếu là insert, update, delete
+                    // command.ExecuteNonQuery(); 
+
+                    // vì là select nên không thay đổi gì db, sau khi select xong thì rollback cho chắc
+                    transaction.Rollback();
+                    // nếu là insert, update, delete thì dùng: transaction.Commit();
+
+                }
+                catch
+                {
+                    // Nếu có lỗi xảy ra thì rollback để tránh làm mất dữ liệu DB
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+
+            return Check;
+
+        }
+
+        // xoá form staff
         public bool DeleteForm(Form form)
         {
             bool formCheck = false;
@@ -118,56 +164,8 @@ namespace fullstackCsharp.DAO
             }
             return formCheck;
         }
-        // select all
-        public List<Form> Select()
-        {
-            List<Form> formList = new List<Form>();
-            using (SqlConnection dbConnection = new SqlConnection(connString))
-            {
-                dbConnection.Open();
-                DbTransaction transaction = dbConnection.BeginTransaction();
-                try
-                {
-                    int timeout = 30;
-                    string commandText = "SELECT * FROM form";
-                    SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
-                    command.CommandTimeout = timeout;
-                    // nếu là select
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Form from = new Form();
-                            from.Soform = Convert.ToInt32(reader["Soform"]);
-                            from.id = reader["ID"].ToString();
-                            from.id_nv = reader["ID_NV"].ToString();
-                            from.start = reader["TimeStart"].ToString();
-                            from.end = reader["TineEnd"].ToString();
-                            from.TrangThai = reader["TrangThai"].ToString();
-                            formList.Add(from);
-                        }
-                    }
-                    // nếu là insert, update, delete
-                    // command.ExecuteNonQuery(); 
 
-                    // vì là select nên không thay đổi gì db, sau khi select xong thì rollback cho chắc
-                    transaction.Rollback();
-                    // nếu là insert, update, delete thì dùng: transaction.Commit();
-
-                }
-                catch
-                {
-                    // Nếu có lỗi xảy ra thì rollback để tránh làm mất dữ liệu DB
-                    transaction.Rollback();
-                    throw;
-                }
-            }
-
-            return formList;
-
-        }
-
-        // confirm
+        // confirm staff
         public bool Confirm(Form form)
         {
             bool formCheck = false;
@@ -211,6 +209,57 @@ namespace fullstackCsharp.DAO
                     command.CommandTimeout = timeout;
                     command.Parameters.AddWithValue("@TrangThai", "Đã duyệt");
                     command.Parameters.AddWithValue("@id_nv", manv);
+                    // nếu là select
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Form from = new Form();
+                            from.Soform = Convert.ToInt32(reader["Soform"]);
+                            from.id = reader["ID"].ToString();
+                            from.id_nv = reader["ID_NV"].ToString();
+                            from.start = reader["TimeStart"].ToString();
+                            from.end = reader["TineEnd"].ToString();
+                            from.tong = reader["thongso"].ToString();
+                            from.TrangThai = reader["TrangThai"].ToString();
+                            formList.Add(from);
+                        }
+                    }
+                    // nếu là insert, update, delete
+                    // command.ExecuteNonQuery(); 
+
+                    // vì là select nên không thay đổi gì db, sau khi select xong thì rollback cho chắc
+                    transaction.Rollback();
+                    // nếu là insert, update, delete thì dùng: transaction.Commit();
+
+                }
+                catch
+                {
+                    // Nếu có lỗi xảy ra thì rollback để tránh làm mất dữ liệu DB
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+
+            return formList;
+
+        }
+
+        // select all admin
+        public List<Form> Select()
+        {
+            List<Form> formList = new List<Form>();
+            using (SqlConnection dbConnection = new SqlConnection(connString))
+            {
+                dbConnection.Open();
+                DbTransaction transaction = dbConnection.BeginTransaction();
+                try
+                {
+                    int timeout = 30;
+                    string commandText = "SELECT * FROM form where TrangThai=@TrangThai";
+                    SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
+                    command.CommandTimeout = timeout;
+                    command.Parameters.AddWithValue("@TrangThai", "Đã gửi");
                     // nếu là select
                     using (SqlDataReader reader = command.ExecuteReader())
                     {

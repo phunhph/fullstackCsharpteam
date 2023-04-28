@@ -2,7 +2,7 @@
 {
     public class Email
     {
-        public string user { get; set; }
+     
         public string To { get; set; }
         public string Subject;
         public string Body { get; set; }
@@ -11,12 +11,12 @@
         {
             
         }
-        public Email (string To, string body, string user)
+        public Email (string To, string body)
         {
             this.To = To;
             Subject = "Quên mật khẩu";
             Body = body;
-            this.user = user;
+            
         }
     }
 }
