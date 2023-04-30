@@ -218,64 +218,133 @@ public class StaffDAO
     }
 
     //================================================================================== Edit ===================================================
-    //public List<Staff> Creates(Staff newStaff)
-    //{
-    //    List<Staff> staffList = new List<Staff>();
-    //    using (SqlConnection dbConnection = new SqlConnection(connString))
-    //    {
-    //        dbConnection.Open();
-    //        DbTransaction transaction = dbConnection.BeginTransaction();
-    //        try
-    //        {
+    public bool Edit(String id, Staff staff)
 
-    //            int timeout = 30;
-    //            string commandText = "INSERT INTO [dbo].[NhanVien] ([ID_NV],[HoTen],[Gioitinh],[SDT],[Diachi],[username],[passwords],[rank],[ID_PB],[ID_Rank]) VALUES (@ID_NV,@HoTen,@Gioitinh,@SDT,@Diachi,@username,@passwords,@rank,@ID_PB,@ID_Rank)";
+    {
 
-    //            SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
-    //            command.CommandTimeout = timeout;
+        using (SqlConnection dbConnection = new SqlConnection(connString))
+        {
+            dbConnection.Open();
+            DbTransaction transaction = dbConnection.BeginTransaction();
+            try
+            {
+                int timeout = 30;
+                string commandText = "UPDATE [dbo].[NhanVien]" +
+                    " SET [HoTen] = @HoTen"  +
+                    "[Gioitinh] = @Gioitinh" +
+                    "[SDT]= @SDT" +
+                    "[Diachi]= @Diachi" +
+                    "[username]= @username" +
+                    "[passwords]= @passwords" +
+                    "[status] = @status" +
+                    "[rank]= @rank" +
+                    "[ID_PB]= @ID_PB" +
+                    "[ID_Rank]= @ID_Rank" +
+                    " WHERE ID_NV = @id";
 
-    //            command.Parameters.AddWithValue("@ID_NV", newStaff.Manv);
-    //            command.Parameters.AddWithValue("@HoTen", newStaff.Tennv);
-    //            command.Parameters.AddWithValue("@Gioitinh", newStaff.Sex);
-    //            command.Parameters.AddWithValue("@SDT", 012345);
-    //            command.Parameters.AddWithValue("@Diachi", newStaff.Address);
-    //            command.Parameters.AddWithValue("@username", newStaff.User);
-    //            command.Parameters.AddWithValue("@passwords", newStaff.Password);
-    //            command.Parameters.AddWithValue("@rank", 2);
-    //            command.Parameters.AddWithValue("@ID_PB", "PB1");
-    //            command.Parameters.AddWithValue("@ID_Rank", "R1");
-
-
-
-
-
-    //            int insertResult = command.ExecuteNonQuery();
-    //            if (insertResult == 0)
-    //            {
-
-    //                Console.WriteLine("fail!");
-
-    //            }
-    //            else
-    //            {
-
-    //                Console.WriteLine("successfull!");
-    //            }
+               // Staff staff = new Staff();
+                Console.WriteLine(commandText);
+                SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
+                command.CommandTimeout = timeout;
+                command.Parameters.AddWithValue("@ID_NV", id);
+                command.Parameters.AddWithValue("@HoTen", staff.Namenv);
+                command.Parameters.AddWithValue("@Gioitinh", staff.Gender);
+                command.Parameters.AddWithValue("@SDT", staff.Phone);
+                command.Parameters.AddWithValue("@Diachi", staff.Address);
+                command.Parameters.AddWithValue("@username", staff.User);
+                command.Parameters.AddWithValue("@passwords", staff.Password);
+                command.Parameters.AddWithValue("@rank", staff.Rank);
+                command.Parameters.AddWithValue("@status", staff.Status);
+                command.Parameters.AddWithValue("@ID_PB", staff.Id_pb);
+                command.Parameters.AddWithValue("@ID_Rank", staff.Id_rank);
 
 
-    //            // vì là select nên không thay đổi gì db, sau khi select xong thì rollback cho chắc
-    //            //transaction.Rollback();
-    //            // nếu là insert, update, delete thì dùng: transaction.Commit();
-    //            transaction.Commit();
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            // Nếu có lỗi xảy ra thì rollback để tránh làm mất dữ liệu DB
-    //            transaction.Rollback();
-    //            throw;
-    //        }
-    //    }
-    //    return staffList;
-    //}
+                int insertResult = command.ExecuteNonQuery();
+                if (insertResult == 0)
+                {
+
+                    Console.WriteLine("fail!");
+
+                }
+                else
+                {
+
+                    Console.WriteLine("successfull!");
+                }
+                // vì là select nên không thay đổi gì db, sau khi select xong thì rollback cho chắc
+                //transaction.Rollback();
+                // nếu là insert, update, delete thì dùng: transaction.Commit(); transaction.Rollback();
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                // Nếu có lỗi xảy ra thì rollback để tránh làm mất dữ liệu DB
+                transaction.Rollback();
+                throw;
+            }
+        }
+        return true;
+    }
+    //=================================================================================================================================================
+
+    public Staff SelectById(String id)
+    {
+        Staff staff = new Staff();
+        using (SqlConnection dbConnection = new SqlConnection(connString))
+        {
+            dbConnection.Open();
+            DbTransaction transaction = dbConnection.BeginTransaction();
+            try
+            {
+                int timeout = 30;
+                string commandText = "SELECT * FROM NhanVien where status = 'active' and ID_NV= '@id'";
+                SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
+                command.CommandTimeout = timeout;
+                // load
+
+                // nếu là select
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string ID_NV = (string)reader[0];
+                        string HoTen = (string)reader[1];
+                        string Gioitinh = (string)reader[2];
+                        string SDT = (string)reader[3];
+                        string Diachi = (string)reader[4];
+                        string username = (string)reader[5];
+                        string passwords = (string)reader[6];
+                        int rank = (int)reader[7];
+                        string status = (string)reader[8];
+                        string id_pb = (string)reader[9];
+                        string id_rank = (string)reader[10];
+
+                        
+
+
+                        Staff newStaff = new Staff(id, HoTen, Gioitinh, SDT, Diachi, username, passwords, rank, status, id_pb, id_rank);
+                       // staff.Add(newStaff);
+                        // return danh sách nhân viên ở đây
+                        Console.WriteLine(String.Format("{0}", reader[0]));
+                    }
+                }
+                // nếu là insert, update, delete
+                // command.ExecuteNonQuery(); 
+
+                // vì là select nên không thay đổi gì db, sau khi select xong thì rollback cho chắc
+                transaction.Rollback();
+                // nếu là insert, update, delete thì dùng: transaction.Commit();
+
+            }
+            catch
+            {
+                // Nếu có lỗi xảy ra thì rollback để tránh làm mất dữ liệu DB
+                transaction.Rollback();
+                throw;
+            }
+        }
+
+        return staff;
+    }
 }
 

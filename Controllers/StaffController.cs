@@ -112,7 +112,7 @@ namespace fullstackCsharp.Controllers
         //================================================================================ deleted====================================================================//
 
         // GET: StaffController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(String id)
         {
             return View();
         }
@@ -120,11 +120,11 @@ namespace fullstackCsharp.Controllers
         // POST: StaffController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(String id, IFormCollection collection)
+        public ActionResult Delete(String deleteList, IFormCollection collection)
 
         {
 
-            List<string> ids = new List<string>(id.Split(","));
+            List<string> ids = new List<string>(deleteList.Split(","));
             StaffDAO staffDAO = new StaffDAO();
             foreach (var id1 in ids)
             {
@@ -143,16 +143,63 @@ namespace fullstackCsharp.Controllers
         //================================================================================ edit====================================================================//
 
         // GET: StaffController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(String IDNV)
         {
+            StaffDAO staffDAO = new StaffDAO();
+            Staff staff = staffDAO.SelectById(IDNV);
+            ViewData["staff"] = staff;
             return View();
         }
 
         // POST: StaffController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(String IDNV, IFormCollection collection)
         {
+
+            StaffDAO staffDAO = new StaffDAO();
+            //Microsoft.Extensions.Primitives.StringValues id_nv;
+            //collection.TryGetValue("id", out id_nv);
+            Microsoft.Extensions.Primitives.StringValues namenv;
+            collection.TryGetValue("name", out namenv);
+            Microsoft.Extensions.Primitives.StringValues gender;
+            collection.TryGetValue("gender", out gender);
+            Microsoft.Extensions.Primitives.StringValues phone;
+            collection.TryGetValue("phone", out phone);
+            Microsoft.Extensions.Primitives.StringValues address;
+            collection.TryGetValue("address", out address);
+            Microsoft.Extensions.Primitives.StringValues user;
+            collection.TryGetValue("user", out user);
+            Microsoft.Extensions.Primitives.StringValues password;
+            collection.TryGetValue("password", out password);
+            Microsoft.Extensions.Primitives.StringValues rankString;
+            collection.TryGetValue("rankString", out rankString);
+            Microsoft.Extensions.Primitives.StringValues status;
+            collection.TryGetValue("status", out status);
+            Microsoft.Extensions.Primitives.StringValues id_pb;
+            collection.TryGetValue("id_pb", out id_pb);
+            Microsoft.Extensions.Primitives.StringValues id_rank;
+            collection.TryGetValue("id_rank", out id_rank);
+
+            int rank;
+
+
+            bool successfullyParsed = int.TryParse(rankString, out rank);
+            if (successfullyParsed)
+            {
+                // sử dụng giá trị
+                Console.WriteLine("succefull");
+            }
+            else
+            {
+                // báo lỗi ra giao diện
+                Console.WriteLine("fail");
+            }
+            Staff staff = new Staff(IDNV, namenv, gender, address, phone, user, password, rank, status, id_pb, id_rank);
+            staffDAO.Edit(IDNV, staff);
+           
+                //staffDAO.Edit(IDNV);
+            
             try
             {
                 return RedirectToAction(nameof(Index));

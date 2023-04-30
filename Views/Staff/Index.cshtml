@@ -17,13 +17,14 @@
 
         <table class="tnv">
             <tr>
-
+                <th>Delete</th>
                 <th> Mã nhân viên</th>
                 <th> Tên nhân viên</th>
                 <th> Giới tính</th>
                 <th> add</th>
                 <th> user</th>
                 <th> pass</th>
+                <th>Edit</th>
             </tr>
             @{
                 List<Staff> stafflist = ViewData["staffList"] as List<Staff>;
@@ -40,6 +41,7 @@
                         <td> @staff.Address</td>
                         <td> @staff.User</td>
                         <td> @staff.Password</td>
+                        <td> <input type="radio" name="edited" id="edit" value="@staff.Id_nv" /></td>
                     </tr>
 
                 }
@@ -55,7 +57,62 @@
 
 
         <form id="Deleted" asp-action="Delete">
-            <input type="hidden" />
+            <input type="hidden" name="deleteList" value="" id="deleteList" />
+            <a asp-action="Index">Back to List</a>
+        </form>
+
+        <form id="Edited" asp-action="Edit">
+            <button class="btn btn-dark" onclick="conf1()"> Edit</button>
+            <input type="hidden" name="IDNV" value="" id="IDNV" />
+            <div>
+                <fieldset>
+                    <legend>Edit Information Employee:</legend>
+
+                    <br>
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="name" placeholder="enter yourname: ">
+                    <br>
+                    <br>
+                    <label for="gender">Gender:</label>
+                    <input type="text" name="gender" id="gender" placeholder="enter gender:">
+                    <br>
+                    <br>
+                    <label for="phone"> Phone:</label>
+                    <input type="text" name="phone" id="phone" placeholder="enter phone: ">
+                    <br>
+                    <br>
+                    <label for="address">Address:</label>
+                    <input type="text" name="address" id="address" placeholder="enter address : ">
+                    <br>
+                    <br>
+                    <label for="user"> Username:</label>
+                    <input type="text" name="user" id="user" placeholder="enter username: ">
+                    <br>
+                    <br>
+                    <label for="password">Password:</label>
+                    <input type="text" name="password" id="password" placeholder="enter password: ">
+                    <br>
+                    <br>
+                    <label for="rank">Rank:</label>
+                    <input type="text" name="rankString" id="rank" placeholder="enter rank:">
+                    <br>
+                    <br>
+                    <label for="status">Status:</label>
+                    <input type="text" name="status" id="status" placeholder="enter status: ">
+                    <br>
+                    <br>
+                    <label for="id_pb">Id_pb:</label>
+                    <input type="text" name="id_pb" id="id_pb" placeholder="enter id_pb : ">
+                    <br>
+                    <br>
+                    <label for="id_rank"> Id_rank:</label>
+                    <input type="text" name="id_rank" id="id_rank" placeholder="enter id_rank: ">
+
+                </fieldset>
+
+
+            </div>
+
             <a asp-action="Index">Back to List</a>
         </form>
 
@@ -68,21 +125,47 @@
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script>src="Staff.js"</script>
     <script>
+        //=========================================================== Deleted ==============================================
         function conf(){
             var checkbox = document.getElementsByName('deleted');
             var result = [];
             for(var i=0; i < checkbox.length; i++)
             {
                 if (checkbox[i].checked === true){
-                    result += checkbox[i].value ;
+                  
+                    result.push(checkbox[i].value);
                 }
                 
             }
-            alert("gias trij" + result);
             
+            document.getElementById('deleteList').value = result.join();
+            var t = result.join();
+            console.log(t);
+
             let willdeleted = confirm("cos muoons xao ko");
             if(willdeleted){
-                $("Deleted").submit();
+                $("#Deleted").submit();
+            }
+        }
+        //====================================================================== Edit ======================================
+        function conf1() {
+            var checkbox = document.getElementsByName('edited');
+            var resultEdit = [];
+            for (var i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].checked === true) {
+
+                    resultEdit.push(checkbox[i].value);
+                }
+
+            }
+
+            document.getElementById('IDNV').value = resultEdit.join();
+            var t = resultEdit.join();
+            console.log(t);
+
+            let willdeleted;
+            if (willdeleted) {
+                $("#Edited").submit();
             }
         }
 
