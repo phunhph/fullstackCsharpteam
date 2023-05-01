@@ -165,24 +165,25 @@ namespace fullstackCsharp.Controllers
         // POST: StaffController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //[Route("Staff/Edit/{id?}")]
         public ActionResult Edit( String edit1, IFormCollection collection)
         {
             StaffDAO staffDAO = new StaffDAO();
 
             Microsoft.Extensions.Primitives.StringValues namenv;
-            collection.TryGetValue("namenv", out namenv);
+            collection.TryGetValue("Namenv", out namenv);
             Microsoft.Extensions.Primitives.StringValues gender;
             collection.TryGetValue("gender", out gender);
             Microsoft.Extensions.Primitives.StringValues phone;
             collection.TryGetValue("phone", out phone);
             Microsoft.Extensions.Primitives.StringValues address;
-            collection.TryGetValue("address", out address);
+            collection.TryGetValue("Address", out address);
             Microsoft.Extensions.Primitives.StringValues user;
-            collection.TryGetValue("user", out user);
+            collection.TryGetValue("User", out user);
             Microsoft.Extensions.Primitives.StringValues password;
-            collection.TryGetValue("password", out password);
+            collection.TryGetValue("Password", out password);
             Microsoft.Extensions.Primitives.StringValues status;
-            collection.TryGetValue("status", out status);
+            collection.TryGetValue("Status", out status);
             Microsoft.Extensions.Primitives.StringValues rankString;
             collection.TryGetValue("rankString", out rankString);
             Microsoft.Extensions.Primitives.StringValues id_pb;
@@ -204,8 +205,9 @@ namespace fullstackCsharp.Controllers
                 ViewData["error"] = "Delete Lỗi rồi";
             }
             // Staff newStaff = new Staff("l3", "hieu", "1234567", "nữ", "hjk", "gvguv", "5655", 2,"active", "PB2", "R2");
-            Staff newStaff = new Staff(edit1, namenv, phone, gender, address, user, password, rank, status, id_pb, id_rank);
-            List<Staff> staff = staffDAO.Edit(newStaff,edit1);
+            Staff staff = new Staff(edit1, namenv, phone, gender, address, user, password, rank, status, id_pb, id_rank);
+
+            staffDAO.Edit(staff,edit1);
 
             try
             {

@@ -50,29 +50,29 @@
             }
         </table>
         <p>
-           
+
             <a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Create">Create</a>
             <button class="btn btn-dark" onclick="conf()">Delete</button>
-           
-                
-            <!-- <a class="btn btn-dark" asp-area="" asp-controller=" staff" asp-action="Edit" <button class="btn btn-dark" onclick="conf1()" >Edit</button>></a> -->
+
+
+            @*<a class="btn btn-dark" asp-area="" asp-controller="staff" class="btn btn-dark" onclick="conf1()"  asp-action="Edit"> edit</a>*@
             @*<a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Delete">xóa</a>*@
         </p>
 
-        <form id="Delete"  asp-action="Delete">
+        <form id="Delete" asp-action="Delete">
             <input type="hidden" name="deletelist" id="deletelist" />
-            <a asp-action="Index">Back to List</a>
+            <a type="hidden" asp-action="Index">Back to List</a>
+        </form>
+        
+
+        <form id="Edit" asp-action="Edit">
+
+            <input type="hidden" name="edit1" id="edit1" />
+            <button class="btn btn-dark" onclick="conf1()">Edit</button>
+
+            <a asp-action="Index"></a>
         </form>
 
-        
-        <form id="Edit"  asp-action="Edit">
-            
-            <input type="hidden" name="edit1" id="edit1" />
-            <a  class="btn btn-dark" onclick="conf1()"  >Edit</a>
-           
-            <a asp-action="Index">Back to List</a>
-        </form>
-       
     </div>
 
     <script type="module"
@@ -94,8 +94,8 @@
                 }
             }
             // In ra kết quả
-            document.getElementById("deletelist").value = result.join(",");
-            // alert("giá trị là: " + result);
+            document.getElementById("deletelist").value = result.join();
+
             let willDelete = confirm("Bạn có chắc chắn muốn xóa nhân viên" + result + "không?");
             if (willDelete) {
 
@@ -103,27 +103,25 @@
             }
         }
         function conf1() {
-        
-                 var checkbox1 = document.getElementsByName("edit");
-                 var results = "";
-            for (var i = 0; i < checkbox1.length; i++) {
-                if (checkbox1[i].checked === true) {
-                  // alert(checkbox1[i].value);
-                    results +=  checkbox1[i].value;
+
+            var checkbox = document.getElementsByName("edit");
+            var results = "";
+            for (var i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].checked === true) {
+                    results += checkbox[i].value;
                 }
             }
             document.getElementById("edit1").value = results;
-            alert("giá trị là: " + results );
-            let willEdit = confirm("Bạn có chắc chắn muốn edit nhân viên" + results + "không?");
+            console.log(results);
+            let willEdit = confirm("Bạn có chắc chắn muốn xóa nhân viên" + results + "không?");
             if (willEdit) {
-                var url = '@Html.Raw(Url.Action("Edit", new { Id = "_Id" }))'; 
+                var url = '@Html.Raw(Url.Action("Edit", new { Id = "_Id" }))';
                 console.log(url);
                 url = url.replace("_Id", results)
                 console.log(url);
                 window.location.href = url;
-               // $("#Edit").submit();
+                // $("#Edit").submit();
             }
-           // document.getElementById("edit1").value = result.join(",");
         }
     </script>
 </body>

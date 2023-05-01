@@ -25,6 +25,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapControllerRoute(
    name: "staff",
-   pattern: "{controller=staff}/{action=edit}/{id?}"
+   pattern: "{controller=Staff}/{action=Edit}/{id?}"
 );
 app.Run();
