@@ -141,12 +141,12 @@ namespace fullstackCsharp.Controllers
         }
 
         //================================================================================ edit====================================================================//
-
         // GET: StaffController/Edit/5
-        public ActionResult Edit(String IDNV)
+        [Route("Staff/Edit/{id?}")]
+        public ActionResult Edit(String id)
         {
             StaffDAO staffDAO = new StaffDAO();
-            Staff staff = staffDAO.SelectById(IDNV);
+            Staff staff = staffDAO.SelectById(id);
             ViewData["staff"] = staff;
             return View();
         }
@@ -154,12 +154,11 @@ namespace fullstackCsharp.Controllers
         // POST: StaffController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(String IDNV, IFormCollection collection)
+        [Route("Staff/Edit/{id?}")]
+        public ActionResult Edit(String id, IFormCollection collection)
         {
-
             StaffDAO staffDAO = new StaffDAO();
-            //Microsoft.Extensions.Primitives.StringValues id_nv;
-            //collection.TryGetValue("id", out id_nv);
+
             Microsoft.Extensions.Primitives.StringValues namenv;
             collection.TryGetValue("name", out namenv);
             Microsoft.Extensions.Primitives.StringValues gender;
@@ -172,42 +171,45 @@ namespace fullstackCsharp.Controllers
             collection.TryGetValue("user", out user);
             Microsoft.Extensions.Primitives.StringValues password;
             collection.TryGetValue("password", out password);
-            Microsoft.Extensions.Primitives.StringValues rankString;
-            collection.TryGetValue("rankString", out rankString);
             Microsoft.Extensions.Primitives.StringValues status;
             collection.TryGetValue("status", out status);
+            Microsoft.Extensions.Primitives.StringValues rankString;
+            collection.TryGetValue("rankString", out rankString);
             Microsoft.Extensions.Primitives.StringValues id_pb;
             collection.TryGetValue("id_pb", out id_pb);
             Microsoft.Extensions.Primitives.StringValues id_rank;
             collection.TryGetValue("id_rank", out id_rank);
-
             int rank;
-
 
             bool successfullyParsed = int.TryParse(rankString, out rank);
             if (successfullyParsed)
             {
                 // sử dụng giá trị
-                Console.WriteLine("succefull");
+                Console.WriteLine(rank);
             }
             else
             {
                 // báo lỗi ra giao diện
-                Console.WriteLine("fail");
+                // Console.WriteLine("lỗi");
+                ViewData["error"] = "Delete Lỗi rồi";
             }
-            Staff staff = new Staff(IDNV, namenv, gender, address, phone, user, password, rank, status, id_pb, id_rank);
-            staffDAO.Edit(IDNV, staff);
-           
-                //staffDAO.Edit(IDNV);
             
+            Staff staff = new Staff(id, namenv,  gender, phone, address, user, password, rank, status, id_pb, id_rank);
+
+           
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                staffDAO.Edit(id, staff);
+
             }
             catch
             {
+                ViewData["error"] = "Edit Lỗi rồi";
                 return View();
             }
+
+            return RedirectToAction(nameof(Index));
         }
 
     }

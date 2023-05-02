@@ -119,6 +119,9 @@ public class StaffDAO
 
         return staffList;
     }
+   
+
+   
 
     //==================================================================================Create===================================================
     public List<Staff> Create(Staff newStaff)
@@ -230,17 +233,21 @@ public class StaffDAO
             {
                 int timeout = 30;
                 string commandText = "UPDATE [dbo].[NhanVien]" +
-                    " SET [HoTen] = @HoTen"  +
-                    "[Gioitinh] = @Gioitinh" +
-                    "[SDT]= @SDT" +
-                    "[Diachi]= @Diachi" +
-                    "[username]= @username" +
-                    "[passwords]= @passwords" +
-                    "[status] = @status" +
-                    "[rank]= @rank" +
-                    "[ID_PB]= @ID_PB" +
-                    "[ID_Rank]= @ID_Rank" +
-                    " WHERE ID_NV = @id";
+
+
+
+
+                    " SET [HoTen] = @HoTen , [SDT]= @SDT" +
+                    ",[Gioitinh] = @Gioitinh" +
+                    
+                    ",[Diachi]= @Diachi" +
+                    ",[username]= @username" +
+                    ",[passwords]= @passwords" +
+                    ",[status] = @status" +
+                    ",[rank]= @rank" +
+                    ",[ID_PB]= @ID_PB" +
+                    ",[ID_Rank]= @ID_Rank" +
+                    " WHERE ID_NV = @ID_NV";
 
                // Staff staff = new Staff();
                 Console.WriteLine(commandText);
@@ -289,7 +296,7 @@ public class StaffDAO
 
     public Staff SelectById(String id)
     {
-        Staff staff = new Staff();
+        Staff staff = null;
         using (SqlConnection dbConnection = new SqlConnection(connString))
         {
             dbConnection.Open();
@@ -297,11 +304,11 @@ public class StaffDAO
             try
             {
                 int timeout = 30;
-                string commandText = "SELECT * FROM NhanVien where status = 'active' and ID_NV= '@id'";
+                string commandText = "SELECT * FROM NhanVien where ID_NV = @ID_NV and status = 'active'";
                 SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
                 command.CommandTimeout = timeout;
                 // load
-
+                command.Parameters.AddWithValue("@ID_NV", id);
                 // nếu là select
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -319,10 +326,10 @@ public class StaffDAO
                         string id_pb = (string)reader[9];
                         string id_rank = (string)reader[10];
 
+
+
                         
-
-
-                        Staff newStaff = new Staff(id, HoTen, Gioitinh, SDT, Diachi, username, passwords, rank, status, id_pb, id_rank);
+                        staff = new Staff(ID_NV, HoTen, Gioitinh, SDT, Diachi, username, passwords, rank, status, id_pb, id_rank);
                        // staff.Add(newStaff);
                         // return danh sách nhân viên ở đây
                         Console.WriteLine(String.Format("{0}", reader[0]));
@@ -330,6 +337,7 @@ public class StaffDAO
                 }
                 // nếu là insert, update, delete
                 // command.ExecuteNonQuery(); 
+                //hello
 
                 // vì là select nên không thay đổi gì db, sau khi select xong thì rollback cho chắc
                 transaction.Rollback();
