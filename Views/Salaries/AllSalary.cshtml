@@ -1,0 +1,28 @@
+﻿@model List<fullstackCsharp.Models.ViewModel.EmployeeViewModel>
+@{
+    ViewData["Title"] = "AllSalary";
+}
+
+<h1>AllSalary</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Tên</th>
+            <th>Lương cơ bản</th>
+            <th>Thưởng/Phạt</th>
+            <th>Hệ số lương</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var i in Model)
+        {
+            <tr>
+                <td>@i.FullName</td>
+                <td>@i.BasicSalary</td>
+                <td>@i.Payoff1</td>
+                <td>@i.Coefficient</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

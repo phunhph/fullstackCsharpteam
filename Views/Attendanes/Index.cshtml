@@ -1,0 +1,64 @@
+﻿@model IEnumerable<fullstackCsharp.Models.Attendane>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</div>
+<div class="align-self-end">
+    <a class="btn btn-outline-secondary btn-sm" asp-action="GetAttendaneDay">Công hôm nay</a>
+    <a class="btn btn-outline-info btn-sm" asp-action="CalculateMonthlyAttendance">Công tháng này</a>
+    
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                nhân viên
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttendaneDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Checkin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Checkout)
+            </th>
+            <th>
+                Giờ làm
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="blue2_color">
+                    @Html.DisplayFor(modelItem => item.IdUNavigation.FullName)
+                </td>
+                <td type="date">
+                    @item.AttendaneDate
+                </td>
+                <td>
+                    @item.Checkin
+                </td>
+                <td>
+                    @item.Checkout
+                </td>
+                <td>
+                   @item.WorkHours
+                </td>
+                <td>
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.IdA">Edit</a> |
+                    <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.IdA">Details</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdA">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

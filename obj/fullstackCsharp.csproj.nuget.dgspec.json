@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\xuanq\\source\\repos\\push1\\fullstackCsharpteam\\fullstackCsharp.csproj": {}
+    "C:\\Users\\xuanq\\source\\repos\\push1\\ProjectStaffMaganer\\fullstackCsharp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\xuanq\\source\\repos\\push1\\fullstackCsharpteam\\fullstackCsharp.csproj": {
+    "C:\\Users\\xuanq\\source\\repos\\push1\\ProjectStaffMaganer\\fullstackCsharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\xuanq\\source\\repos\\push1\\fullstackCsharpteam\\fullstackCsharp.csproj",
+        "projectUniqueName": "C:\\Users\\xuanq\\source\\repos\\push1\\ProjectStaffMaganer\\fullstackCsharp.csproj",
         "projectName": "fullstackCsharp",
-        "projectPath": "C:\\Users\\xuanq\\source\\repos\\push1\\fullstackCsharpteam\\fullstackCsharp.csproj",
+        "projectPath": "C:\\Users\\xuanq\\source\\repos\\push1\\ProjectStaffMaganer\\fullstackCsharp.csproj",
         "packagesPath": "C:\\Users\\xuanq\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\xuanq\\source\\repos\\push1\\fullstackCsharpteam\\obj\\",
+        "outputPath": "C:\\Users\\xuanq\\source\\repos\\push1\\ProjectStaffMaganer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\xuanq\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,6 +43,20 @@
             "Microsoft.Data.SqlClient": {
               "target": "Package",
               "version": "[5.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+              "target": "Package",
+              "version": "[1.1.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",

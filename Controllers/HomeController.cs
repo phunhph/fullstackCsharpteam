@@ -1,89 +1,58 @@
-﻿using fullstackCsharp.Models;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using RestSharp;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using fullstackCsharp.Models;
+using fullstackCsharp.Models.TableAccessories;
+
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.Xml;
+using static fullstackCsharp.Models.TableAccessories.TotalSalaryViewModel;
 
 namespace fullstackCsharp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ManagerContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger, ManagerContext context)
         {
             _logger = logger;
+            _context = context;
         }
-        public IActionResult Index(LoginDAO loginDAO)
-        {
-            var username = HttpContext.Request.Cookies["username"];
-            var privilate = HttpContext.Request.Cookies["privilate"];
-            if(username == null)
-            {
-                return RedirectToAction("Login");
-            }
-             else if (privilate != null)
-            {
-                // return user view
-                Console.WriteLine("Loged in user is nomal user!");
-                return View();
-            }
-            return RedirectToAction("Login");
-        }        //đăng nhập
-        public IActionResult Logout()
-        {
-            Response.Cookies.Delete("username");
-            Response.Cookies.Delete("privilate");
 
-            return RedirectToAction("Login");
-        }
-        //đăng nhập
-       /*  public IActionResult Login()
-          {
-              return View();
-          }
-          [HttpPost]
-          public IActionResult Login(string user , string password)
-          {
-              //check code
-              if ( (user == "admin" || user == "user") && password =="12345") {
-
-                  Response.Cookies.Append("username", user);
-                  Response.Cookies.Append("privilate", user);
-                  return RedirectToAction("Index");
-              }
-              return View();
-          }
-        */
-        //check csdl
-        private LoginDAO loginDAO = new LoginDAO();
-        public ActionResult login()
+        public IActionResult HomeHome()
         {
             return View();
         }
 
-        [HttpPost]
-        public ActionResult login(Login Login)
+        public IActionResult NullRole()
         {
-            if (ModelState.IsValid)
-            {
-                bool isValidUser = loginDAO.ValidateUser(Login);
-                if (isValidUser)
-                {
-                    Response.Cookies.Append("username", Login.user);
-                    Response.Cookies.Append("privilate", Login.user);
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid username or password");
-                }
-            }
-            return View(Login);
+            return View();
         }
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+/*
+       public IActionResult GetInformationSalary(int month, int year)
+        {
+            var userPosition = _context.Users.Include(u => u.IdPositionNavigation).ToList();
+            var payoffdate = _context.Payoffs
+                            .Where(p => p.PayoffDate.Value.Month == month && p.PayoffDate.Value.Year == year);
+            
+            var salariesAll = userPosition.Select(e => new
+            {
+                StaffName = e.FullName,
+                PositionName = e.IdPositionNavigation.Position1,
+                PositionCoefficient = e.IdPositionNavigation.Coefficient,
+                BasicSalary = e.Salaries
+
+            });
+                               
+            return View();
+        }*/
+
+
+
+
+            [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

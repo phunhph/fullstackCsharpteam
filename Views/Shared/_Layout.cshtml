@@ -1,72 +1,204 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var ten = Context.Session.GetString("fullname");
+    var anh = Context.Session.GetString("avatar");
+    var username = Context.Session.GetString("username");
+    var id = Context.Session.GetInt32("idu");
+
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - fullstackCsharp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/fullstackCsharp.styles.css" asp-append-version="true" />
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <link rel="icon" href="~/images/fevicon.png" type="image/png" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <!-- site css -->
+    <link rel="stylesheet" href="~/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="~/css/responsive.css" />
+    <!-- color css -->
+    <link rel="stylesheet" href="~/css/colors.css" />
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="~/css/bootstrap-select.css" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="~/css/perfect-scrollbar.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/css/custom.css" />
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    @*    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">fullstackCsharp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Staff" asp-action="Index">Danh sách nhân viên </a>
-                            <ul class="submenu dropdown-menu">
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Nhân viên phòng ban</a>
+<body class="dashboard dashboard_1">
+    <div class="full_container">
+        <div class="inner_container">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+                    <div class="sidebar-header">
+                        <div class="logo_section">
+                            <a href="index.html"><img class="logo_icon img-responsive" src="~/images/logo/logo2.png" alt="#" /></a>
+                        </div>
+                    </div>
+                    <div class="sidebar_user_info">
+                        <div class="icon_setting"></div>
+                        <div class="user_profle_side">
+                            <div class="user_img"><img class="img-responsive" src="@anh" alt="#" /></div>
+                            <div class="user_info">
+                                <h6>@ten</h6>
+                                <p><span class="online_animation"></span> Online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_blog_2">
+                    <h4>General</h4>
+                    <ul class="list-unstyled components">
+                        <li class="active">
+                            <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Trang chủ</span></a>
+                            <ul class="collapse list-unstyled" id="dashboard">
+                                <li>
+                                    <a href="dashboard.html">> <span>Default Dashboard</span></a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Nhân viên covid</a>
+                                <li>
+                                    <a href="dashboard_2.html">> <span>Dashboard style 2</span></a>
                                 </li>
                             </ul>
                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Phòng ban</a>
+                        <li>
+                            <a href="#Staff" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-diamond purple_color"></i> <span>Quản Lý nhân viên</span></a>
+                            <ul class="collapse list-unstyled" id="Staff">
+                                <li><a asp-action="Edit" asp-controller="Users" asp-route-id="@id"> <span>Hồ sơ cá nhân</span></a></li>
+                                <li><a asp-action="Index" asp-controller="Users"> <span>Danh Sách nhân viên</span></a></li>
+                                <li><a asp-action="Create" asp-controller="Users"> <span>Thêm mới nhân viên</span></a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Lương</a>
+                        <li>
+                            <a href="#Salary" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>lương</span></a>
+                            <ul class="collapse list-unstyled" id="Salary">
+                                <li><a asp-action="Index" asp-controller="Salaries"><span>Danh sách lương cơ bản</span></a></li>
+                                <li><a asp-action="MonthlyPayoffs" asp-controller="Payoffs"><span>Tổng thưởng ,phạt </span></a></li>
+                                <li><a asp-action="AllSalary" asp-controller="Salaries"><span>tổng quát lương</span></a></li>
+                                <li><a href="calendar.html"> <span>Thông tin lương cá nhân</span></a></li>
+                                <li><a asp-action="ListInformationSalary" asp-controller="Salaries"><span>Danh sách tính lương</span></a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Điểm danh</a>
+                        <li>
+                            <a href="#atten" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clock-o blue2_color"></i> <span> Điểm danh </span></a>
+                            <ul class="collapse list-unstyled" id="atten">
+                                <li><a asp-action="Index" asp-controller="Attendanes"> <span>Thông tin chấm công toàn công ty</span></a></li>
+                                <li><a asp-action="MonthlyHours" asp-controller="Attendanes"> <span>Tổng công tháng</span></a></li>
+                                <li><a asp-action="AttendanceUser" asp-controller="Attendanes" asp-route-id="@id"> <span>Thông tin chấm công</span></a></li>
+
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Đang xuat</a>
+                        <li>
+                            <a href="#role" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-user-plus blue2_color"></i> <span>Quản lý </span></a>
+                            <ul class="collapse list-unstyled" id="role">
+                                <li><a asp-action="Quyen" asp-controller="Quyens"> <span>Quyền</span></a></li>
+                                <li><a asp-action="TrinhDo" asp-controller="TrinhDos"> <span>Trình độ</span></a></li>
+                                <li><a asp-action="Chucvu" asp-controller="ChucVus"> <span>Chức vụ</span></a></li>
+                            </ul>
                         </li>
+                        <li><a href="map.html"><i class="fa fa-map purple_color2"></i> <span>Bản đồ</span></a></li>
+                        <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
                     </ul>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+            </nav>
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <a href="index.html"><img class="img-responsive" src="~/images/logo/logo3-rm.png" alt="#" /></a>
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
+                                        <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
+                                    </ul>
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="@anh" alt="#" /><span class="name_user">@ten</span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="profile.html">My Profile</a>
+                                                <a class="dropdown-item" href="settings.html">Settings</a>
+                                                <a class="dropdown-item" href="help.html">Help</a>
+                                                <a class="dropdown-item" asp-action="Logout" asp-controller="Account"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - fullstackCsharp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <div class="midde_cont">
+                    <div class="container-fluid m-3">
+                        @RenderBody()
+                    </div>
+                    <div class="container-fluid">
+                        <div class="footer">
+                            <p>
+                                Copyright © 2018 Designed by html.design. All rights reserved.<br><br>
+                                Distributed By: <a href="https://themewagon.com/">ThemeWagon</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end dashboard inner -->
+            </div>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    </div>
+    <script src="~/js/script.js"></script>
+    <!-- jQuery -->
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- wow animation -->
+    <script src="~/js/animate.js"></script>
+    <!-- select country -->
+    <script src="~/js/bootstrap-select.js"></script>
+    <!-- owl carousel -->
+    <script src="~/js/owl.carousel.js"></script>
+    <!-- chart js -->
+    <script src="~/js/Chart.min.js"></script>
+    <script src="~/js/Chart.bundle.min.js"></script>
+    <script src="~/js/utils.js"></script>
+    <script src="~/js/analyser.js"></script>
+    <!-- nice scrollbar -->
+    <script src="~/js/perfect-scrollbar.min.js"></script>
+    <script>
+        var ps = new PerfectScrollbar('#sidebar');
+    </script>
+    <!-- custom js -->
+    <script src="~/js/custom.js"></script>
+    <script src="~/js/chart_custom_style1.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

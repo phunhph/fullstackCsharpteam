@@ -1,0 +1,53 @@
+﻿@model IEnumerable<fullstackCsharp.Models.TableAccessories.MonthlyHoursViewModel>
+@using System.Globalization;
+@{
+    ViewData["Title"] = "Total work hours of all employees in a month";
+    var stt = 1;
+}
+
+<h1>@ViewData["Title"]</h1><br/>
+
+@using (Html.BeginForm("MonthlyHours", "Attendanes", FormMethod.Get))
+{
+    <label for="month">Choose a month:</label>
+    <select name="month" id="month">
+        @for (int i = 1; i <= 12; i++)
+        {
+            <option value="@i" selected="@(i == ViewBag.Month ? "selected" : "")"> @DateTimeFormatInfo.CurrentInfo.GetMonthName(i)</option>
+        }
+    </select>
+
+    <label for="year">Choose a year:</label>
+    <select name="year" id="year">
+        @for (int i = DateTime.Now.Year; i >= DateTime.Now.Year - 10; i--)
+        {
+            <option value="@i" selected="@(i == ViewBag.Year ? "selected" : "")">@i</option>
+        }
+    </select>
+
+    <button type="submit" class="btn-secondary">Search</button>
+}
+
+@if (ViewBag.UsersTotalWorkHours != null)
+{
+    <h3>Total work hours for @ViewBag.MonthYear:</h3><br/>
+    <table class="table table-hover m-3">
+        <thead>
+            <tr>
+                <th hidden>User ID</th>
+                <th>Full Name</th>
+                <th>Total Work Hours</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in ViewBag.UsersTotalWorkHours)
+            {
+                <tr>
+                    <td hidden>@user.UserId</td>
+                    <td>@user.FullName</td>
+                    <td>@user.TotalWorkHours</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

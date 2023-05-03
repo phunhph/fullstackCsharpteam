@@ -1,0 +1,24 @@
+﻿@model IEnumerable<fullstackCsharp.Models.TableAccessories.MonthlyAttendanceNow>
+@*@inherits Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<ProjectStaffMaganer.Models.TableAccessories.MonthlyAttendance>>*@
+
+@{
+}
+<h2>Monthly Attendance</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Total Work Hours</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+                <tr>
+                    <td>@item.UserFullName</td>
+                    <td>@item.TotalWorkHours</td>
+                </tr>
+        }
+    </tbody>
+</table>

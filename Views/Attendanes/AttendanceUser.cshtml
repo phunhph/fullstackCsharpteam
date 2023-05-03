@@ -1,0 +1,48 @@
+﻿@model IEnumerable<fullstackCsharp.Models.Attendane>
+@{
+}
+<h1>Thông tin điểm danh cá nhân</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                nhân viên
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttendaneDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Checkin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Checkout)
+            </th>
+            <th>
+                Giờ làm
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="blue2_color">
+                    @Html.DisplayFor(modelItem => item.IdUNavigation.FullName)
+                </td>
+                <td>
+                    @item.AttendaneDate
+                </td>
+                <td>
+                    @item.Checkin
+                </td>
+                <td>
+                    @item.Checkout
+                </td>
+                <td>
+                    @item.WorkHours
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

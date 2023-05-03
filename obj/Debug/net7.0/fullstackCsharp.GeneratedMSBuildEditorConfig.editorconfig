@@ -9,45 +9,185 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = fullstackCsharp
 build_property.RootNamespace = fullstackCsharp
-build_property.ProjectDir = C:\Users\xuanq\source\repos\push1\fullstackCsharpteam\
+build_property.ProjectDir = C:\Users\xuanq\source\repos\push1\ProjectStaffMaganer\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\xuanq\source\repos\push1\fullstackCsharpteam
+build_property.MSBuildProjectDirectory = C:\Users\xuanq\source\repos\push1\ProjectStaffMaganer
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/xuanq/source/repos/push1/fullstackCsharpteam/Views/Admin/Index.cshtml]
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/xuanq/source/repos/push1/fullstackCsharpteam/Views/Home/Index.cshtml]
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Allowances/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWxsb3dhbmNlc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Allowances/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWxsb3dhbmNlc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Allowances/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWxsb3dhbmNlc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Allowances/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWxsb3dhbmNlc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Allowances/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWxsb3dhbmNlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Attendanes/AttendanceUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5lc1xBdHRlbmRhbmNlVXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Attendanes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5lc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Attendanes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5lc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Attendanes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5lc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Attendanes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5lc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Attendanes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5lc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Attendanes/MonthlyHours.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5lc1xNb250aGx5SG91cnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Attendanes/TotalWorkMonthNow.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5lc1xUb3RhbFdvcmtNb250aE5vdy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Home/HomeHome.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIb21lSG9tZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/xuanq/source/repos/push1/fullstackCsharpteam/Views/Home/Login.cshtml]
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Home/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/xuanq/source/repos/push1/fullstackCsharpteam/Views/Shared/Error.cshtml]
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Home/NullRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOdWxsUm9sZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Payoffs/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5b2Zmc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Payoffs/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5b2Zmc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Payoffs/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5b2Zmc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Payoffs/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5b2Zmc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Payoffs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5b2Zmc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Payoffs/MonthlyPayoffs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5b2Zmc1xNb250aGx5UGF5b2Zmcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Salaries/AllSalary.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsYXJpZXNcQWxsU2FsYXJ5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Salaries/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsYXJpZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Salaries/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsYXJpZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Salaries/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsYXJpZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Salaries/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsYXJpZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Salaries/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsYXJpZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Salaries/ListInformationSalary.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsYXJpZXNcTGlzdEluZm9ybWF0aW9uU2FsYXJ5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/xuanq/source/repos/push1/fullstackCsharpteam/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/xuanq/source/repos/push1/fullstackCsharpteam/Views/Staff/Index.cshtml]
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Staff/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhZmZcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/xuanq/source/repos/push1/fullstackCsharpteam/Views/_ViewImports.cshtml]
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Users/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Users/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Users/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Users/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Users/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/xuanq/source/repos/push1/fullstackCsharpteam/Views/_ViewStart.cshtml]
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/xuanq/source/repos/push1/fullstackCsharpteam/Views/Shared/_Layout.cshtml]
+[C:/Users/xuanq/source/repos/push1/ProjectStaffMaganer/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-f9y65dhfic

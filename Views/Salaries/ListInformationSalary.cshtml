@@ -1,0 +1,75 @@
+﻿@using System.Globalization;
+@model List<fullstackCsharp.Models.TableAccessories.TotalSalaryViewModel>
+
+@{
+
+}
+<h1>Danh sách tính lương nhân viên tháng @ViewBag.MonthYear</h1>
+
+<form method="get">
+    <label for="month">Month:</label>
+    <select name="month" id="month">
+        <option value="">-- Select Month --</option>
+        @for (int i = 1; i <= 12; i++)
+        {
+            <option value="@i" selected="@(i == ViewBag.Month ? "selected" : "")"> @DateTimeFormatInfo.CurrentInfo.GetMonthName(i)</option>
+
+        }
+    </select>
+
+    <label for="year">Year:</label>
+    <select name="year" id="year">
+        <option value="">-- Select Year --</option>
+        @for (int i = DateTime.Now.Year; i >= 2001; i--)
+        {
+            <option value="@i" selected="@(i == ViewBag.Year ? "selected" : "")">@i</option>
+        }
+    </select>
+
+    </select>
+
+    <button type="submit">Filter</button>
+</form>
+
+@if (Model.Count > 0)
+{
+@*@if (ViewBag.UsersTotalWorkHours != null)
+{*@
+    <h4 class="green_color"> công đủ trong tháng <p class="red_color">200</p></h4>
+    <br />
+    <table class="table table-hover">
+        <thead class="hover color_black">
+            <tr>
+                <th>mã nhân viên</th>
+                <th>tài khoản</th>
+                <th>họ tên</th>
+                <th>Lương cơ bản</th>
+                <th>Phụ cấp</th>
+                <th>thưởng phạt</th>
+                <th>công thực tế</th>
+                <th>hệ số lương</th>
+                <th>Lương thực nhận</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@s.IdU</td>
+                    <td>@s.UserName</td>
+                    <td>@s.FullName</td>
+                    <td>@s.BasicSalary</td>
+                    <td>@s.AllowanceAmount</td>
+                    <td>@s.TotalPayoff</td>
+                    <td>@s.TotalWorkHours</td>
+                    <td>@s.Coefficient</td>
+                    <td>@s.TotalSalary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Không tìm thấy kết quả</p>
+}
