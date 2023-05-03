@@ -8,19 +8,18 @@ namespace fullstackCsharp.DAO
 {
     public class DiemDanhDAO
     {
-        static string connString = "Data Source=MSI\\MSSQLSERVER01;Initial Catalog=QuanLy;Integrated Security=True;TrustServerCertificate=True";
+        
 
 		public bool CommitIn(Diemdanh diemdanh)
 		{
 			bool resultin = false;
-			using (SqlConnection connection = new SqlConnection(connString))
+			using (SqlConnection connection = new SqlConnection(ConfigSettings.connString))
 			{
 				// Tạo đối tượng thực thi truy vấn
-				string query = "INSERT INTO roll_call (ID, ID_NV,HoTen,time_in) VALUES (@id, @id_nv,@name,@time_in)";
+				string query = "insert into Attendane(id_a,AttendaneDate,Checkin,id_u) values (@id,@id,@time_in, @id_nv)";
 				SqlCommand command = new SqlCommand(query, connection);
 				command.Parameters.AddWithValue("@id", diemdanh.id);
 				command.Parameters.AddWithValue("@id_nv", diemdanh.id_nv);
-                command.Parameters.AddWithValue("@name", diemdanh.name);
                 command.Parameters.AddWithValue("@time_in", diemdanh.timein );
                 // Thực hiện truy vấn
                 try
@@ -49,10 +48,10 @@ namespace fullstackCsharp.DAO
         public bool CommitOut(Diemdanh diemdanh)
         {
             bool resultin = false;
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(ConfigSettings.connString))
             {
                 // Tạo đối tượng thực thi truy vấn
-                string query = "UPDATE roll_call  SET time_out = @time_out WHERE ID=@id AND ID_NV=@id_nv";
+                string query = "UPDATE Attendane  SET Checkout = @time_out WHERE AttendaneDate=@id AND id_u=@id_nv";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", diemdanh.id);
                 command.Parameters.AddWithValue("@id_nv", diemdanh.id_nv);
@@ -79,14 +78,14 @@ namespace fullstackCsharp.DAO
           public List<Diemdanh> Select(string manv)
           {
               List<Diemdanh> diemdanhList = new List<Diemdanh>();
-              using (SqlConnection dbConnection = new SqlConnection(connString))
+              using (SqlConnection dbConnection = new SqlConnection(ConfigSettings.connString))
               {
                   dbConnection.Open();
                   DbTransaction transaction = dbConnection.BeginTransaction();
                   try
                   {
                       int timeout = 30;
-                      string commandText = "SELECT * FROM roll_call WHERE ID_NV=@id_nv";
+                      string commandText = "SELECT Attendane.*, Users.FullName FROM Attendane join Users  on Users.id_u = Attendane.id_u  WHERE Attendane.id_u=@id_nv";
                       SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
                       command.CommandTimeout = timeout;
                       // set param
@@ -99,11 +98,11 @@ namespace fullstackCsharp.DAO
                           while (reader.Read())
                           {
                               Diemdanh staff = new Diemdanh();
-                              staff.id = reader["ID"].ToString();
-                              staff.id_nv = reader["ID_NV"].ToString();
-                              staff.name = reader["HoTen"].ToString();
-                              staff.timein = reader["time_in"].ToString();
-                              staff.timeout = reader["time_out"].ToString();
+                              staff.id = reader["AttendaneDate"].ToString();
+                              staff.id_nv = reader["id_u"].ToString();
+                              staff.name = reader["FullName"].ToString();
+                              staff.timein = reader["Checkin"].ToString();
+                              staff.timeout = reader["Checkout"].ToString();
                               diemdanhList.Add(staff);
                               // return danh sách nhân viên ở đây
                               
@@ -132,7 +131,7 @@ namespace fullstackCsharp.DAO
         public List<Diemdanh> Select()
         {
             List<Diemdanh> diemdanhList = new List<Diemdanh>();
-            using (SqlConnection dbConnection = new SqlConnection(connString))
+            using (SqlConnection dbConnection = new SqlConnection(ConfigSettings.connString))
             {
                 dbConnection.Open();
                 DbTransaction transaction = dbConnection.BeginTransaction();
@@ -140,7 +139,7 @@ namespace fullstackCsharp.DAO
                 {
                    
                     int timeout = 30;
-                    string commandText = "SELECT * FROM roll_call where time_out is null ";
+                    string commandText = "SELECT Attendane.*,Users.FullName FROM Attendane join Users  on Users.id_u = Attendane.id_u where Checkout is null ";
                     SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
                     command.CommandTimeout = timeout;
                     // set param
@@ -150,11 +149,11 @@ namespace fullstackCsharp.DAO
                         while (reader.Read())
                         {
                             Diemdanh staff = new Diemdanh();
-                            staff.id = reader["ID"].ToString();
-                            staff.id_nv = reader["ID_NV"].ToString();
-                            staff.name = reader["HoTen"].ToString();
-                            staff.timein = reader["time_in"].ToString();
-                            staff.timeout = reader["time_out"].ToString();
+                            staff.id = reader["AttendaneDate"].ToString();
+                            staff.id_nv = reader["id_u"].ToString();
+                            staff.name = reader["FullName"].ToString();
+                            staff.timein = reader["Checkin"].ToString();
+                            staff.timeout = reader["Checkout"].ToString();
                             diemdanhList.Add(staff);
                             // return danh sách nhân viên ở đây
                             
@@ -183,10 +182,10 @@ namespace fullstackCsharp.DAO
         public bool FixCheck(Diemdanh diemdanh)
         {
             bool resultin = false;
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(ConfigSettings.connString))
             {
                 // Tạo đối tượng thực thi truy vấn
-                string query = "UPDATE roll_call  SET time_out = @time_out WHERE ID=@id AND ID_NV=@id_nv";
+                string query = "UPDATE Attendane  SET Checkout = @time_out WHERE AttendaneDate=@id AND id_u=@id_nv";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", diemdanh.id);
                 command.Parameters.AddWithValue("@id_nv", diemdanh.id_nv);

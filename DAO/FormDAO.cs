@@ -7,15 +7,15 @@ namespace fullstackCsharp.DAO
 {
     public class FormDAO
     {
-        static string connString = "Data Source=MSI\\MSSQLSERVER01;Initial Catalog=QuanLy;Integrated Security=True;TrustServerCertificate=True";
+        
         // thêm form
         public bool CommitForm(Form form)
         {
             bool formCheck = false;
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(ConfigSettings.connString))
             {
                 // Tạo đối tượng thực thi truy vấn
-                string query = "INSERT INTO form (ID,ID_NV,TimeStart,TineEnd,thongso,TrangThai) VALUES (@id,@id_nv,@start,@end,@thongso,@trangthai)";
+                string query = "INSERT INTO form (ID,id_u,TimeStart,TineEnd,thongso,TrangThai) VALUES (@id,@id_nv,@start,@end,@thongso,@trangthai)";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", form.id);
                 command.Parameters.AddWithValue("@id_nv",form.id_nv);
@@ -44,14 +44,14 @@ namespace fullstackCsharp.DAO
         public List<Form> Select(string manv)
         {
             List<Form> formList = new List<Form>();
-            using (SqlConnection dbConnection = new SqlConnection(connString))
+            using (SqlConnection dbConnection = new SqlConnection(ConfigSettings.connString))
             {
                 dbConnection.Open();
                 DbTransaction transaction = dbConnection.BeginTransaction();
                 try
                 {
                     int timeout = 30;
-                    string commandText = "SELECT * FROM form WHERE TrangThai=@TrangThai and ID_NV=@id_nv";
+                    string commandText = "SELECT * FROM form WHERE TrangThai=@TrangThai and id_u=@id_nv";
                     SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
                     command.CommandTimeout = timeout;
                     // set param
@@ -67,7 +67,7 @@ namespace fullstackCsharp.DAO
                             Form from = new Form();
                             from.Soform = Convert.ToInt32(reader["Soform"]);
                             from.id = reader["ID"].ToString();
-                            from.id_nv = reader["ID_NV"].ToString();
+                            from.id_nv = reader["id_u"].ToString();
                             from.start = reader["TimeStart"].ToString();
                             from.end = reader["TineEnd"].ToString();
                             from.TrangThai = reader["TrangThai"].ToString();
@@ -99,14 +99,14 @@ namespace fullstackCsharp.DAO
         public bool checkStaff(string manv,Form form)
         {
             bool Check = false;
-            using (SqlConnection dbConnection = new SqlConnection(connString))
+            using (SqlConnection dbConnection = new SqlConnection(ConfigSettings.connString))
             {
                 dbConnection.Open();
                 DbTransaction transaction = dbConnection.BeginTransaction();
                 try
                 {
                     int timeout = 30;
-                    string commandText = "SELECT sum(thongso) FROM form where ID_NV=@id_nv and ID=@id group by ID_NV";
+                    string commandText = "SELECT sum(thongso) FROM form where id_u=@id_nv and ID=@id group by id_u";
                     SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
                     command.CommandTimeout = timeout;
                     command.Parameters.AddWithValue("@id_nv", manv);
@@ -141,7 +141,7 @@ namespace fullstackCsharp.DAO
         public bool DeleteForm(Form form)
         {
             bool formCheck = false;
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(ConfigSettings.connString))
             {
                 // Tạo đối tượng thực thi truy vấn
                 string query = "delete form where Soform = @Soform ";
@@ -169,7 +169,7 @@ namespace fullstackCsharp.DAO
         public bool Confirm(Form form)
         {
             bool formCheck = false;
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(ConfigSettings.connString))
             {
                 // Tạo đối tượng thực thi truy vấn
                 string query = "update form set TrangThai=@TrangThai where Soform = @Soform ";
@@ -197,14 +197,14 @@ namespace fullstackCsharp.DAO
         public List<Form> Selectcf(string manv)
         {
             List<Form> formList = new List<Form>();
-            using (SqlConnection dbConnection = new SqlConnection(connString))
+            using (SqlConnection dbConnection = new SqlConnection(ConfigSettings.connString))
             {
                 dbConnection.Open();
                 DbTransaction transaction = dbConnection.BeginTransaction();
                 try
                 {
                     int timeout = 30;
-                    string commandText = "SELECT * FROM form where TrangThai=@TrangThai and ID_NV=@id_nv";
+                    string commandText = "SELECT * FROM form where TrangThai=@TrangThai and id_u=@id_nv";
                     SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
                     command.CommandTimeout = timeout;
                     command.Parameters.AddWithValue("@TrangThai", "Đã duyệt");
@@ -217,7 +217,7 @@ namespace fullstackCsharp.DAO
                             Form from = new Form();
                             from.Soform = Convert.ToInt32(reader["Soform"]);
                             from.id = reader["ID"].ToString();
-                            from.id_nv = reader["ID_NV"].ToString();
+                            from.id_nv = reader["id_u"].ToString();
                             from.start = reader["TimeStart"].ToString();
                             from.end = reader["TineEnd"].ToString();
                             from.tong = reader["thongso"].ToString();
@@ -249,7 +249,7 @@ namespace fullstackCsharp.DAO
         public List<Form> Select()
         {
             List<Form> formList = new List<Form>();
-            using (SqlConnection dbConnection = new SqlConnection(connString))
+            using (SqlConnection dbConnection = new SqlConnection(ConfigSettings.connString))
             {
                 dbConnection.Open();
                 DbTransaction transaction = dbConnection.BeginTransaction();
@@ -268,7 +268,7 @@ namespace fullstackCsharp.DAO
                             Form from = new Form();
                             from.Soform = Convert.ToInt32(reader["Soform"]);
                             from.id = reader["ID"].ToString();
-                            from.id_nv = reader["ID_NV"].ToString();
+                            from.id_nv = reader["id_u"].ToString();
                             from.start = reader["TimeStart"].ToString();
                             from.end = reader["TineEnd"].ToString();
                             from.TrangThai = reader["TrangThai"].ToString();

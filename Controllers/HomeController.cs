@@ -26,18 +26,13 @@ namespace fullstackCsharp.Controllers
             {
                 return RedirectToAction("Login");
             }
-             else if (rank == "0")
-            {
-                // return login view
-                TempData["error"] = "tài khoản đã bị vô hiệu hoá";
-                return RedirectToAction("Login");
-            }
-            else if (rank == "1")
+             else if (rank == "5")
             {
                 // return staff view
+                Console.Write("staff");
                 return View();
             }
-            else if (rank == "2")
+            else if (rank == "1")
             {
                 // return admin view
                 return View();
@@ -89,13 +84,15 @@ namespace fullstackCsharp.Controllers
             try
             {
                 MailMessage mail = new MailMessage();
+                mail.BodyEncoding = System.Text.Encoding.UTF8;
+                mail.SubjectEncoding = System.Text.Encoding.UTF8;
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com",587);
                 mail.To.Add(email.To);
                 mail.Subject = email.Subject;
                 mail.Body = email.Body;
                 SmtpServer.Port = 587;
                 SmtpServer.UseDefaultCredentials = false;
-                SmtpServer.Credentials = new NetworkCredential("phuzb2@gmail.com", "");
+                SmtpServer.Credentials = new NetworkCredential("nguyenhuuphu190502004@gmail.com", "001204036687a");
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);

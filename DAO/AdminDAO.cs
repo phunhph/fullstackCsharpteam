@@ -2,14 +2,16 @@
 using System.Data.Common;
 using System.Data;
 using fullstackCsharp.Models;
+using fullstackCsharp.DAO;
 
 public class AdminDAO
 {
-    static string connString = "Data Source=MSI\\MSSQLSERVER01;Initial Catalog=QuanLy;Integrated Security=True;TrustServerCertificate=True";
+    
     public List<Admin> Select(string manv)
     {
         List<Admin> employeeList = new List<Admin>();
-        using (SqlConnection dbConnection = new SqlConnection(connString))
+
+        using (SqlConnection dbConnection = new SqlConnection(ConfigSettings.connString))
         {
             dbConnection.Open();
             DbTransaction transaction = dbConnection.BeginTransaction();

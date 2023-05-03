@@ -7,11 +7,11 @@ namespace fullstackCsharp.DAO;
 
 public class StaffDAO
 {
-    static string connString = "Data Source=MSI\\MSSQLSERVER01;Initial Catalog=QuanLy;Integrated Security=True;TrustServerCertificate=True";
+    
     public List<Staff> Select(string manv)
     {
         List<Staff> staffList = new List<Staff>();
-        using (SqlConnection dbConnection = new SqlConnection(connString))
+        using (SqlConnection dbConnection = new SqlConnection(ConfigSettings.connString))
         {
             dbConnection.Open();
             DbTransaction transaction = dbConnection.BeginTransaction();

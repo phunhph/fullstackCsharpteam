@@ -1,4 +1,5 @@
-﻿@*
+﻿@using Newtonsoft.Json;
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -38,15 +39,16 @@
          <th>TIME_IN</th>
          <th>TIME_OUT</th>
      </tr>
-     @{
-         List<Diemdanh> diemdanhlist = ViewData["diemdanhList"] as List<Diemdanh>;
-             @foreach (Diemdanh staff in diemdanhlist)
+        @{
+            List<Diemdanh> diemdanhlist = ViewData["diemdanhList"] as List<Diemdanh>;
+            var count = 0;
+            @foreach (Diemdanh staff in diemdanhlist)
              {
                 <tr>
                 <form role="form" method="post">
-                    <td><input type="text" name="id" value="@staff.id" required /></td>
+                    <td><input type="text" name="id" value="@staff.id" id=@staff.id required /></td>
                     <td><input type="text" name="id_nv" value="@staff.id_nv" required /></td>
-                    <td><input type="text" name="name" value="@staff.name" required /></td>
+                    <td><input type="text"  value="@staff.name" required /></td>
                     <td><input type="time" name="timein" value="@staff.timein" required /></td>
                     <td>  
                         <input type="time"  name="timeout" required />
@@ -54,9 +56,23 @@
                     </td>
                     </form>
                 </tr>
+                count++;
              }
       }
      <tbody id="tbody"></tbody>
    </table> 
+   <script>
+        var list = @Html.Raw(JsonConvert.SerializeObject(ViewData["diemdanhList"]));
+        const roll = new Array();
+        let a=0;
+        list.forEach(element => {
+            let coll = new Date(element.id);
+            roll.push(coll);
+        });
+        roll.forEach(element => {
+            document.getElementById(element).value = date.getFullYear() + "/" + date.getDate() + "/" + (date.getMonth() + 1);
+            a++;
+        });
+   </script>
 </body>
 </html>
