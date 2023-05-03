@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xmNi4qIAxlPQFh/5qN3Mkc8pd4+Rj8vNbPOrgQsXd1cHfIz49nQmyHGstRbTCb2rBFBEY9UmM1mcs784k3bHiw==",
+  "dgSpecHash": "guY2gsxqUUUAErZ4n5Qgh+p0cjcbr63s7pI4aNFgonmKD/tf3nwvfqagM4EJmqlS5v46PEMryFWTjjPgzYx69A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\xuanq\\source\\repos\\library\\phunhph\\fullstackCsharpteam\\fullstackCsharp.csproj",
+  "projectFilePath": "C:\\Users\\xuanq\\source\\repos\\push1\\fullstackCsharpteam\\fullstackCsharp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\xuanq\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\xuanq\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

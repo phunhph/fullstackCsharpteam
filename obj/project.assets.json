@@ -9935,11 +9935,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\xuanq\\source\\repos\\library\\phunhph\\fullstackCsharpteam\\fullstackCsharp.csproj",
+      "projectUniqueName": "C:\\Users\\xuanq\\source\\repos\\push1\\fullstackCsharpteam\\fullstackCsharp.csproj",
       "projectName": "fullstackCsharp",
-      "projectPath": "C:\\Users\\xuanq\\source\\repos\\library\\phunhph\\fullstackCsharpteam\\fullstackCsharp.csproj",
+      "projectPath": "C:\\Users\\xuanq\\source\\repos\\push1\\fullstackCsharpteam\\fullstackCsharp.csproj",
       "packagesPath": "C:\\Users\\xuanq\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\xuanq\\source\\repos\\library\\phunhph\\fullstackCsharpteam\\obj\\",
+      "outputPath": "C:\\Users\\xuanq\\source\\repos\\push1\\fullstackCsharpteam\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\xuanq\\AppData\\Roaming\\NuGet\\NuGet.Config",
