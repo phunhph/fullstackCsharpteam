@@ -109,6 +109,7 @@ function checkDay() {
     const roll = new Array();
     list.forEach(element => {
         let coll = new Date(element.id);
+        console.log(coll.getFullYear() + "/" + coll.getMonth() + "/" + coll.getD());
         roll.push(coll);
     });
    

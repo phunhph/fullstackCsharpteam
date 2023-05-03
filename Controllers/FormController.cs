@@ -16,12 +16,12 @@ namespace fullstackCsharp.Controllers
             List<Form> formListCf = formDAO.Selectcf(id_nv);
             ViewData["formListCf"] = formListCf;
             var rank = HttpContext.Request.Cookies["rank"];
-            if (rank == "2")
+            if (rank == "1")
             {
                 // return admin view
                 return RedirectToAction("Admin");
             }
-            else if (rank == "1")
+            else if (rank == "5")
             {
                 // return user view
                 return View();

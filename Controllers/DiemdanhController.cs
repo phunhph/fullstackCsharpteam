@@ -16,13 +16,13 @@ namespace fullstackCsharp.Controllers
             List<Diemdanh> diemdanhList = diemdanhDAO.Select(id_nv);
             ViewData["diemdanhList"] = diemdanhList;    
             var rank = HttpContext.Request.Cookies["rank"];
-            if (rank == "2")
+            if (rank == "1")
             {
                 // return admin view
                 return RedirectToAction("Admin");
                // return View();
             }
-            else if (rank == "1")
+            else if (rank == "5")
             {
                 // return user view
                 return View();
