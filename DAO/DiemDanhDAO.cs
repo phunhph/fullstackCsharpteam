@@ -92,7 +92,7 @@ namespace fullstackCsharp.DAO
                       command.Parameters.AddWithValue("@id_nv", manv);
                       // load
 
-                      // nếu là select
+                      // nếu là select  
                       using (SqlDataReader reader = command.ExecuteReader())
                       {
                           while (reader.Read())
