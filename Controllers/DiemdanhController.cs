@@ -6,39 +6,100 @@ namespace fullstackCsharp.Controllers
 {
     public class DiemdanhController : Controller
     {
-        // khai báo đối tượng theo Diemdanh và DiemdanhDAO để lưu dữ liệu
         private DiemDanhDAO DiemDanhDAO = new DiemDanhDAO();
-        private Diemdanh rc = new Diemdanh();
-        public IActionResult Index(Diemdanh diemdanh)
-        {
-            // lấy thông tin để insert vào DB 
-            var id_nv = HttpContext.Request.Cookies["id_nv"];
-            var id = "4";
-            var time_in = "2023/01/03";
-            var time_out = "2023/01/03";
-            bool Commitout = DiemDanhDAO.Commitout(diemdanh, id_nv,time_out,id);
-            bool Commitin = DiemDanhDAO.Commitin(diemdanh, id_nv,id,time_in);
-            if (Commitout)
-            {
-                // check xem đã điểm danh vào chưa
-                rc.id_nv = diemdanh.id_nv;
-                rc.name = diemdanh.name;
-                Console.WriteLine("Mã Nhân Viên: " + rc.id_nv);
-                Console.WriteLine("Tên Nhân Viên: " + rc.name);
-                Console.WriteLine("Xác nhận time out");
-                return View();
-            }
-            else if(Commitin)
-            {// nếu chưa thì đưa dữ liệu vào
-                rc.id_nv = diemdanh.id_nv;
-                rc.name = diemdanh.name;
-                Console.WriteLine("Mã Nhân Viên: " + rc.id_nv);
-                Console.WriteLine("Tên Nhân Viên: " + rc.name);
-                Console.WriteLine("Xác nhận time in");
-                return View();
 
+        public ActionResult Index()
+        {
+            
+            var id_nv = HttpContext.Request.Cookies["id_nv"];
+            DiemDanhDAO diemdanhDAO = new DiemDanhDAO();
+            List<Diemdanh> diemdanhList = diemdanhDAO.Select(id_nv);
+            ViewData["diemdanhList"] = diemdanhList;    
+            var rank = HttpContext.Request.Cookies["rank"];
+            if (rank == "1")
+            {
+                // return admin view
+                return RedirectToAction("Admin");
+               // return View();
             }
+            else if (rank == "5")
+            {
+                // return user view
                 return View();
+            }
+            return View();
+        }
+        public ActionResult Admin()
+        {
+            DiemDanhDAO diemdanhDAO = new DiemDanhDAO();
+            List<Diemdanh> diemdanhList = diemdanhDAO.Select();
+            ViewData["diemdanhList"] = diemdanhList;
+            return View();
+        }
+        // checkin
+        [HttpPost]
+		public ActionResult Checkin(Diemdanh diemdanh)
+		{
+            // suất dữ liệu
+            var id_nv = HttpContext.Request.Cookies["id_nv"];
+            DiemDanhDAO diemdanhDAO = new DiemDanhDAO();
+            List<Diemdanh> diemdanhList = diemdanhDAO.Select(id_nv);
+            ViewData["diemdanhList"] = diemdanhList;
+            // lấy dữ liệu để insert
+            diemdanh.id_nv = id_nv;
+            diemdanh.name = HttpContext.Request.Cookies["name"];
+            Response.Cookies.Append("id", diemdanh.id);
+            bool CheckIn = DiemDanhDAO.CommitIn(diemdanh) ;
+				if (CheckIn)
+				{
+                    return RedirectToAction("Index");
+                }
+				else
+				{
+                    ViewData["error"] = "Chỉ được check in 1 lần / ngày";
+                
+                }
+            return View("Index");
+        }
+        //checkout
+        [HttpPost]
+        public ActionResult Checkout(Diemdanh diemdanh)
+        {
+            var id_nv = HttpContext.Request.Cookies["id_nv"];
+            DiemDanhDAO diemdanhDAO = new DiemDanhDAO();
+            List<Diemdanh> diemdanhList = diemdanhDAO.Select(id_nv);
+            ViewData["diemdanhList"] = diemdanhList;
+            // lấy dữ liệu để update
+            diemdanh.id_nv = id_nv;
+            diemdanh.name = HttpContext.Request.Cookies["name"];
+            bool CheckOut = DiemDanhDAO.CommitOut(diemdanh);
+            if (CheckOut)
+            {
+                ViewData["confirm"] = "Check out thành công";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewData["error"] = "Check out thất bại";
+            }
+            return RedirectToAction("Index");
+
+        }
+        // fixcheckout
+        [HttpPost]
+        public ActionResult FixCheck(Diemdanh diemdanh)
+        {
+            bool FixCheckOut = DiemDanhDAO.FixCheck(diemdanh);
+            if (FixCheckOut)
+            {
+                ViewData["confirm"] = "Check out thành công";
+            }
+            else
+            {
+                ViewData["error"] = "Check out thất bại";
+            }
+            return RedirectToAction("Index");
+
         }
     }
 }

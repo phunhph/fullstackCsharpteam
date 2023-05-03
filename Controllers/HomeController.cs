@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using RestSharp;
 using System.Diagnostics;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mail;
 using System.Xml;
 
 namespace fullstackCsharp.Controllers
@@ -24,23 +27,15 @@ namespace fullstackCsharp.Controllers
             {
                 return RedirectToAction("Login");
             }
-             else if (rank == "0")
+             else if (rank == "5")
             {
-                // return login view
-                Console.WriteLine("tài khoản đã bị vô hiệu hoá");
-                return RedirectToAction("Login");
+                // return staff view
+                Console.Write("staff");
+                return View();
             }
             else if (rank == "1")
             {
-                // return staff view
-                
-                Console.WriteLine("tài khoản của nhân viên");
-                return View();
-            }
-            else if (rank == "2")
-            {
                 // return admin view
-                Console.WriteLine("tài khoản của admin");
                 return View();
             }
             return RedirectToAction("Login");
@@ -61,7 +56,6 @@ namespace fullstackCsharp.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult login(Login Login)
         {
@@ -83,6 +77,36 @@ namespace fullstackCsharp.Controllers
                 }
             }
             return View(Login);
+        }
+        // quên mật khẩu
+        [HttpPost]
+        public ActionResult SendEmail(Email email)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                mail.BodyEncoding = System.Text.Encoding.UTF8;
+                mail.SubjectEncoding = System.Text.Encoding.UTF8;
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com",587);
+                mail.To.Add(email.To);
+                mail.Subject = email.Subject;
+                mail.Body = email.Body;
+                SmtpServer.Port = 587;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Credentials = new NetworkCredential("nguyenhuuphu190502004@gmail.com", "001204036687a");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                ViewBag.Message = "Email sent successfully";
+                Console.WriteLine("Email sent successfully");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: + ex.Message.ToString()");
+                ViewBag.Message = "Error:" + ex.Message.ToString();
+            }
+
+            return RedirectToAction("Login");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

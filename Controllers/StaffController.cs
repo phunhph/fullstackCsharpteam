@@ -66,13 +66,11 @@ namespace fullstackCsharp.Controllers
                 return View();
             }
         }
-
         // GET: StaffController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
-
         // POST: StaffController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
