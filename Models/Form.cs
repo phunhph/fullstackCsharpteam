@@ -7,7 +7,7 @@
         public string id_nv { get; set; }
         public string start { get; set; }
         public string end { get; set; }
-        public string tong { get; set; }
+        public float tong { get; set; }
         public string TrangThai { get; set; }
 
         public float check { get; set; }
@@ -15,7 +15,7 @@
         {
 
         }
-        public Form(int Soform , string id, string id_nv, string start, string end, string TrangThai, string tong, float check)
+        public Form(int Soform , string id, string id_nv, string start, string end, string TrangThai, float tong, float check)
         {
             this.Soform = Soform;
             this.id = id;

@@ -111,11 +111,13 @@ namespace fullstackCsharp.DAO
                     command.CommandTimeout = timeout;
                     command.Parameters.AddWithValue("@id_nv", manv);
                     command.Parameters.AddWithValue("@id", form.id);
+                    
                     // Thực hiện truy vấn
                     object result = command.ExecuteScalar();
                     float sumThongSo = Convert.ToSingle(result); // ép kiểu từ object sang float
-
-                    Check = sumThongSo <= 1;
+                    float ts =form.tong;
+                    float checkSum= sumThongSo + ts;
+                    Check = checkSum <= 1;
                    
                     // nếu là insert, update, delete
                     // command.ExecuteNonQuery(); 
@@ -220,7 +222,7 @@ namespace fullstackCsharp.DAO
                             from.id_nv = reader["id_u"].ToString();
                             from.start = reader["TimeStart"].ToString();
                             from.end = reader["TineEnd"].ToString();
-                            from.tong = reader["thongso"].ToString();
+                            from.tong = Convert.ToUInt64( reader["thongso"]);
                             from.TrangThai = reader["TrangThai"].ToString();
                             formList.Add(from);
                         }
