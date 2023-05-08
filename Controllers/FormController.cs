@@ -39,7 +39,7 @@ namespace fullstackCsharp.Controllers
         [HttpPost]
         public ActionResult FormPush(Form form)
         {
-            var id_nv = HttpContext.Request.Cookies["id_nv"];
+            var id_nv = HttpContext.Request.Cookies["id_nv"];           
             bool check = FormDAO.checkStaff(id_nv, form) ;
             if(check)
             {
