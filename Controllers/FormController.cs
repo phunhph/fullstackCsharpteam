@@ -39,26 +39,33 @@ namespace fullstackCsharp.Controllers
         [HttpPost]
         public ActionResult FormPush(Form form)
         {
-            var id_nv = HttpContext.Request.Cookies["id_nv"];           
-            bool check = FormDAO.checkStaff(id_nv, form) ;
-            if(check)
-            {
-                form.TrangThai = "Đã gửi";
-                bool pushForm = FormDAO.CommitForm(form);
-                if (pushForm)
+            var id_nv = HttpContext.Request.Cookies["id_nv"];
+            bool checkF = FormDAO.checkActive(id_nv);
+            if (checkF)
+            {        
+                bool check = FormDAO.checkStaff(id_nv, form) ;
+                if(check)
                 {
-                    Console.WriteLine("Xác nhận form");
+                    form.TrangThai = "Đã gửi";
+                    bool pushForm = FormDAO.CommitForm(form);
+                    if (pushForm)
+                    {
+                        Console.WriteLine("Xác nhận form");
+                    }
+                    else
+                    {   
+                        Console.WriteLine("error form");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("error form");
+                    TempData["errorForm"] = "mỗi ngày chỉ được nghỉ 8 tiếng vui lòng kiểm tra lại";
                 }
             }
             else
             {
-                TempData["errorForm"] = "mỗi ngày chỉ được nghỉ 8 tiếng vui lòng kiểm tra lại";
+                TempData["errorForm"] = "Đã có from trờ duyệt trong ngày hôm nay";
             }
-            
             return RedirectToAction("Index");
         }
         [HttpPost]

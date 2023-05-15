@@ -1,15 +1,15 @@
 USE [master]
 GO
-/****** Object:  Database [Manager]    Script Date: 5/1/2023 9:21:05 PM ******/
+/****** Object:  Database [Manager]    Script Date: 08/05/2023 4:46:25 PM ******/
 CREATE DATABASE [Manager]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'Manager', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\Manager.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+( NAME = N'Manager', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER01\MSSQL\DATA\Manager.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
  LOG ON 
-( NAME = N'Manager_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\Manager_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+( NAME = N'Manager_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER01\MSSQL\DATA\Manager_log.ldf' , SIZE = 73728KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
 GO
-ALTER DATABASE [Manager] SET COMPATIBILITY_LEVEL = 160
+ALTER DATABASE [Manager] SET COMPATIBILITY_LEVEL = 150
 GO
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
 begin
@@ -84,7 +84,7 @@ ALTER DATABASE [Manager] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_P
 GO
 USE [Manager]
 GO
-/****** Object:  Table [dbo].[Allowance]    Script Date: 5/1/2023 9:21:05 PM ******/
+/****** Object:  Table [dbo].[Allowance]    Script Date: 08/05/2023 4:46:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -100,24 +100,24 @@ CREATE TABLE [dbo].[Allowance](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Attendane]    Script Date: 5/1/2023 9:21:06 PM ******/
+/****** Object:  Table [dbo].[Attendane]    Script Date: 08/05/2023 4:46:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Attendane](
-	[Id_a] [int] IDENTITY(1,1) NOT NULL,
+	[id_a] [int] IDENTITY(1,1) NOT NULL,
 	[AttendaneDate] [date] NULL,
 	[Checkin] [time](7) NULL,
 	[Checkout] [time](7) NULL,
-	[Id_u] [int] NULL,
- CONSTRAINT [PK_Attendane] PRIMARY KEY CLUSTERED 
+	[id_u] [int] NULL,
+PRIMARY KEY CLUSTERED 
 (
-	[Id_a] ASC
+	[id_a] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Departments]    Script Date: 5/1/2023 9:21:06 PM ******/
+/****** Object:  Table [dbo].[Departments]    Script Date: 08/05/2023 4:46:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -131,7 +131,27 @@ CREATE TABLE [dbo].[Departments](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Payoffs]    Script Date: 5/1/2023 9:21:06 PM ******/
+/****** Object:  Table [dbo].[form]    Script Date: 08/05/2023 4:46:25 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[form](
+	[Soform] [int] IDENTITY(1,1) NOT NULL,
+	[id_f] [date] NULL,
+	[ID] [varchar](20) NOT NULL,
+	[id_u] [int] NOT NULL,
+	[TimeStart] [varchar](50) NOT NULL,
+	[TineEnd] [varchar](50) NOT NULL,
+	[thongso] [float] NOT NULL,
+	[TrangThai] [nvarchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Soform] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Payoffs]    Script Date: 08/05/2023 4:46:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -148,7 +168,7 @@ CREATE TABLE [dbo].[Payoffs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Position]    Script Date: 5/1/2023 9:21:06 PM ******/
+/****** Object:  Table [dbo].[Position]    Script Date: 08/05/2023 4:46:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -163,7 +183,7 @@ CREATE TABLE [dbo].[Position](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 5/1/2023 9:21:06 PM ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 08/05/2023 4:46:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -177,7 +197,7 @@ CREATE TABLE [dbo].[Roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Salary]    Script Date: 5/1/2023 9:21:06 PM ******/
+/****** Object:  Table [dbo].[Salary]    Script Date: 08/05/2023 4:46:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -194,7 +214,7 @@ CREATE TABLE [dbo].[Salary](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserRole]    Script Date: 5/1/2023 9:21:06 PM ******/
+/****** Object:  Table [dbo].[UserRole]    Script Date: 08/05/2023 4:46:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -209,7 +229,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 5/1/2023 9:21:06 PM ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 08/05/2023 4:46:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -239,10 +259,15 @@ REFERENCES [dbo].[Users] ([Id_u])
 GO
 ALTER TABLE [dbo].[Allowance] CHECK CONSTRAINT [FK_Allowance_Users]
 GO
-ALTER TABLE [dbo].[Attendane]  WITH CHECK ADD  CONSTRAINT [FK_Attendane_Users] FOREIGN KEY([Id_u])
+ALTER TABLE [dbo].[Attendane]  WITH CHECK ADD  CONSTRAINT [FK_At_NV] FOREIGN KEY([id_u])
 REFERENCES [dbo].[Users] ([Id_u])
 GO
-ALTER TABLE [dbo].[Attendane] CHECK CONSTRAINT [FK_Attendane_Users]
+ALTER TABLE [dbo].[Attendane] CHECK CONSTRAINT [FK_At_NV]
+GO
+ALTER TABLE [dbo].[form]  WITH CHECK ADD  CONSTRAINT [FK_F_Us] FOREIGN KEY([id_u])
+REFERENCES [dbo].[Users] ([Id_u])
+GO
+ALTER TABLE [dbo].[form] CHECK CONSTRAINT [FK_F_Us]
 GO
 ALTER TABLE [dbo].[Payoffs]  WITH CHECK ADD  CONSTRAINT [FK_Payoffs_Users] FOREIGN KEY([Id_u])
 REFERENCES [dbo].[Users] ([Id_u])
@@ -274,16 +299,11 @@ REFERENCES [dbo].[Position] ([Id_position])
 GO
 ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK_Users_Position]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_tblAttendance_Total]    Script Date: 5/1/2023 9:21:06 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_tblAttendance_Total]    Script Date: 08/05/2023 4:46:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
--- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
--- =============================================
 CREATE PROCEDURE [dbo].[sp_tblAttendance_Total]
 	-- Add the parameters for the stored procedure here
 AS

@@ -48,7 +48,7 @@ namespace fullstackCsharp.Controllers
             // lấy dữ liệu để insert
             diemdanh.id_nv = id_nv;
             diemdanh.name = HttpContext.Request.Cookies["name"];
-            Response.Cookies.Append("id", diemdanh.id);
+            
             bool CheckIn = DiemDanhDAO.CommitIn(diemdanh) ;
 				if (CheckIn)
 				{
