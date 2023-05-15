@@ -107,13 +107,12 @@ const renderCalendar = () => {
 
 function checkDay() {
     const roll = new Array();
+    const pull = new Array();
     list.forEach(element => {
         let coll = new Date(element.id);
-        console.log(coll.getFullYear() + "/" + coll.getMonth() + "/" + coll.getDate());
         roll.push(coll);
     });
-   
-    // lấy thứ trong tuần của ngày đầu tiên trong tháng hiện tại
+    // lấy thứ trong tuần của ngày đầu tiên trong tháng hiện 
     const firstDayIndex = date.getDay();
     // lấy ngày cuối cùng của tháng hiện tại
     const lastDay = new Date(
@@ -136,7 +135,7 @@ function checkDay() {
         roll.forEach(element => {
             // today
             if (
-                i === new Date().getDate() &&
+                i == new Date().getDate() &&
                 date.getMonth() === element.getMonth()
             ) {
                 document.getElementById(element.getDate()).style.backgroundColor = "red";

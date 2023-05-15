@@ -139,6 +139,47 @@ namespace fullstackCsharp.DAO
 
         }
 
+        public bool checkActive(string manv)
+        {
+            bool Check = false;
+            using (SqlConnection dbConnection = new SqlConnection(ConfigSettings.connString))
+            {
+                dbConnection.Open();
+                DbTransaction transaction = dbConnection.BeginTransaction();
+                try
+                {
+                    int timeout = 30;
+                    string commandText = "SELECT count(*) FROM form where TrangThai=@TrangThai and id_u=@id_u";
+                    SqlCommand command = new SqlCommand(commandText, (SqlConnection)transaction.Connection, (SqlTransaction)transaction);
+                    command.CommandTimeout = timeout;
+                    command.Parameters.AddWithValue("@TrangThai", "Đã gửi");
+                    command.Parameters.AddWithValue("@id_u", manv);
+                    // nếu là select
+                    // Thực hiện truy vấn
+                    object result = command.ExecuteScalar();
+                    float sumThongSo = Convert.ToSingle(result); // ép kiểu từ object sang float
+                    float checkSum = sumThongSo;
+                    Check = checkSum <0;
+                    // nếu là insert, update, delete
+                    // command.ExecuteNonQuery(); 
+
+                    // vì là select nên không thay đổi gì db, sau khi select xong thì rollback cho chắc
+                    transaction.Rollback();
+                    // nếu là insert, update, delete thì dùng: transaction.Commit();
+
+                }
+                catch
+                {
+                    // Nếu có lỗi xảy ra thì rollback để tránh làm mất dữ liệu DB
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+
+            return Check;
+
+        }
+
         // xoá form staff
         public bool DeleteForm(Form form)
         {

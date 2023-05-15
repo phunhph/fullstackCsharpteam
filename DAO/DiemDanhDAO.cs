@@ -98,8 +98,8 @@ namespace fullstackCsharp.DAO
                           while (reader.Read())
                           {
                               Diemdanh staff = new Diemdanh();
-                              staff.id = reader["AttendaneDate"].ToString();
-                              staff.id_nv = reader["id_u"].ToString();
+                             staff.id = DateTime.Parse(reader["AttendaneDate"].ToString());
+                             staff.id_nv = reader["id_u"].ToString();
                               staff.name = reader["FullName"].ToString();
                               staff.timein = reader["Checkin"].ToString();
                               staff.timeout = reader["Checkout"].ToString();
@@ -149,7 +149,8 @@ namespace fullstackCsharp.DAO
                         while (reader.Read())
                         {
                             Diemdanh staff = new Diemdanh();
-                            staff.id = reader["id_a"].ToString();
+                            staff.id_a = reader["id_a"].ToString();
+                            staff.id = DateTime.Parse(reader["AttendaneDate"].ToString());
                             staff.id_nv = reader["id_u"].ToString();
                             staff.name = reader["FullName"].ToString();
                             staff.timein = reader["Checkin"].ToString();
@@ -185,9 +186,9 @@ namespace fullstackCsharp.DAO
             using (SqlConnection connection = new SqlConnection(ConfigSettings.connString))
             {
                 // Tạo đối tượng thực thi truy vấn
-                string query = "UPDATE Attendane  SET Checkout = @time_out WHERE id_a=@id";
+                string query = "UPDATE Attendane  SET Checkout = @time_out WHERE id_a=@id_a";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@id", diemdanh.id);
+                command.Parameters.AddWithValue("@id_a", diemdanh.id_a);
                 command.Parameters.AddWithValue("@time_out", diemdanh.timeout);
                 // Thực hiện truy vấn
                 connection.Open();
