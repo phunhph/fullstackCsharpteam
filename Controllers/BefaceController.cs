@@ -42,7 +42,7 @@ namespace fullstackCsharp.Controllers
                         using (var grayFrame = new Mat())
                         {
                             // Khởi tạo một bộ phân loại cascade cho nhận diện khuôn mặt sử dụng tệp XML "haarcascade_frontalface_default.xml"
-                            var faceCascade = new CascadeClassifier("haarcascade_frontalface_default.xml");
+                            var faceCascade = new CascadeClassifier("C:\\Users\\Huu Phu\\OneDrive - Đại học FPT- FPT University\\Desktop\\data.xml");
                             // Chuyển đổi khung hình từ không gian màu BGR sang màu xám
                             Cv2.CvtColor(frame, grayFrame, ColorConversionCodes.BGR2GRAY);
                             // Cải thiện độ tương phản của khung hình màu xám

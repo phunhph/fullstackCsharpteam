@@ -8,9 +8,45 @@ namespace fullstackCsharp.DAO
 {
     public class DiemDanhDAO
     {
-        
 
-		public bool CommitIn(Diemdanh diemdanh)
+
+        // checkday 
+
+        public bool CheckCommitIn(Diemdanh diemdanh)
+        {
+            bool resultin = false;
+            using (SqlConnection connection = new SqlConnection(ConfigSettings.connString))
+            {
+                // Tạo đối tượng thực thi truy vấn
+                string query = "select count(*) from Attendane  WHERE AttendaneDate=@id AND id_u=@id_nv ";
+                SqlCommand command = new SqlCommand(query, connection);
+                Console.WriteLine(diemdanh.id);
+                command.Parameters.AddWithValue("@id", diemdanh.id);
+                command.Parameters.AddWithValue("@id_nv", diemdanh.id_nv);
+                // Thực hiện truy vấn
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    float sumThongSo = Convert.ToSingle(result); // ép kiểu từ object sang float
+                    float checkSum = sumThongSo;
+                    connection.Close();
+                    Console.WriteLine(result);
+                    // Trả về kết quả
+                    resultin = checkSum < 1;
+                }
+                catch (SqlException ex)
+                {
+                    resultin = false;
+                }
+
+            }
+            return resultin;
+        }
+
+        //commitIN
+
+        public bool CommitIn(Diemdanh diemdanh)
 		{
 			bool resultin = false;
 			using (SqlConnection connection = new SqlConnection(ConfigSettings.connString))
