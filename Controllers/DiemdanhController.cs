@@ -48,17 +48,24 @@ namespace fullstackCsharp.Controllers
             // lấy dữ liệu để insert
             diemdanh.id_nv = id_nv;
             diemdanh.name = HttpContext.Request.Cookies["name"];
-            
-            bool CheckIn = DiemDanhDAO.CommitIn(diemdanh) ;
-				if (CheckIn)
-				{
+            bool checkCall= DiemDanhDAO.CheckCommitIn(diemdanh);
+            if(checkCall)
+            {
+                bool CheckIn = DiemDanhDAO.CommitIn(diemdanh);
+                if (CheckIn)
+                {
                     return RedirectToAction("Index");
                 }
-				else
-				{
+                else
+                {
                     ViewData["error"] = "Chỉ được check in 1 lần / ngày";
-                
+
                 }
+            } 
+            else
+            {
+                ViewData["error"] = "Chỉ được check in 1 lần / ngày";
+            }
             return View("Index");
         }
         //checkout
