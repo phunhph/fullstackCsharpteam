@@ -1,0 +1,82 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+@model Login
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RefreshPassword</title>
+    
+    <link href="~/css/login.css" rel="stylesheet" />
+</head>
+<body>
+    <section>
+        <div class="form-box">
+            <div class="form-value login">
+                <form role="form" method="post" asp-controller="home" asp-action="RefreshPassword">
+                    <h2>RefreshPassword by key</h2>
+
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline" id="clock1" onclick="show(1)"></ion-icon>
+                        <input type="password" id="pass1" name="password" required />
+                        <label for="">password</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline" id="clock2" onclick="show(2)"></ion-icon>
+                        <input type="password" id="pass2" name="newpassword" required />
+                        <label for="">password mới</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline" id="clock3" onclick="show(3)"></ion-icon>
+                        <input type="password" id="pass3" name="" required />
+                        <label for="">Xác nhận password mới</label>
+                    </div>
+                    <p class="error">
+                        @TempData["error"]
+                    </p>
+                    
+                    <a href="#" class="login-link" style="margin-bottom:5px">login by key admin</a>
+                    
+                    <button>Login</button>
+                </form>
+            </div>
+            
+            <div class="form-value register">
+                <form role="form" method="post" asp-controller="home" asp-action="RefreshPasswordBykey">
+                    <h2>RefreshPassword by key</h2>
+                    <div class="inputbox">
+                        <ion-icon name="key-outline"></ion-icon>
+                        <input type="text" name="key" required />
+                        <label for="">key</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline" id="clock4" onclick="show(4)"></ion-icon>
+                        <input type="password" id="pass4" name="newpassword" required />
+                        <label for="">password mới</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline" id="clock5" onclick="show(5)"></ion-icon>
+                        <input type="password" id="pass5" name="" required />
+                        <label for="">Xác nhận password mới</label>
+                    </div>
+                    <p class="error">
+                        @TempData["error"]
+                    </p>
+                    
+                    <a href="#" class="register-link" style="margin-bottom:5px">Quay lại</a>
+                    
+                    <button>Login</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src="~/js/login.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
