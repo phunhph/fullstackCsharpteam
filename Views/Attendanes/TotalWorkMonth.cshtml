@@ -1,0 +1,108 @@
+﻿@using fullstackCsharp.Models
+
+@model IEnumerable<fullstackCsharp.Models.ViewModel.Attendances.TotalWorkMonth>
+@{
+    Pager pager = new Pager();
+
+    int pageNo = 0;
+
+    if(ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+<form method="get" asp-controller="Attendanes" asp-action="TotalWorkMonth">
+    <div class="row">
+        <div class="col-3">
+                <input type="text" id="searchString" name="searchText" class="form-control" placeholder="Từ khóa tìm kiếm" value="@ViewBag.searchText" />
+                @if (ViewBag.SearchResultMessage != null)
+                {
+                    <div class="text-danger">@ViewBag.SearchResultMessage</div>
+                }
+        </div>
+        
+        <div class="col-3">
+            <label for="month">Tháng:</label>
+            <input type="number" id="month" name="month" min="1" max="12" value="@Model?.FirstOrDefault()?.Month ?? DateTime.Now.Month" />
+        </div>
+        <div class ="col-3">
+            <label for="year">Năm:</label>
+            <input type="number" id="year" name="year" min="2000" max="2100" value="@Model?.FirstOrDefault()?.Year ?? DateTime.Now.Year" />
+        </div>
+        <div class="col-33">
+            <button type="submit">Lọc</button>
+        </div>
+    </div>
+</form>
+<br />
+<hr />
+<br />
+<table class="table table-hover">
+    <thead>
+        <tr class="bg-light">
+            <th>No</th>
+            <th>Tên nhân viên</th>
+            <th>Tổng công tháng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int count = 1;
+        }
+        @foreach(var t in Model)
+        {
+            <tr>
+                <td>@count</td>
+                <td>@t.Fullname</td>
+                <td>@t.totalworkmonth</td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>
+<div class=" container">
+    @if (pager.TotalPages != null)
+    {
+        <div>
+            Page @(pager.CurrentPage) of @pager.TotalPages
+        </div>
+        <ul class="pagination justify-content-end">
+            @if (pager.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Attendanes" asp-action="TotalWorkMonth" asp-route-pg="1">
+                        Đầu
+                    </a>
+                </li>
+                <li>
+                    <a class="page-link" asp-controller="Attendanes" asp-action="TotalWorkMonth" asp-route-pg="@(pager.CurrentPage -1)">
+                        Trước
+                    </a>
+                </li>
+            }
+
+            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+            {
+                <li class="page-item @(pge == pager.CurrentPage ? "active":"")">
+                    <a class="page-link" asp-action="Attendanes" asp-controller="Salaries" asp-route-pg="@pge"> @pge</a>
+                </li>
+            }
+
+            @if (pager.CurrentPage < pager.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Attendanes" asp-action="TotalWorkMonth" asp-route-pg="@(pager.CurrentPage +1)">
+                        Sau
+                    </a>
+                </li>
+                <li>
+                    <a class="page-link" asp-controller="Attendanes" asp-action="TotalWorkMonth" asp-route-pg="@(pager.TotalPages)">
+                        Cuối
+                    </a>
+                </li>
+            }
+
+        </ul>
+    }
+</div>

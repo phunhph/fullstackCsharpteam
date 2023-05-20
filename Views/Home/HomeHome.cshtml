@@ -1,0 +1,55 @@
+﻿@model IEnumerable<fullstackCsharp.Models.Attendane>
+@{
+    ViewBag.Title = "Attendance";
+}
+<div id="alert" class="alert alert-info" style="display:none;"></div>
+
+@if (Model == null)
+{
+    <h3>Not Logged In</h3>
+}
+else
+{
+    <h3>Logged In</h3>
+    <div>
+        @if (@TempData["CheckinResult"] != null)
+        {
+            <p>@TempData["CheckinResult"]</p>
+        }
+        else if (@TempData["CheckoutResult"] != null)
+        {
+            <p>@TempData["CheckoutResult"]</p>
+        }
+        
+        <form asp-action="CheckIn" method="post">
+            <button type="submit" @if (@ViewBag.IsCheckedIn != null) { <text>disabled</text> }>Check In</button>
+        </form>
+
+        <form asp-action="CheckOut" method="post">
+            <button type="submit">Check Out</button>
+        </form>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        var alertDiv = $("#alert");
+        var alertMsg = "";
+
+        // Check if the URL contains a success message
+        var urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has("success")) {
+            alertMsg = "Check in successful";
+        }
+
+        if (alertMsg !== "") {
+            // Show the alert and hide it after 5 seconds
+            alertDiv.text(alertMsg).show();
+            setTimeout(function () {
+                alertDiv.hide();
+            }, 5000);
+        }
+    });
+</script>
+
+

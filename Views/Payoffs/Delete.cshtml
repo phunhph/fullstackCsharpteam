@@ -1,0 +1,45 @@
+﻿@model fullstackCsharp.Models.Payoff
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>xóa</h1>
+
+<h3>Bạn có chắc chắn muốn xóa bản ghi này?</h3>
+<div>
+    <h4>Payoff</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Tên nhân viên
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdUNavigation.IdU)
+        </dd>
+        <dt class = "col-sm-2">
+            Số tiền thưởng - phạt
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Payoff1)
+        </dd>
+        <dt class = "col-sm-2">
+           Ngày tạo
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PayoffDate)
+        </dd>
+        <dt class = "col-sm-2">
+            Mô tả
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdPay" />
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a class="btn btn-outline-info" asp-action="Index">trở lại</a>
+    </form>
+</div>

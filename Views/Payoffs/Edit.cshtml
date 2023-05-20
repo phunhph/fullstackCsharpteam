@@ -1,0 +1,44 @@
+﻿@model fullstackCsharp.Models.Payoff
+
+@{
+    ViewData["Title"] = "Edit Payoff";
+}
+
+<h1>Edit</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdPay" />
+            <div class="form-group">
+                <label asp-for="IdU" class="control-label">Tên nhân viên</label>
+                <select asp-for="IdU" class="form-control" asp-items="ViewBag.IdU"></select>
+                <span asp-validation-for="IdU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Payoff1" class="control-label">Số tiền</label>
+                <input asp-for="Payoff1" class="form-control" />
+                <span asp-validation-for="Payoff1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PayoffDate" class="control-label">Ngày tạo</label>
+                <input asp-for="PayoffDate" class="form-control" />
+                <span asp-validation-for="PayoffDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Mô tả</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-outline-info" asp-action="Index">Trở lại</a>
+</div>
+

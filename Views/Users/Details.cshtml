@@ -1,0 +1,68 @@
+﻿@model fullstackCsharp.Models.User
+
+@{
+
+}
+
+<div class="containner">
+    <h2> Detail User </h2><br />
+
+    @if (Model.Status == 1)
+    {
+        <h4> account status : <i style="color:lawngreen">Hoạt động</i> </h4>
+    }
+ else{
+        <h4> account status : <i style="color:red">Khóa</i> </h4>
+    }
+    
+
+    <hr />
+    <img class="card-img-top card-title" src="@Model.Avatar" />
+    <div class="row">
+        <div class="col-6 col-md-4">
+            <label>Tài khoản</label>
+            <p>@Model.UserName</p>
+        </div>
+        <div class="col-6 col-md-4">
+            <label>Tên nhân viên</label>
+            <p>@Model.FullName</p>
+        </div>
+        <div class="col-6 col-md-4">
+            <label>Phòng ban</label>
+            <p>@Model.IdD</p>
+        </div>
+        <div class="col-6 col-md-4">
+            <label>Chức vụ</label>
+            <p>@Model.IdPosition</p>
+        </div>
+        <div class="col-6 col-md-4">
+            <label>SĐT</label>
+            <p>@Model.PhoneNumber</p>
+        </div>
+        <div class="col-6 col-md-4">
+            <label>Email</label>
+            <p>@Model.Email</p>
+        </div>
+        <div class="col-6 col-md-4">
+            <label>Giới tính</label>
+            <p>@Model.Gender</p>
+        </div>
+        <div class="col-6 col-md-4">
+            <label>Ngày sinh</label>
+            <p>@Model.Birthday</p>
+        </div>
+        <div class="col-6 col-md-4">
+            <label>Mã định danh</label>
+            <p>@Model.IdCard</p>
+        </div>
+        <div class="col-6 col-md-4">
+            <label>Địa chỉ</label>
+            <p>@Model.Adress</p>
+        </div>
+
+    </div>
+</div>
+<div>
+    <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.IdU">Sửa</a> |
+    <a class="btn btn-outline-info" asp-action="Index">Trở lại</a>
+</div>

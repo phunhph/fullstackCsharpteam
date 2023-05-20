@@ -1,0 +1,87 @@
+﻿@model IEnumerable<fullstackCsharp.Models.ViewModel.Salaries.TotalSalaryViewModel>
+@using fullstackCsharp.Models.ViewModel.Salaries
+@{
+}
+@using (Html.BeginForm("SalarySelf", "Salaries", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-4">
+            <label for="month">Tháng:</label>
+            <input type="number" id="month" name="month" min="1" max="12" value="@Model?.FirstOrDefault()?.Month ?? DateTime.Now.Month" />
+        </div>
+        <div class="col-4">
+            <label for="year">Năm:</label>
+            <input type="number" id="year" name="year" min="2000" max="2100" value="@Model?.FirstOrDefault()?.Year ?? DateTime.Now.Year" />
+        </div>
+        <div class="col-4">
+            <input type="submit" value="lọc" />
+        </div>
+    </div>
+
+}
+<h1 style="text-align:center">Lương Tháng: @ViewBag.Month  Năm: @ViewBag.Year</h1>
+<h4 style="text-align:end"> công đủ trong tháng: @foreach (var s in Model)
+    {
+        <i>@s.FullWorkMonth</i>
+    } (a)</h4>
+
+<table class="table table-hover table-sm">
+    <thead>
+        <tr>
+            <th>1.Tên nhân viên</th>
+            @foreach (var s in Model)
+            {
+                <td style="color:black; background-color:aliceblue">@s.FullName</td>
+            }
+        </tr>
+        <tr>
+            <th>2.Lương cơ bản</th>
+            @foreach (var s in Model)
+            {
+                <td>@s.BasicSalary</td>
+            }
+        </tr>
+        <tr>
+            <th>3.Hệ số chức vụ </th>
+            @foreach (var s in Model)
+            {
+                <td>@s.Coefficient</td>
+            }
+        </tr>
+        <tr>
+            <th>4.Phụ cấp </th>
+            @foreach (var s in Model)
+            {
+                <td>@s.AllowanceAmount</td>
+            }
+        </tr>
+        <tr>
+            <th>5.Lương đủ (2*3+4)</th>
+            @foreach (var s in Model)
+            {
+                <td>@s.Salary</td>
+            }
+        </tr>
+        <tr>
+            <th>6.Công thực tế </th>
+            @foreach (var s in Model)
+            {
+                <td>@s.RealityWork</td>
+            }
+        </tr>
+        <tr>
+            <th>7.Thưởng phạt </th>
+            @foreach (var s in Model)
+            {
+                <td>@s.TotalPayOff</td>
+            }
+        </tr>
+        <tr style="background-color:#e0a8a8,color:black">
+            <th>8.Lương thực lĩnh<br /> (5/a*6 +7)</th>
+            @foreach (var s in Model)
+            {
+                <td>@s.TotalSalaryMonth</td>
+            }
+        </tr>
+    </thead>
+</table>

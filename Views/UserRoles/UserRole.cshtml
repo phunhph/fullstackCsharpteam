@@ -1,0 +1,46 @@
+﻿@*@model IEnumerable<fullstackCsharp.Models.UserRole>
+
+@{
+    ViewData["Title"] = "UserRole";
+}
+
+<h1>User Roles</h1>
+
+<form asp-action="UserRole" method="post">
+    <div class="form-group">
+        <label class="control-label">Quyền</label>
+        <select asp-for="IdR" class="form-control" asp-items="@ViewBag.Roles">
+            <option value="">-- Select Role --</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdR</th>
+                <th>Users</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.IdR</td>
+                    <td>
+                        @foreach (var user in item.IdRNavigation.UserRoles.Select(ur => ur.IdUNavigation))
+                        {
+                            <span>@user.UserName</span>
+
+                            <br />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+*@

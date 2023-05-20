@@ -1,0 +1,32 @@
+﻿@model fullstackCsharp.Models.Salary
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Xóa</h1>
+
+<h3>Bạn có chắc chắn muốn xóa bản ghi này?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Tên nhân viên
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdUNavigation.FullName)
+        </dd>
+        <dt class = "col-sm-2">
+            Lương cơ bản
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BasicSalary)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdSalary" />
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a class="btn btn-outline-info" asp-action="Index">Trở lại</a>
+    </form>
+</div>
