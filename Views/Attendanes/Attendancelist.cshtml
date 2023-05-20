@@ -1,0 +1,51 @@
+﻿@using fullstackCsharp.Models;
+@using fullstackCsharp.Models.ViewModel.Attendances;
+@model IEnumerable<AttendancesTotalHours>
+
+@{
+    Pager pager = new Pager();
+
+    int pageNo = 0;
+
+    if(ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Stt</th>
+            <th>Tên nhân viên</th>
+            <th>giờ vào</th>
+            <th>giờ ra</th>
+            <th>Tổng giờ làm</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int count = 1;
+        }
+        @foreach(var a in Model)
+        {
+            <tr>
+                <td>@count</td>
+                <td>@a.FullName</td>
+                <td>@a.CheckIn</td>
+                <td>@a.CheckOut</td>
+                <td>@a.totakwork</td>
+                <td>
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@a.IdA">Sửa</a> |
+                    <a class="btn btn-warning" asp-action="Details" asp-route-id="@a.IdA">Chi tiết</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@a.IdA">Xóa</a>
+                </td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>
+
+<partial name="_pager" model="@pager" />

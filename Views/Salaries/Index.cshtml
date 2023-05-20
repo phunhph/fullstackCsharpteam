@@ -1,0 +1,114 @@
+﻿@model IEnumerable<fullstackCsharp.Models.Salary>
+
+@{
+    ViewData["Title"] = "BasicSalary";
+    Pager pager = new Pager();
+
+    int pageNo = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+<div class="col-4 p-0 justify-content-end">
+    <form asp-action="Index" >
+        <span class="btn-group">
+            <input class="form-control" type="text" name="SearchText" value="@ViewBag.searchText"
+            placeholder="Từ khóa tìm kiếm" />
+            <input class="p-1 ml-2 btn btn-sm btn-info" type="submit" value="Tìm kiếm" />
+            @if (ViewBag.SearchResultMessage != null)
+            {
+                <div class="text-danger">@ViewBag.SearchResultMessage</div>
+            }
+        </span>
+    </form>
+</div>
+<h1>Danh sách lương cơ bản</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Thêm mới</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>
+                Tên nhân viên
+            </th>
+            <th>
+                Lương cơ bản
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int count = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@count</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdUNavigation.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BasicSalary)
+                </td>
+                <td>
+                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdSalary">Sửa</a> |
+                    <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.IdSalary">Chi tiết</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdSalary">Xóa</a>
+                </td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>
+<div class=" container">
+    @if (pager.TotalPages != null)
+    {
+        <div>
+            Page @(pager.CurrentPage) of @pager.TotalPages
+        </div>
+        <ul class="pagination justify-content-end">
+            @if (pager.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Salaries" asp-action="Index" asp-route-pg="1">
+                        Đầu
+                    </a>
+                </li>
+                <li>
+                    <a class="page-link" asp-controller="Salaries" asp-action="Index" asp-route-pg="@(pager.CurrentPage -1)">
+                        Trước
+                    </a>
+                </li>
+            }
+
+            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+            {
+                <li class="page-item @(pge == pager.CurrentPage ? "active":"")">
+                    <a class="page-link" asp-action="Index" asp-controller="Salaries" asp-route-pg="@pge"> @pge</a>
+                </li>
+            }
+
+            @if (pager.CurrentPage < pager.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Salaries" asp-action="Index" asp-route-pg="@(pager.CurrentPage +1)">
+                        Sau
+                    </a>
+                </li>
+                <li>
+                    <a class="page-link" asp-controller="Salaries" asp-action="Index" asp-route-pg="@(pager.TotalPages)">
+                        Cuối
+                    </a>
+                </li>
+            }
+
+        </ul>
+    }
+</div>

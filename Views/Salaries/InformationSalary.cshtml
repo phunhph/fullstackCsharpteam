@@ -1,0 +1,137 @@
+﻿@using Azure.Core;
+@using fullstackCsharp.Models.ViewModel.Salaries
+@using fullstackCsharp.Models
+@addT
+@model IEnumerable<fullstackCsharp.Models.ViewModel.Salaries.TotalSalaryViewModel>
+@{
+    Pager pager = new Pager();
+
+    int pageNo = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+<form method="get" asp-controller="Salaries" asp-action="InformationSalary">
+    <div class="row">
+        <div class="col-3">
+            <span class="btn-group">
+                <input type="text" id="searchString" name="searchString" class="form-control" placeholder="Từ khóa tìm kiếm" value="@ViewData["CurrentFilter"]" />
+                @if (ViewBag.SearchResultMessage != null)
+                {
+                    <div class="text-danger">@ViewBag.SearchResultMessage</div>
+                }
+            </span>
+        </div>
+
+        <div class="col-3">
+            <label for="month">Tháng:</label>
+            <input type="number" id="month" name="search.Month" min="1" max="12" value="@Model?.FirstOrDefault()?.Month ?? DateTime.Now.Month" />
+        </div>
+        <div class="col-3">
+            <label for="year">Năm:</label>
+            <input type="number" id="year" name="search.Year" min="2000" max="2100" value="@Model?.FirstOrDefault()?.Year ?? DateTime.Now.Year" />
+        </div>
+        <div class="col-3">
+            <button type="submit">Lọc</button>
+        </div>
+    </div>
+</form>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <a href="@Url.Action("ExportToExcel", new { searchString = ViewData["CurrentFilter"], search.Month, search.Year })" class="btn btn-primary">Xuất Excel</a>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-info" asp-controller="Allowances" asp-action="Index">Phụ Cấp</a>
+</div>
+<br />
+<hr />
+<br />
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên nhân viên</th>
+            <th>Công đủ</th>
+            <th>Công thực tế</th>
+            <th>Lương cơ bản</th>
+            <th>Hệ số </th>
+            <th>Phụ cấp</th>
+            <th>Lương thực tế</th>
+            <th>Thưởng phạt</th>
+            <th>Lương thực lĩnh</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            int count = 1;
+        }
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@count</td>
+                <td>@s.FullName</td>
+                <td>@s.FullWorkMonth</td>
+                <td>@s.RealityWork</td>
+                <td>@s.BasicSalary</td>
+                <td>@s.Coefficient</td>
+                <td>@s.AllowanceAmount</td>
+                <td>@s.Salary</td>
+                <td>@s.TotalPayOff</td>
+                <td>@s.TotalSalaryMonth</td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>
+<div class=" container">
+    @if (pager.TotalPages != null)
+    {
+        <div>
+            Page @(pager.CurrentPage) of @pager.TotalPages
+        </div>
+        <ul class="pagination justify-content-end">
+            @if (pager.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Salaries" asp-action="InformationSalary" asp-route-pg="1">
+                        Đầu
+                    </a>
+                </li>
+                <li>
+                    <a class="page-link" asp-controller="Salaries" asp-action="InformationSalary" asp-route-pg="@(pager.CurrentPage -1)">
+                        Trước
+                    </a>
+                </li>
+            }
+
+            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+            {
+                <li class="page-item @(pge == pager.CurrentPage ? "active":"")">
+                    <a class="page-link" asp-action="InformationSalary" asp-controller="Salaries" asp-route-pg="@pge"> @pge</a>
+                </li>
+            }
+
+            @if (pager.CurrentPage < pager.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Salaries" asp-action="InformationSalary" asp-route-pg="@(pager.CurrentPage +1)">
+                        Sau
+                    </a>
+                </li>
+                <li>
+                    <a class="page-link" asp-controller="Salaries" asp-action="InformationSalary" asp-route-pg="@(pager.TotalPages)">
+                        Cuối
+                    </a>
+                </li>
+            }
+
+        </ul>
+    }
+</div>

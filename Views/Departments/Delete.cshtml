@@ -1,0 +1,27 @@
+﻿@model fullstackCsharp.Models.Department
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>Bạn có chắc chắn muốn xóa bản ghi này?</h3>
+<div>
+    <h4>Phòng ban</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Phòng ban
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Department1)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdD" />
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a class="btn btn-outline-info" asp-action="Index">Trở lại</a>
+    </form>
+</div>

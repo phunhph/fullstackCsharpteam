@@ -1,0 +1,118 @@
+﻿@using System.Globalization;
+@using fullstackCsharp.Models.ViewModel.PayOff;
+@model List<MonthyPayoffViewModel>
+
+@{
+    Pager pager = new Pager();
+
+    int pageNo = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+
+<form method="post" class="form-control bg-light" action="@Url.Action("MonthlyPayoffs")">
+    <label for="month">Tháng:</label>
+    <select name="month" id="month">
+    <option value="">-- Select Month --</option>
+    @for (int i = 1; i <= 12; i++)
+    {
+                    <option value="@i" selected="@(i == ViewBag.Month ? "selected" : "")"> @DateTimeFormatInfo.CurrentInfo.GetMonthName(i)</option>
+
+    }
+</select>
+
+<label for="year">Năm:</label>
+<select name="year" id="year">
+    <option value="">-- Select Year --</option>
+    @for (int i = DateTime.Now.Year; i >=2001; i--)
+    {
+                    <option value="@i" selected="@(i == ViewBag.Year ? "selected" : "")">@i</option>
+    }
+</select>
+
+    </select>
+
+    <button type="submit">Filter</button>
+</form>
+
+<h1>tổng thưởng phạt tháng @ViewBag.Month năm @ViewBag.Year</h1>
+
+
+
+@if (Model.Count > 0)
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Tên nhân viên</th>
+                <th>Tổng thưởng phạt</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FullName</td>
+                    <td>@item.TotalPayOffMonth</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No payoffs found.</p>
+}
+
+<div class=" container">
+    @if (pager.TotalPages != null)
+    {
+        <div>
+            Page @(pager.CurrentPage) of @pager.TotalPages
+        </div>
+        <ul class="pagination justify-content-end">
+            @if (pager.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Payoffs" asp-action="MonthlyPayoffs" asp-route-pg="1">
+                        Đầu
+                    </a>
+                </li>
+                <li>
+                    <a class="page-link" asp-controller="Payoffs" asp-action="MonthlyPayoffs" asp-route-pg="@(pager.CurrentPage -1)">
+                        Trước
+                    </a>
+                </li>
+            }
+
+            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+            {
+                <li class="page-item @(pge == pager.CurrentPage ? "active":"")">
+                    <a class="page-link" asp-action="MonthlyPayoffs" asp-controller="Payoffs" asp-route-pg="@pge"> @pge</a>
+                </li>
+            }
+
+            @if (pager.CurrentPage < pager.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Payoffs" asp-action="MonthlyPayoffs" asp-route-pg="@(pager.CurrentPage +1)">
+                        Sau
+                    </a>
+                </li>
+                <li>
+                    <a class="page-link" asp-controller="Payoffs" asp-action="MonthlyPayoffs" asp-route-pg="@(pager.TotalPages)">
+                        Cuối
+                    </a>
+                </li>
+            }
+
+        </ul>
+    }
+</div>
+
+
+

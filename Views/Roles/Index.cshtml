@@ -1,0 +1,46 @@
+﻿@using fullstackCsharp.Service;
+@model IEnumerable<fullstackCsharp.Models.Role>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var role = Context.Session.GetInt32("roleIds");
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-outline-info" asp-action="Create">Thêm quyền</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                </td>
+
+
+                @if (role == (int)RoleNameId.admin)
+                {
+                    <td>
+                        <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdR">Sửa</a>|
+                        <a class="btn btn-warning" asp-action = "Details" asp-route-id = "@item.IdR" > Chi tiết </a> |
+                        <a class="btn btn-danger" asp-action = "Delete" asp-route-id = "@item.IdR" > Xóa </a>
+                    </td>
+                }
+
+
+            </tr>
+        }
+    </tbody>
+</table>

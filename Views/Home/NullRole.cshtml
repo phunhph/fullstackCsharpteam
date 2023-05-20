@@ -1,0 +1,16 @@
+﻿@using Newtonsoft.Json;
+@using System.Text;
+@{
+    ViewData["Title"] = "Home Page";
+    var us = Context.Session.GetString("username");
+    //var roleid = con
+    string roleIdsStr = Context.Session.GetString("roleIds");
+
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @us</h1>
+    <h3>bạn chưa có quyền quy cập trang đó</h3>
+    <p> bạn chỉ có quyền @roleIdsStr </p>
+
+</div>

@@ -1,0 +1,90 @@
+﻿@using fullstackCsharp.Models.ViewModel.Attendances
+@model IEnumerable<fullstackCsharp.Models.ViewModel.Attendances.TotalWorkHoursSelf>
+@{
+    Pager pager = new Pager();
+
+    int pageNo = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+<form method="post" asp-controller="Attendanes" asp-action="TotalWorkSelf">
+    <div>
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" min="2000" max="2100" value="@Model?.FirstOrDefault()?.Year ?? DateTime.Now.Year" />
+    </div>
+    <div>
+        <button type="submit">Filter</button>
+    </div>
+</form>
+<h1> năm @ViewBag.Search</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Stt</th>
+            <th>Tên nhân viên</th>
+            <th>Tháng</th>
+            <th> Tổng công tháng </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>@a.Idu</td>
+                <td>@a.FullName</td>
+                <td>@a.Month</td>
+                <td>@a.TotalWorkMonth</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class=" container">
+    @if (pager.TotalPages != null)
+    {
+        <div>
+            Page @(pager.CurrentPage) of @pager.TotalPages
+        </div>
+        <ul class="pagination justify-content-end">
+            @if (pager.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Attendanes" asp-action="TotalWorkSelf" asp-route-pg="1">
+                        Đầu
+                    </a>
+                </li>
+                <li>
+                    <a class="page-link" asp-controller="Attendanes" asp-action="TotalWorkSelf" asp-route-pg="@(pager.CurrentPage -1)">
+                        Trước
+                    </a>
+                </li>
+            }
+
+            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+            {
+                <li class="page-item @(pge == pager.CurrentPage ? "active":"")">
+                    <a class="page-link" asp-action="TotalWorkSelf" asp-controller="Attendanes" asp-route-pg="@pge"> @pge</a>
+                </li>
+            }
+
+            @if (pager.CurrentPage < pager.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Attendanes" asp-action="TotalWorkSelf" asp-route-pg="@(pager.CurrentPage +1)">
+                        Sau
+                    </a>
+                </li>
+                <li>
+                    <a class="page-link" asp-controller="Attendanes" asp-action="TotalWorkSelf" asp-route-pg="@(pager.TotalPages)">
+                        Cuối
+                    </a>
+                </li>
+            }
+
+        </ul>
+    }
+</div>
