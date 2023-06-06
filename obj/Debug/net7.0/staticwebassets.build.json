@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qFFADOTbADDOjec7KnkWF3QQ3lTrjDtHO1uLlOQlYYs=",
+  "Hash": "1ZNEm84xsUJlahKHsHfbw/DN2mJDwOG+ypQaVtXdDA0=",
   "Source": "fullstackCsharp",
   "BasePath": "_content/fullstackCsharp",
   "Mode": "Default",
@@ -102,6 +102,23 @@
       "OriginalItemSpec": "wwwroot\\css\\staff.css"
     },
     {
+      "Identity": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\css\\StaffEdit.css",
+      "SourceId": "fullstackCsharp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\",
+      "BasePath": "_content/fullstackCsharp",
+      "RelativePath": "css/StaffEdit.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\StaffEdit.css"
+    },
+    {
       "Identity": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\favicon.ico",
       "SourceId": "fullstackCsharp",
       "SourceType": "Discovered",
@@ -151,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\js\\Staff.js",
+      "SourceId": "fullstackCsharp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\",
+      "BasePath": "_content/fullstackCsharp",
+      "RelativePath": "js/Staff.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Staff.js"
     },
     {
       "Identity": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

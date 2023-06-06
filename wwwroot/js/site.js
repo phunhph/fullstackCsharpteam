@@ -5,3 +5,4 @@
 document.getElementById("profile").onclick = function () {
     document.querySelector(".main-profile").classList.add("show");
 }
+

@@ -1,0 +1,71 @@
+﻿@model fullstackCsharp.Models.Staff
+<link href="~/css/StaffEdit.css" rel="stylesheet" />
+
+
+<div class="">
+    <div class="container formTong shadow-lg p-3 mb-5 bg-body rounded">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div>
+                @{
+                    Staff staff = ViewData["staff"] as Staff;
+                    ;
+                    <fieldset class="m-3">
+                        <legend class="row justify-content-center">Edit Information Employee</legend>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="name">Name:</label>
+                                <input type="text" name="name" id="name" value="@staff.Namenv">
+                                <br>
+                                <br>
+                                <label for="gender">Gender:</label>
+                                <input type="text" name="gender" id="gender" value="@staff.Gender">
+                                <br>
+                                <br>
+                                <label for="phone"> Phone:</label>
+                                <input type="text" name="phone" id="phone" value="@staff.Phone">
+                                <br>
+                                <br>
+                                <label for="address">Address:</label>
+                                <input type="text" name="address" id="address" value="@staff.Address ">
+                                <br>
+                                <br>
+                                <label for="user"> Username:</label>
+                                <input type="text" name="user" id="user" value="@staff.User">
+                                <br>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="password">Password:</label>
+                                <input type="text" name="password" id="password" value="@staff.Password">
+                                <br>
+                                <br>
+                                <label for="rank">Rank:</label>
+                                <input class="w-100" type="text" name="rankString" id="rank" value="@staff.Rank">
+                                <br>
+                                <br>
+                                <label for="status">Status:</label>
+                                <input type="text" name="status" id="status" value="@staff.Status">
+                                <br>
+                                <br>
+                                <label for="id_pb">Id_pb:</label>
+                                <input type="text" name="id_pb" id="id_pb" value="@staff.Id_pb">
+                                <br>
+                                <br>
+                                <label for="id_rank"> Id_rank:</label>
+                                <input type="text" name="id_rank" id="id_rank" value="@staff.Id_rank">
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+                <div class="summit">
+                    <input class="w-100 btn btn-primary" type="submit" value="Edit" />
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

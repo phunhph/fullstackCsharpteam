@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\Login.css"
     },
     {
+      "Id": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\css\\StaffEdit.css",
+      "PackagePath": "staticwebassets\\css\\StaffEdit.css"
+    },
+    {
       "Id": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -23,6 +27,10 @@
     {
       "Id": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\js\\Dim.js",
       "PackagePath": "staticwebassets\\js\\Dim.js"
+    },
+    {
+      "Id": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\js\\Staff.js",
+      "PackagePath": "staticwebassets\\js\\Staff.js"
     },
     {
       "Id": "C:\\Users\\HP\\source\\repos\\phunhph\\fullstackCsharpteam2\\wwwroot\\js\\site.js",

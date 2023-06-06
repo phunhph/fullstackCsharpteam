@@ -1,4 +1,5 @@
-﻿using fullstackCsharp.Models;
+﻿using fullstackCsharp.DAO;
+using fullstackCsharp.Models;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -52,8 +53,9 @@ namespace fullstackCsharp.Controllers
             return RedirectToAction("Login");
         }
         //đăng nhập
-        //check csdl
+        //check csdl why did it jump in here???
         private LoginDAO loginDAO = new LoginDAO();
+        
         public ActionResult login()
         {
             return View();
