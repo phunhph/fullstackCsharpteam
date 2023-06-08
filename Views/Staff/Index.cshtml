@@ -15,28 +15,27 @@
         <table class="table-bordered border-dark ">
             <tbody>
                 <tr class="text-center  " id="popertyTableTh">
-                    <th>hello</th>
+
                     <th> Mã nhân viên</th>
                     <th> Tên nhân viên</th>
                     <th> Giới tính</th>
                     <th> add</th>
                     <th> user</th>
                     <th> pass</th>
-                    <th id="delete">delete</th>
+                    <th class="deleteEdit">delete/edit</th>
                 </tr>
                 @{
+                    <!---------------------- lấy data ----------------->
                     List<Staff> stafflist = ViewData["staffList"] as List<Staff>;
+                    <!-------------------------------------------------->
 
                     @foreach (Staff staff in stafflist)
                     {
                         <tr border="2" class="popertyTableTd">
 
                             <td>
-                                @{
-                                    var url = "/staff/Edit/" + staff.Id_nv;
 
-                                }
-                                <a href="@url">@staff.Id_nv</a>
+                                @staff.Id_nv
                             </td>
 
                             <td> @staff.Namenv </td>
@@ -44,12 +43,22 @@
                             <td> @staff.Address</td>
                             <td> @staff.User</td>
                             <td> @staff.Password</td>
-                            <td><input type="checkbox" name="delete" value="@staff.Id_nv" /></td>
+                            <td class="deleteEdit text-center ">
+                                <input type="checkbox" name="delete" value="@staff.Id_nv" />
+
+                                <!-- path tới trang edit.cshtml -->
+                                @{
+                                    var url = "/staff/Edit/" + staff.Id_nv;
+
+                                }
+                                <!------------------------------------>
+                                <a href="@url" class="ms-3">edit</a>
+                            </td>
                         </tr>
 
                     }
 
-
+                    <!------------------------ modal delete --------------------------->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
                         <div class="modal-dialog">
@@ -61,7 +70,6 @@
                                     </button>
                                 </div>
                                 <div id="deleteModalBody" class="modal-body">
-                                    ...
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -72,44 +80,37 @@
                             </div>
                         </div>
                     </div>
+
+                    <!------------------------------------------------------------------------>
                 }
             </tbody>
         </table>
     </div>
+    <!------------------------------- button ----------------------------------->
     <div>
         <p id="btnSetting" class=" mt-3 d-flex justify-content-center">
             <a href="#" class="btn btn-primary" onclick="confSetting()">Setting</a>
         </p>
         <div id="btnCreateDelete">
-            <p  class=" mt-3 d-flex justify-content-center">
+            <p class=" mt-3 d-flex justify-content-center">
 
-            <a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Create">thêm</a>
-                <a href="#" class="btn btn-primary ms-3"  onclick="confDelete()"> Delete</a>
-            <form id="Deleted" asp-action="Delete">
-                <input type="hidden"  name="deleteList" value="" id="deleteList" />
-                <a asp-action="Index"></a>
-            </form>
+                <a class="btn btn-dark" asp-area="" asp-controller="staff" asp-action="Create">thêm</a>
+                <a href="#" class="btn btn-primary ms-3" onclick="confDelete()"> Delete</a>
+                <form id="Deleted" asp-action="Delete">
+                    <input type="hidden" name="deleteList" value="" id="deleteList" />
+                    <a asp-action="Index"></a>
+                </form>
 
 
-        </p>
+            </p>
         </div>
     </div>
+    <!----------------------------------------------------------------------------->
 
-    <script>
-    @{
-            String DataListJson = Html.Raw(JsonConvert.SerializeObject(ViewData["staffList"]));
-            Console.WriteLine{DataListJson};
-            Console.WriteLine{DataListJson};
-    }
-        var arrayDS = @DataListJson;
-
-        console.log(arrayDS);
-
-    </script>
 
     <script src="~/js/Staff.js"></script>
 
-    
+
 </body>
 
 

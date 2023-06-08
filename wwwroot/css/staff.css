@@ -30,9 +30,12 @@ td {
     display: none ;
     
 }*/
-/*#checkBoxDelete{
+#checkBoxDelete{
     display: none;
-}*/
+}
 #btnCreateDelete {
+    display: none;
+}
+.deleteEdit {
     display: none;
 }
