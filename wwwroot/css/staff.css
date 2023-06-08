@@ -26,10 +26,13 @@ td {
     border: 0px !important;
     background: #ffffff !important;
 }
-#propertyDelete {
+/*#propertyDelete {
     display: none ;
     
-}
-#checkBoxDelete{
+}*/
+/*#checkBoxDelete{
+    display: none;
+}*/
+#btnCreateDelete {
     display: none;
 }

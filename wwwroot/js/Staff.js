@@ -1,11 +1,20 @@
-﻿function conf() {
-
-    $("#Deleted").submit();
+﻿
+//====================================================================== Edit ======================================
+let IdNV;
+let NameNV;
+let gender;
+let Address;
+let User;
+let Password;
+let objDS = {
+    IdNV: IdNV,
+    NameNV: NameNV,
+    gender: gender,
+    Address: Address,
+    User: User,
+    Password: Password
 
 }
-//====================================================================== Edit ======================================
-
-
 
 function conf1(id) {
 
@@ -19,7 +28,15 @@ function conf1(id) {
         window.location.href = url;
     }
 }
-function conf2() {
+
+//================================================ Delete ================================================
+
+function confDeleteModal() {
+
+    $("#Deleted").submit();
+
+}
+function confDelete() {
 
     let galleryModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
         keyboard: false
@@ -38,10 +55,39 @@ function conf2() {
     deleteModalBody.innerHTML = t;
     galleryModal.show();
 }
-
+//=========================== button setting================================
 function confSetting() {
-    document.getElementById("propertyDelete").style.display = "block";
-    document.getElementById("checkBoxDelete").style.display = "block";
+
+
+    //let th = document.createElement("th");
+    //let td = $("<td>");
+    //let input = $("<input>");
+    ////=================== thẻ input =========================================
+    //$(input).attr('name', 'deleted');
+    //$(input).attr('id', 'delete');
+    //$(input).attr('type', 'checkbox');
+
+    //$(input).attr('value', '@staff.Id_nv');
+    //$(td).append(input);
+
+    ////=================================================================================
+    //td.attr('id', 'checkBoxDelete');
+
+    //$('#popertyTableTh').append(th);
+    //$('.popertyTableTd').append(td);
+
+
+    //$(th).attr('id', 'propertyTh');
+
+    //th.innerHTML = "delete";
+    $("#delete").show();
+    $("#btnCreateDelete").show();
     
+    
+    //document.getElementById("btnCreateDelete").style.display = "block";
+    //document.getElementByID("btnSetting").style.display = "none" ;
+   // $('#btnSetting').attr('class', 'd-none');
+
+
 }
 
